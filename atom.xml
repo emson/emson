@@ -1,0 +1,27 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Ben Emson</title>
+ <link href="http://blog.emson.co.uk/atom.xml" rel="self"/>
+ <link href="http://blog.emson.co.uk/"/>
+ <updated>{{ site.time | date_to_xmlschema }}</updated>
+ <id>http://blog.emson.co.uk/</id>
+ <author>
+   <name>Ben Emson</name>
+   <email>ben@emson.co.uk</email>
+ </author>
+
+ {% for post in site.posts %}
+ <entry>
+   <title>{{ post.title }}</title>
+   <link href="http://blog.emson.co.uk{{ post.url }}"/>
+   <updated>{{ post.date | date_to_xmlschema }}</updated>
+   <id>http://blog.emson.co.uk{{ post.id }}</id>
+   <content type="html">{{ post.content | xml_escape }}</content>
+ </entry>
+ {% endfor %}
+ 
+</feed>

@@ -1,0 +1,118 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Installing Sqlite3 on Windows for Rails</title> 
+				<meta name="author" content="Ben Emson" />
+				<link href="http://feeds.feedburner.com/ben-emson" rel="alternate" title="Ben Emsonr" type="application/atom+xml" />
+
+			   <!-- syntax highlighting CSS -->
+			   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+			   <!-- Homepage CSS -->
+			   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+    </head> 
+ 
+    <body>  
+        <div id="container"> 
+ 
+            <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
+            
+            <div id="post">
+<p>The Windows version of <a href="http://www.rubyonrails.org">Ruby on Rails</a> does not ship with the <a href="http://www.sqlite.org">Sqlite3 database</a>, even though the <strong>database.yaml</strong> configuration file is preconfigured to use Sqlite.</p>
+
+<p>This is a <em>how to</em> guide on how to install Sqlite3 on your Windows PC.
+This article assumes that you already have <a href="http://www.ruby-lang.org">Ruby</a> and <a href="http://www.rubyonrails.org">Ruby on Rails</a> installed on your PC.</p>
+
+<p>First you will need to download two files from the Sqlite web site <a href="http://www.sqlite.org/download.html">http://www.sqlite.org/download.html</a>:</p>
+
+<pre><code>    sqlite-3_5_9.zip (214.32 KiB)
+    A command-line program for accessing and modifing SQLite databases. 
+    See the documentation for additional information.
+
+    sqlitedll-3_5_9.zip (213.17 KiB)
+    This is a DLL of the SQLite library without the TCL bindings. 
+    The only external dependency is MSVCRT.DLL.
+</code></pre>
+
+<p>The first file is the Sqlite command line program used for modifing the Sqlite database.  You may or may not use this.</p>
+
+<p>The second file is the Windows DLL library file and Ruby uses this when Rails makes Sqlite database calls.</p>
+
+<p>When both these ZIP files have been extracted you should have the following files:</p>
+
+<ul>
+<li>sqlite3.exe</li>
+<li>sqlite3.def</li>
+<li>sqlite3.dll</li>
+</ul>
+
+
+<p>Copy these file to the <strong>bin</strong> directory of your Ruby installation, if you followed the default Ruby installation it will be located here:</p>
+
+<pre><code>    C:\ruby\bin
+</code></pre>
+
+<p>Now that you have the Sqlite3 files installed you need to tell Ruby how to use them.  To do this you need to download the Ruby bindings for Sqlite3.<br/>Fortunately this is easy to do, using Ruby gems.  Simply at the command prompt type the following command:</p>
+
+<pre><code>    gem install sqlite3-ruby
+</code></pre>
+
+<p>You will now need to tell Gems which version you need as you will be presented with the following output:</p>
+
+<pre><code>    Bulk updating Gem source index for: http://gems.rubyforge.org
+    Select which gem to install for your platform (i386-mswin32)
+     1. sqlite3-ruby 1.2.2 (mswin32)
+     2. sqlite3-ruby 1.2.2 (ruby)
+     3. sqlite3-ruby 1.2.1 (mswin32)
+     4. sqlite3-ruby 1.2.1 (ruby)
+     5. Skip this gem
+     6. Cancel installation
+    &gt;_
+</code></pre>
+
+<p>Please select option 1, <strong>sqlite3-ruby 1.2.2 (mswin32)</strong>.  All being successful you will get some output like this:</p>
+
+<pre><code>    Successfully installed sqlite3-ruby-1.2.2-mswin32
+    Installing ri documentation for sqlite3-ruby-1.2.2-mswin32...
+    Installing RDoc documentation for sqlite3-ruby-1.2.2-mswin32...
+</code></pre>
+
+<p>If you are using Rails 2+ you should be able to run the following rake tasks from your Rails application directory.  For example say you created a Rails application located here: <strong>C:\MyApp</strong> you should be able to execute:</p>
+
+<pre><code>    C:\MyApp&gt;rake db:create
+    or
+    C:\MyApp&gt;rake db:migrate
+</code></pre>
+
+<p>Hope this is useful.</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>24 Jun 2010</span> &raquo; <a href="/2010/06/ruby-quine-example">Ruby Quine Example</a></li>
+    
+      <li><span>11 May 2010</span> &raquo; <a href="/2010/05/what-is-the-difference-between-a-proc-and-a-lambda-in-ruby">What is the Difference Between a Proc and a Lambda in Ruby?</a></li>
+    
+      <li><span>09 May 2010</span> &raquo; <a href="/2010/05/code-kata-four-exercise-a-ruby-solution">Code Kata Four Exercise - A Ruby Solution</a></li>
+    
+  </ul>
+</div>
+ 
+            <div class="footer">  
+					    <div class="rss">
+					      <a href="http://feeds.feedburner.com/ben-emson">
+					        <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+					      </a>
+					    </div>
+                <p>A project by <a href="http://blog.emson.co.uk">Ben Emson</a> | <a href="http://twitter.com/emson">@emson</a>.</p> 
+            </div> 
+ 
+        </div> 
+				<!-- Google Analytics -->
+    </body> 
+</html>

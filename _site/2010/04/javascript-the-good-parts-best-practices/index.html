@@ -1,0 +1,268 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>JavaScript The Good Parts Best Practices </title> 
+				<meta name="author" content="Ben Emson" />
+				<link href="http://feeds.feedburner.com/ben-emson" rel="alternate" title="Ben Emsonr" type="application/atom+xml" />
+
+			   <!-- syntax highlighting CSS -->
+			   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+			   <!-- Homepage CSS -->
+			   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+    </head> 
+ 
+    <body>  
+        <div id="container"> 
+ 
+            <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
+            
+            <div id="post">
+<h2>Part I</h2>
+
+<p>The best practice suggestions listed here are summaries from <a href="http://www.crockford.com/">Douglas Crockford's</a> book: <a href="http://www.amazon.com/gp/product/0596517742?ie=UTF8&amp;tag=emson-20&amp;linkCode=as2&amp;camp=1789&amp;creative=390957&amp;creativeASIN=0596517742">JavaScript: The Good Parts</a></p>
+
+<p>By following these principles you will write better JavaScript code.</p>
+
+<h2>JavaScript Best Practices</h2>
+
+<h3>1. Commenting</h3>
+
+<p>Avoid using <code>/* */</code> for commenting out your code instead use the <code>//</code> method.  The reason being that <code>*/</code> can occur in regular expressions and if you were to comment out a regular expression containing this, you would get a syntax error.</p>
+
+<h3>2. Object Value Retrieval</h3>
+
+<p>For an object such as <code>var myObj = {key:"value"};</code> An object value can retrieved in two ways:</p>
+
+<div class="highlight"><pre><code class="javascript">                              
+    <span class="nx">myObj</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">];</span>   <span class="c1">// &quot;value&quot;</span>
+    <span class="nx">myObj</span><span class="p">.</span><span class="nx">key</span><span class="p">;</span>      <span class="c1">// &quot;value&quot;</span>
+    
+</code></pre>
+</div>
+
+
+<p>However the second version using '.' notation is preferred as it reads better.</p>
+
+<h3>3. Avoid Global Variables</h3>
+
+<p>Global variables will reduce the resiliency of your JavaScript programs so try to keep these to a minimum.  A best practice strategy for this is to use a single global variable for your program and simply assign objects to it. e.g.</p>
+
+<div class="highlight"><pre><code class="javascript">    <span class="kd">var</span> <span class="nx">MYAPP</span> <span class="o">=</span> <span class="p">{};</span>
+    
+    <span class="nx">MYAPP</span><span class="p">.</span><span class="nx">myObj</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">key</span><span class="o">:</span><span class="s2">&quot;value&quot;</span>
+    <span class="p">};</span>
+</code></pre>
+</div>
+
+
+<h3>4. Capitalize Constructor Functions</h3>
+
+<p>Functions that are created as <em>constructor functions</em> should be capitalized. Think of a <em>constructor functions</em> as a factory creating cloned functions.  Strictly this is not classical inheritance but <strong>prototypical inheritance</strong>. This is essentially where a function is cloned and contains all the properties of it's parent.</p>
+
+<div class="highlight"><pre><code class="javascript">    <span class="kd">var</span> <span class="nx">Shape</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">};</span>
+    
+    <span class="kd">var</span> <span class="nx">square</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Shape</span><span class="p">(</span><span class="s2">&quot;square&quot;</span><span class="p">);</span>
+</code></pre>
+</div>
+
+
+<p>This style of constructor functions is not recommended as if you forget to use <code>new</code> then the <code>this</code> object gets bound to the global variable.</p>
+
+<h3>5. Avoid Recursion</h3>
+
+<p>JavaScript does not offer <em>tail recursion optimization</em>, therefore functions that recurse too deeply will eventually fail.</p>
+
+<h3>6. Use Function Scope To Protect Against Namespace Collisions</h3>
+
+<p>JavaScript does not have block scope, i.e. variables declared in a block statement (e.g. with in curly braces) are accessible from outside of that block.  However functions do have function scope, variables declared within a function cannot be accessed from outside of that function.</p>
+
+<p>Best practice is to declare the variables used in a function at the top of the function.</p>
+
+<h3>7. Use Functions To Create Modules</h3>
+
+<p>A Module is a function or object that presents an interface but hides its state and implementation. This therefore avoids the use of global variables.</p>
+
+<div class="highlight"><pre><code class="javascript">    <span class="kd">var</span> <span class="nx">myModule</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">call</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+      
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">setCall</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">myCall</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">call</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">myCall</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">doCall</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="s1">&#39;Hello &#39;</span> <span class="o">+</span> <span class="nx">call</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">};</span>
+    <span class="p">}();</span>  <span class="c1">// the () will immediately invoke this function</span>
+    
+    <span class="kd">var</span> <span class="nx">myCaller</span> <span class="o">=</span> <span class="nx">myModule</span><span class="p">();</span>
+    <span class="nx">myCaller</span><span class="p">.</span><span class="nx">setCall</span> <span class="o">=</span> <span class="s1">&#39;Ben&#39;</span><span class="p">;</span>
+    <span class="nx">alert</span><span class="p">(</span> <span class="nx">myCaller</span><span class="p">.</span><span class="nx">doCall</span><span class="p">()</span> <span class="p">);</span>
+    
+</code></pre>
+</div>
+
+
+<h3>8. Use Cascades</h3>
+
+<p>If you have a method that changes state, be sure to return <code>this</code> as opposed to <code>undefined</code>. The reason is that you can then chain these methods together.  This is how JQuery works.</p>
+
+<div class="highlight"><pre><code class="javascript">    <span class="nx">getElement</span><span class="p">(</span><span class="s1">&#39;myDiv&#39;</span><span class="p">).</span><span class="nx">changeColour</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">).</span><span class="nx">setFont</span><span class="p">(</span><span class="s1">&#39;Times&#39;</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;italic&#39;</span><span class="p">);</span>
+    
+</code></pre>
+</div>
+
+
+<h3>9. For Constructor That Take Many Parameters Use Object Specifiers</h3>
+
+<p>If an object takes many parameters it can be tricky ensuring that these parameters are in the correct order. Therefore create a single object instead that holds all the parameters as properties:</p>
+
+<div class="highlight"><pre><code class="javascript">    <span class="c1">// Tricky</span>
+    <span class="kd">var</span> <span class="nx">myObj</span> <span class="o">=</span> <span class="nx">someObject</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">);</span>
+    
+    <span class="c1">// Better</span>
+    <span class="kd">var</span> <span class="nx">myObj</span> <span class="o">=</span> <span class="nx">someObject</span><span class="p">({</span> <span class="nx">first</span><span class="o">:</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">second</span><span class="o">:</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">third</span><span class="o">:</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">fourth</span><span class="o">:</span> <span class="nx">d</span><span class="p">});</span>
+    
+</code></pre>
+</div>
+
+
+<h2>General JavaScript Notes</h2>
+
+<p>Strings are immutable, in that once a string has been created that string object cannot be changed. However note that you can easily append and modify a string, the outcome just generates a new string.</p>
+
+<p>JavaScript provides a prototype linkage function, which when used allows one object to 'inherit' the properties of the linked object.</p>
+
+<p>A <code>try catch</code> statement only allows a single catch block, to catch all exceptions. If you need to differentiate between exceptions then add code to inspect the name of the exception and handle it appropriately.</p>
+
+<h3>Objects</h3>
+
+<p>Object creation methods:</p>
+
+<div class="highlight"><pre><code class="javascript">    <span class="kd">var</span> <span class="nx">myObj</span> <span class="o">=</span> <span class="p">{};</span>
+</code></pre>
+</div>
+
+
+<p>Set a default value if an object property doesn't exist:</p>
+
+<div class="highlight"><pre><code class="javascript">    <span class="kd">var</span> <span class="nx">myObj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">one</span><span class="o">:</span><span class="s2">&quot;1&quot;</span><span class="p">};</span>
+    <span class="nx">myObj</span><span class="p">.</span><span class="nx">two</span> <span class="o">||</span> <span class="s2">&quot;2&quot;</span> <span class="c1">// returns &quot;2&quot;</span>
+    
+</code></pre>
+</div>
+
+
+<p>Assigning a value to an object property that is undefined will simply augment (or create) that property in that object and assign it.</p>
+
+<p>Objects are passed by reference, they are never copied.</p>
+
+<p>Every object is linked to a prototype object from which it can inherit properties. This object is <code>Object.prototype</code></p>
+
+<p>The prototype link is only used in the retrieval of properties from objects, if the first object does not have the property then JavaScript will use this prototype link to get the next object up the chain and try and retrieve the property from this object. If no property exists then <code>undefined</code> is returned.</p>
+
+<p>When using <code>for in</code> for enumerating over properties in an object, be aware that it will also enumerate the properties of objects further up the prototype chain.  If you don't want this simply just use <code>for</code>,</p>
+
+<h3>Functions</h3>
+
+<p>As Douglas Crockford says:</p>
+
+<blockquote><p>Functions are the fundamental modular unit of JavaScript. Use functions for code reuse, information hiding and composition. Functions are used to specify the behaviour of objects.</p></blockquote>
+
+<p>Functions are objects, but they have a prototype link to <code>Function.prototype</code>, and then this root function object in turn links to <code>Object.prototype</code>.</p>
+
+<p>A function can take 0 or more specified parameters, however functions get two extra hidden parameters <code>this</code> and <code>arguments</code>.</p>
+
+<p>A <strong>method</strong> is simply a function assigned (bound) to an objects property. e.g.</p>
+
+<div class="highlight"><pre><code class="javascript">    <span class="kd">var</span> <span class="nx">myObj</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">myMethod</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Hello &quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+      <span class="p">};</span>
+    <span class="p">};</span>
+    
+</code></pre>
+</div>
+
+
+<p>A function always returns a value. If no return value is defined then the function will return <code>undefined</code>. However if a function is constructed with the <code>new</code> prefix and the return value is not an object the new object is returned.</p>
+
+<h2>JavaScript Gotcha's</h2>
+
+<h3>typeof Returns incorrect types</h3>
+
+<p>Using the <code>typeof</code> method will return six results:</p>
+
+<ol>
+<li>number</li>
+<li>string</li>
+<li>boolean</li>
+<li>undefined</li>
+<li>function</li>
+<li>object</li>
+</ol>
+
+
+<p>The problem occurs with <code>typeof ['1']</code> or <code>typeof null</code> which both return <em>object</em> which is incorrect.</p>
+
+<h3>Function Invocation Binds 'this' To The Global Object</h3>
+
+<p>When a function is created by assigning it to a global variable, and the contents of that function contains a <code>this</code> statement then the <code>this</code> is bound to the Global Object</p>
+
+<p>When a function, contains an internal function the <code>this</code> of the internal function is bound to the Global Object and not the <code>this</code> of the parent function. To fix this simply assign <code>this</code> to a <code>that</code> variable and use <code>that</code> within your internal function.</p>
+
+<div class="highlight"><pre><code class="javascript">    <span class="kd">var</span> <span class="nx">myObj</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">value</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+      
+      <span class="kr">double</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="nx">that</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">that</span><span class="p">.</span><span class="nx">value</span> <span class="o">+</span> <span class="nx">that</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+        <span class="p">};</span>
+        <span class="nx">helper</span><span class="p">();</span>
+      <span class="p">};</span>
+    <span class="p">};</span>
+    
+</code></pre>
+</div>
+
+
+<h3>arguments Is An Array Like Object Not An Array</h3>
+
+<p>All functions have a parameter <code>arguments</code> which gives a function access to all the arguments supplied with it's invocation - including excess arguments that are not assigned to a parameter.
+However note that <code>arguments</code> is in fact a special object with a length method and not an Array object. So <code>arguments</code> will lack methods that an Array object will have.</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>24 Jun 2010</span> &raquo; <a href="/2010/06/ruby-quine-example">Ruby Quine Example</a></li>
+    
+      <li><span>11 May 2010</span> &raquo; <a href="/2010/05/what-is-the-difference-between-a-proc-and-a-lambda-in-ruby">What is the Difference Between a Proc and a Lambda in Ruby?</a></li>
+    
+      <li><span>09 May 2010</span> &raquo; <a href="/2010/05/code-kata-four-exercise-a-ruby-solution">Code Kata Four Exercise - A Ruby Solution</a></li>
+    
+  </ul>
+</div>
+ 
+            <div class="footer">  
+					    <div class="rss">
+					      <a href="http://feeds.feedburner.com/ben-emson">
+					        <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+					      </a>
+					    </div>
+                <p>A project by <a href="http://blog.emson.co.uk">Ben Emson</a> | <a href="http://twitter.com/emson">@emson</a>.</p> 
+            </div> 
+ 
+        </div> 
+				<!-- Google Analytics -->
+    </body> 
+</html>

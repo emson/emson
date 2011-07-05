@@ -1,0 +1,154 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Everyday MySQL Commands</title> 
+				<meta name="author" content="Ben Emson" />
+				<link href="http://feeds.feedburner.com/ben-emson" rel="alternate" title="Ben Emsonr" type="application/atom+xml" />
+
+			   <!-- syntax highlighting CSS -->
+			   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+			   <!-- Homepage CSS -->
+			   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+    </head> 
+ 
+    <body>  
+        <div id="container"> 
+ 
+            <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
+            
+            <div id="post">
+<p>I'm trying to put together a number of blog articles and many of them use the MySQL database, so I figured that I would post up some of my most used everyday MySQL SQL commands.  Most likely I will append further commands as I write more articles so this is page is really a work in progress.</p>
+
+<p>I've also assumed that you want to have full rights when executing these commands so I've used <strong>sudo</strong>, however you may not need this depending on your set up.</p>
+
+<p>Finally if some other web site covers the command better or I'm feeling lazy I'll just pop it in the links list at the bottom of this page.</p>
+
+<h2>Useful MySQL Commands</h2>
+
+<h3>Starting MySQL Demon</h3>
+
+<p>Start your MySQL database and get it running as a background process:</p>
+
+<pre><code>sudo mysqld_safe
+Ctrl + Z
+bg
+</code></pre>
+
+<h3>MySQL create databases script</h3>
+
+<p>Make a SQL script that creates 3 databases and assigns all rights to my username.
+Copy the following SQL and paste it into a file called <strong>create_databases.sql</strong>:</p>
+
+<pre><code>create database mydb_development;
+create database mydb_test;
+create database mydb_production;
+grant all on mydb_development.* to 'my_username'@'localhost';
+grant all on mydb_test.* to 'my_username'@'localhost';
+grant all on mydb_production.* to 'my_username'@'localhost' identified by 'my_password';
+</code></pre>
+
+<h3>MySQL drop databases script</h3>
+
+<p>Make a script to drop databases.
+Copy the following SQL and paste it into a file called <strong>drop_databases.sql</strong>:</p>
+
+<pre><code>drop database nemos_production;
+drop database mydb_development;
+drop database nemos_test;
+</code></pre>
+
+<h3>Executing a script from MySQL</h3>
+
+<p>The above scripts can be executed from the command-line with the either of these commands:</p>
+
+<pre><code>sudo mysql &lt; create_database.sql
+or
+sudo mysql &lt; drop_database.sql
+</code></pre>
+
+<h3>Showing MySQL databases</h3>
+
+<p>To check that the databases were created :</p>
+
+<pre><code>sudo mysqlshow
+or
+sudo mysql
+show databases;
+</code></pre>
+
+<h3>Displaying database tables</h3>
+
+<p>Displaying the tables of a database:</p>
+
+<pre><code>sudo mysqlshow mydb_development
+or
+sudo mysql
+show tables from mydb_development;
+</code></pre>
+
+<h3>Displaying details about a database table</h3>
+
+<p>Displaying details about a particular database table:</p>
+
+<pre><code>sudo mysqlshow mydb_development mytable
+</code></pre>
+
+<h3>Droping a database table</h3>
+
+<p>Dropping a table from a database:</p>
+
+<pre><code>sudo mysql
+use mydb_development;
+drop table mytable;
+</code></pre>
+
+<h3>Displaying information about a table</h3>
+
+<p>Displaying the fields and field metadata about a table:</p>
+
+<pre><code>show fields from my_table; 
+or
+desc my_table;
+</code></pre>
+
+<h2>Useful Links</h2>
+
+<ul>
+<li><a href="http://openmaniak.com/mysql.php">http://openmaniak.com/mysql.php</a></li>
+</ul>
+
+
+<p>These are just a few quick and simple MySQL commands that you will always use.
+Hope this helps.</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>24 Jun 2010</span> &raquo; <a href="/2010/06/ruby-quine-example">Ruby Quine Example</a></li>
+    
+      <li><span>11 May 2010</span> &raquo; <a href="/2010/05/what-is-the-difference-between-a-proc-and-a-lambda-in-ruby">What is the Difference Between a Proc and a Lambda in Ruby?</a></li>
+    
+      <li><span>09 May 2010</span> &raquo; <a href="/2010/05/code-kata-four-exercise-a-ruby-solution">Code Kata Four Exercise - A Ruby Solution</a></li>
+    
+  </ul>
+</div>
+ 
+            <div class="footer">  
+					    <div class="rss">
+					      <a href="http://feeds.feedburner.com/ben-emson">
+					        <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+					      </a>
+					    </div>
+                <p>A project by <a href="http://blog.emson.co.uk">Ben Emson</a> | <a href="http://twitter.com/emson">@emson</a>.</p> 
+            </div> 
+ 
+        </div> 
+				<!-- Google Analytics -->
+    </body> 
+</html>

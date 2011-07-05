@@ -1,0 +1,237 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>What is the Difference Between a Proc and a Lambda in Ruby?</title> 
+				<meta name="author" content="Ben Emson" />
+				<link href="http://feeds.feedburner.com/ben-emson" rel="alternate" title="Ben Emsonr" type="application/atom+xml" />
+
+			   <!-- syntax highlighting CSS -->
+			   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+			   <!-- Homepage CSS -->
+			   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+    </head> 
+ 
+    <body>  
+        <div id="container"> 
+ 
+            <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
+            
+            <div id="post">
+<p>The concepts of a <strong>Proc</strong> and a <strong>lambda</strong> in Ruby are subtly different and this post aims to try and explain the differences.</p>
+
+<h2>Procs and Lambdas</h2>
+
+<p>Firstly why do we need Procs and lambdas? In order to answer this you need to understand what a <strong>block</strong> is in Ruby.</p>
+
+<h3>Understanding what a block is?</h3>
+
+<p>A <strong>block</strong> is simply a piece of code, which is usually attached to a method, Proc or lambda. It is important to note that this block of code is NOT an object (yet...), it is code that is defined either within braces {} or within a <code>do end</code> container.</p>
+
+<p>The code in a <strong>block</strong> is just logic that hasn't been wrapped into an object yet. When this <strong>block</strong> is passed to a method and that method has a <strong>yield</strong> statement then Ruby will wrap that <strong>block</strong> into a special type of object. That type of object is a <strong>Proc</strong> object. Once the <strong>block</strong> becomes a <strong>Proc</strong> Ruby can use it and the <strong>block</strong> code 'comes alive'.</p>
+
+<p>Therefore we need a <strong>Proc</strong> object in order to handle <strong>blocks</strong>. The next question is how does a <strong>lambda</strong> fit in.</p>
+
+<p>A <strong>lambda</strong> is a type of <strong>Proc</strong> object, it is almost completely identical to a Proc apart from two differences. This little code snippet shows that a <strong>Proc</strong> and a <strong>lambda</strong> are derived from the same superclass, <strong>Proc</strong>.</p>
+
+<div class="highlight"><pre><code class="ruby">      <span class="k">def</span> <span class="nf">what_are_lambdas_and_procs</span>
+        <span class="nb">puts</span> <span class="s2">&quot;--- </span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2"> ---&quot;</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s1">&#39;lam variable assigned a lambda&#39;</span> <span class="p">}</span>
+        <span class="n">lam</span><span class="o">.</span><span class="n">call</span>
+        <span class="nb">puts</span> <span class="s2">&quot;lam is a class of: </span><span class="si">#{</span><span class="n">lam</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="nb">puts</span> <span class="s2">&quot;lam method count: </span><span class="si">#{</span><span class="n">lam</span><span class="o">.</span><span class="n">methods</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="nb">puts</span>
+        <span class="n">prc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="nb">puts</span> <span class="s1">&#39;prc variable assigned a Proc&#39;</span> <span class="p">}</span>
+        <span class="n">prc</span><span class="o">.</span><span class="n">call</span>
+        <span class="nb">puts</span> <span class="s2">&quot;prc is a class of: </span><span class="si">#{</span><span class="n">prc</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="nb">puts</span> <span class="s2">&quot;prc method count: </span><span class="si">#{</span><span class="n">prc</span><span class="o">.</span><span class="n">methods</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;&quot;</span>
+      <span class="k">end</span>
+</code></pre>
+</div>
+
+
+<p>This will output:</p>
+
+<div class="highlight"><pre><code class="ruby">      <span class="o">---</span> <span class="n">what_are_lambdas_and_procs</span> <span class="o">---</span>
+      <span class="n">lam</span> <span class="n">variable</span> <span class="n">assigned</span> <span class="n">a</span> <span class="nb">lambda</span>
+      <span class="n">lam</span> <span class="n">is</span> <span class="n">a</span> <span class="k">class</span> <span class="n">of</span><span class="p">:</span> <span class="no">Proc</span>
+      <span class="n">lam</span> <span class="nb">method</span> <span class="n">count</span><span class="p">:</span> <span class="mi">55</span>
+
+      <span class="n">prc</span> <span class="n">variable</span> <span class="n">assigned</span> <span class="n">a</span> <span class="no">Proc</span>
+      <span class="n">prc</span> <span class="n">is</span> <span class="n">a</span> <span class="k">class</span> <span class="n">of</span><span class="p">:</span> <span class="no">Proc</span>
+      <span class="n">prc</span> <span class="nb">method</span> <span class="n">count</span><span class="p">:</span> <span class="mi">55</span>
+</code></pre>
+</div>
+
+
+<h2>So what are the subtle differences between Proc and lambda?</h2>
+
+<p>As mentioned there are two differences, and these differences are :</p>
+
+<ol>
+<li>in how a Proc/lambda assigns arguments, and</li>
+<li>in what happens, when a Proc/lambda calls return within a caller method.</li>
+</ol>
+
+
+<h3>Proc, lambda argument assignment</h3>
+
+<p>When a <strong>lambda</strong> is called with more or less than the required number of arguments Ruby will throw an ArgumentError.</p>
+
+<p>However when a <strong>Proc</strong> is called with more arguments, no error is thrown and the extra values are simply thrown away.  When it is called with less arguments these parameters are simply assigned a value of <strong>nil</strong>.</p>
+
+<p>These two code snippets demonstrate this:</p>
+
+<div class="highlight"><pre><code class="ruby">      <span class="k">def</span> <span class="nf">lambda_args</span>
+        <span class="nb">puts</span> <span class="s2">&quot;--- </span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2"> ---&quot;</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">&quot;lambda with 2 arguments a:</span><span class="si">#{</span><span class="n">a</span><span class="si">}</span><span class="s2">, b:</span><span class="si">#{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
+        <span class="n">lam</span><span class="o">.</span><span class="n">call</span><span class="p">(</span> <span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">)</span>
+        <span class="nb">puts</span> <span class="s2">&quot;lambda called with three arguments...&quot;</span>
+        <span class="k">begin</span>
+          <span class="n">lam</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">,</span> <span class="s2">&quot;third&quot;</span><span class="p">)</span>
+        <span class="k">rescue</span>
+          <span class="nb">puts</span> <span class="s2">&quot;   ArgumentError: wrong number of arguments (3 for 2)&quot;</span>
+        <span class="k">end</span>
+        <span class="nb">puts</span> <span class="s2">&quot;lambda called with no arguments...&quot;</span>
+        <span class="k">begin</span>
+          <span class="n">lam</span><span class="o">.</span><span class="n">call</span><span class="p">()</span>
+        <span class="k">rescue</span>
+          <span class="nb">puts</span> <span class="s2">&quot;   ArgumentError: wrong number of arguments (0 for 2)&quot;</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+
+      <span class="k">def</span> <span class="nf">proc_args</span>
+        <span class="nb">puts</span> <span class="s2">&quot;--- </span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2"> ---&quot;</span>
+        <span class="n">prc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="o">|</span> <span class="nb">puts</span> <span class="s2">&quot;Proc with 2 arguments a:</span><span class="si">#{</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="s2">&quot;nil&quot;</span> <span class="p">:</span> <span class="n">a</span> <span class="si">}</span><span class="s2">, b:</span><span class="si">#{</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">nil?</span><span class="p">)</span> <span class="p">?</span> <span class="s2">&quot;nil&quot;</span> <span class="p">:</span> <span class="n">b</span> <span class="si">}</span><span class="s2">&quot;</span> <span class="p">}</span>
+        <span class="n">prc</span><span class="o">.</span><span class="n">call</span><span class="p">(</span> <span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">)</span>
+        <span class="nb">puts</span> <span class="s2">&quot;Proc called with three arguments...&quot;</span>
+        <span class="n">prc</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">,</span> <span class="s2">&quot;third&quot;</span><span class="p">)</span>
+        <span class="nb">puts</span> <span class="s2">&quot;Proc called with no arguments...&quot;</span>
+        <span class="n">prc</span><span class="o">.</span><span class="n">call</span><span class="p">()</span>
+      <span class="k">end</span>
+</code></pre>
+</div>
+
+
+<p>This will output:</p>
+
+<div class="highlight"><pre><code class="ruby">      <span class="o">---</span> <span class="n">lambda_args</span> <span class="o">---</span>
+      <span class="nb">lambda</span> <span class="n">with</span> <span class="mi">2</span> <span class="n">arguments</span> <span class="n">a</span><span class="ss">:first</span><span class="p">,</span> <span class="n">b</span><span class="ss">:second</span>
+      <span class="nb">lambda</span> <span class="n">called</span> <span class="n">with</span> <span class="n">three</span> <span class="n">arguments</span><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+         <span class="no">ArgumentError</span><span class="p">:</span> <span class="n">wrong</span> <span class="n">number</span> <span class="n">of</span> <span class="n">arguments</span> <span class="p">(</span><span class="mi">3</span> <span class="k">for</span> <span class="mi">2</span><span class="p">)</span>
+      <span class="nb">lambda</span> <span class="n">called</span> <span class="n">with</span> <span class="n">no</span> <span class="n">arguments</span><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+         <span class="no">ArgumentError</span><span class="p">:</span> <span class="n">wrong</span> <span class="n">number</span> <span class="n">of</span> <span class="n">arguments</span> <span class="p">(</span><span class="mi">0</span> <span class="k">for</span> <span class="mi">2</span><span class="p">)</span>
+
+      <span class="o">---</span> <span class="n">proc_args</span> <span class="o">---</span>
+      <span class="no">Proc</span> <span class="n">with</span> <span class="mi">2</span> <span class="n">arguments</span> <span class="n">a</span><span class="ss">:first</span><span class="p">,</span> <span class="n">b</span><span class="ss">:second</span>
+      <span class="no">Proc</span> <span class="n">called</span> <span class="n">with</span> <span class="n">three</span> <span class="n">arguments</span><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+      <span class="no">Proc</span> <span class="n">with</span> <span class="mi">2</span> <span class="n">arguments</span> <span class="n">a</span><span class="ss">:first</span><span class="p">,</span> <span class="n">b</span><span class="ss">:second</span>
+      <span class="no">Proc</span> <span class="n">called</span> <span class="n">with</span> <span class="n">no</span> <span class="n">arguments</span><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+      <span class="no">Proc</span> <span class="n">with</span> <span class="mi">2</span> <span class="n">arguments</span> <span class="n">a</span><span class="ss">:nil</span><span class="p">,</span> <span class="n">b</span><span class="ss">:nil</span>
+</code></pre>
+</div>
+
+
+<h3>Proc and lambda return behaviour</h3>
+
+<p>When a <strong>lambda</strong> returns a value and this <strong>lambda</strong> is called within a method then method will simply continue it's execution until it itself returns a value.</p>
+
+<p>However when a <strong>Proc</strong> returns a value and this <strong>Proc</strong> is called within a method this containing method will be exited WITHOUT any further execution. This is slightly surprising behaviour, and consequently a <strong>Proc</strong> should be handled with care.</p>
+
+<p>These two code snippets demonstrate this behaviour:</p>
+
+<div class="highlight"><pre><code class="ruby">      <span class="k">def</span> <span class="nf">lam_return</span>
+        <span class="nb">puts</span> <span class="s2">&quot;--- </span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2"> ---&quot;</span>
+        <span class="nb">puts</span> <span class="s2">&quot;simple function that calls a lambda and then returns it&#39;s own string.&quot;</span>
+        <span class="n">my_lam</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;Lambda has returned&#39;</span> <span class="p">}</span>
+        <span class="n">my_lam</span><span class="o">.</span><span class="n">call</span> 
+        <span class="k">return</span> <span class="s1">&#39;lam_return method string returned&#39;</span>
+      <span class="k">end</span>
+
+      <span class="k">def</span> <span class="nf">proc_return</span>
+        <span class="nb">puts</span> <span class="s2">&quot;--- </span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2"> ---&quot;</span>
+        <span class="nb">puts</span> <span class="s2">&quot;simple function that calls a Proc, </span><span class="se">\n</span><span class="s2">BUT instead of returning it&#39;s own string returns the Proc&#39;s string.&quot;</span>
+        <span class="n">my_proc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;Proc string returned&#39;</span> <span class="p">}</span>
+        <span class="n">my_proc</span><span class="o">.</span><span class="n">call</span> <span class="c1"># this function returns and finishes here</span>
+        <span class="k">return</span> <span class="s1">&#39;proc_return method string returned&#39;</span> <span class="c1"># the return is never called</span>
+      <span class="k">end</span>
+</code></pre>
+</div>
+
+
+<p>This will output the following:</p>
+
+<div class="highlight"><pre><code class="ruby">      <span class="o">---</span> <span class="n">lam_return</span> <span class="o">---</span>
+      <span class="n">simple</span> <span class="n">function</span> <span class="n">that</span> <span class="n">calls</span> <span class="n">a</span> <span class="nb">lambda</span> <span class="ow">and</span> <span class="k">then</span> <span class="n">returns</span> <span class="n">it</span><span class="s1">&#39;s own string.</span>
+<span class="s1">      lam_return method string returned</span>
+
+<span class="s1">      --- proc_return ---</span>
+<span class="s1">      simple function that calls a Proc, </span>
+<span class="s1">      BUT instead of returning it&#39;</span><span class="n">s</span> <span class="n">own</span> <span class="n">string</span> <span class="n">returns</span> <span class="n">the</span> <span class="no">Proc</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">string</span><span class="o">.</span>
+      <span class="no">Proc</span> <span class="n">string</span> <span class="n">returned</span>
+</code></pre>
+</div>
+
+
+<h4>Proc return work around</h4>
+
+<p>There is however a very simple work around to avoid a Proc from returning out of it's caller method. Simply removed the return statement, because Ruby always returns the last line this last line will be returned automatically.</p>
+
+<div class="highlight"><pre><code class="ruby">      <span class="k">def</span> <span class="nf">proc_return_work_around</span>
+        <span class="nb">puts</span> <span class="s2">&quot;--- </span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2"> ---&quot;</span>
+        <span class="nb">puts</span> <span class="s2">&quot;simple function that calls a Proc, </span><span class="se">\n</span><span class="s2">however the method string still returns.&quot;</span>
+        <span class="n">my_proc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="p">{</span> <span class="s1">&#39;Proc string returned&#39;</span> <span class="p">}</span>
+        <span class="n">my_proc</span><span class="o">.</span><span class="n">call</span> <span class="c1"># this function returns and finishes here</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">__method__</span><span class="si">}</span><span class="s2"> method string returned&quot;</span> <span class="c1"># the return is never called</span>
+      <span class="k">end</span>
+</code></pre>
+</div>
+
+
+<p>This will output:</p>
+
+<div class="highlight"><pre><code class="ruby">      <span class="o">---</span> <span class="n">proc_return_work_around</span> <span class="o">---</span>
+      <span class="n">simple</span> <span class="n">function</span> <span class="n">that</span> <span class="n">calls</span> <span class="n">a</span> <span class="no">Proc</span><span class="p">,</span> 
+      <span class="n">however</span> <span class="n">the</span> <span class="nb">method</span> <span class="n">string</span> <span class="n">still</span> <span class="n">returns</span><span class="o">.</span>
+      <span class="n">proc_return_work_around</span> <span class="nb">method</span> <span class="n">string</span> <span class="n">returned</span>
+</code></pre>
+</div>
+
+
+<h2>Conclusion</h2>
+
+<p>As you have seen there are only two small differences between a <strong>Proc</strong> and a <strong>lambda</strong> but these differences have quite surprising behaviours.  Therefore following the Ruby principle of <em>"...least surprise"</em>, it is best practice to use <strong>lambdas</strong> over <strong>Procs</strong> unless you absolutely need the <strong>Proc</strong> behaviour.</p>
+
+<p>For more information please see this article: <a href="http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Method_Calls">http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Method_Calls</a></p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>24 Jun 2010</span> &raquo; <a href="/2010/06/ruby-quine-example">Ruby Quine Example</a></li>
+    
+      <li><span>09 May 2010</span> &raquo; <a href="/2010/05/code-kata-four-exercise-a-ruby-solution">Code Kata Four Exercise - A Ruby Solution</a></li>
+    
+      <li><span>09 Apr 2010</span> &raquo; <a href="/2010/04/javascript-the-good-parts-best-practices">JavaScript The Good Parts Best Practices </a></li>
+    
+  </ul>
+</div>
+ 
+            <div class="footer">  
+					    <div class="rss">
+					      <a href="http://feeds.feedburner.com/ben-emson">
+					        <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+					      </a>
+					    </div>
+                <p>A project by <a href="http://blog.emson.co.uk">Ben Emson</a> | <a href="http://twitter.com/emson">@emson</a>.</p> 
+            </div> 
+ 
+        </div> 
+				<!-- Google Analytics -->
+    </body> 
+</html>

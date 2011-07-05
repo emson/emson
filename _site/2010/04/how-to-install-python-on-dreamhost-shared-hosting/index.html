@@ -1,0 +1,159 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>How to Install Python on Dreamhost Shared Hosting</title> 
+				<meta name="author" content="Ben Emson" />
+				<link href="http://feeds.feedburner.com/ben-emson" rel="alternate" title="Ben Emsonr" type="application/atom+xml" />
+
+			   <!-- syntax highlighting CSS -->
+			   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+			   <!-- Homepage CSS -->
+			   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+    </head> 
+ 
+    <body>  
+        <div id="container"> 
+ 
+            <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
+            
+            <div id="post">
+<p>This article describes how to install and set up Python and VirtualEnv on <a href="http://www.dreamhost.com/r.cgi?105422">Dreamhost web site hosting</a>.</p>
+
+<p>Some of these notes are based on this article:
+URL:  http://blog.localkinegrinds.com/2007/08/20/custom-python-installation-for-django-on-dreamhost/</p>
+
+<h2>Set up</h2>
+
+<p>Log into your shared server and do the following:</p>
+
+<pre><code>$ mkdir -p opt/python261
+$ mkdir downloads
+$ cd downloads
+$ wget http://www.python.org/ftp/python/2.6.1/Python-2.6.1.tgz
+$ tar xvzf Python-2.6.1.tgz
+</code></pre>
+
+<p>Note that:
+According to the <a href="http://www.pathname.com/fhs/pub/fhs-2.3.html#OPTADDONAPPLICATIONSOFTWAREPACKAGES">Filesystem Hierarchy Standard</a>, the /opt dir "is reserved for the installation of add-on application software packages."</p>
+
+<p>Now configure where your new Python instance will be installed:</p>
+
+<pre><code>$ cd Python-2.6.1
+$ ./configure --prefix=$HOME/opt/python261
+$ make
+$ make install &gt; install.txt
+</code></pre>
+
+<p>NB: The install.txt file is useful to locate files if you wish to uninstall Python later.
+NB: you might wish to use:</p>
+
+<pre><code>$ ./configure --prefix=$HOME/opt/python261  --enable-unicode=ucs4
+</code></pre>
+
+<p>But Dreamhost does uses ucs2 by default (Python's default to), and there can be issues if you try to load packages that are compiled using a different Unicode setting.</p>
+
+<p>Now edit your ~/.bash_profile file to specify the new Python install located in: ~/opt/</p>
+
+<pre><code>export PATH=$PATH:$HOME/opt/python261/bin
+</code></pre>
+
+<p>You might also want to add an alias so that instead of typing <strong>python2.6</strong> to access the python shell, you can just type <strong>python</strong> in the command line.</p>
+
+<pre><code>alias python='python2.6'
+</code></pre>
+
+<p>Don't forget to tell bash to load this file after you have made your changes:</p>
+
+<pre><code>$ source ~/.bash_profile
+$ python -V  # will display your new version 2.6.1
+</code></pre>
+
+<h2>Installing VirtualEnv</h2>
+
+<pre><code>$ cd downloads/
+$ curl -O http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.4.5.tar.gz
+$ tar -xvzf virtualenv-1.4.5.tar.gz
+$ python virtualenv-1.4.5/virtualenv.py $HOME/virtual --no-site-packages
+</code></pre>
+
+<p>NB: This binds your new install with virtualenv and creates a virtual directory in your user home directory.
+You will need to use the <strong>--no-site-packages</strong> option so that virtualenv doesn't use any of the original Dreamhost Python install packages.</p>
+
+<p>Update your <strong>~/.bash_profile</strong> file so that it puts the virtualenv packages onto the Python path, and <em>activate(s)</em> your virtual environment:</p>
+
+<pre><code>export PATH="$PATH:$HOME/opt/python261/bin:$HOME/virtual/bin"
+source $HOME/virtual/bin/activate
+</code></pre>
+
+<p>Check that the packages directory is in your new virtual <strong>site_packages</strong> directory:</p>
+
+<pre><code>$ python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"
+</code></pre>
+
+<p>Now activate your virtual environment, by executing the <strong>.bash_profile</strong> file:</p>
+
+<pre><code>$ source ~/.bash_profile
+</code></pre>
+
+<p>Or manually activate it by:</p>
+
+<pre><code>$ . ~/virtual/bin activate
+</code></pre>
+
+<h2>Installing MySQL Python Bindings</h2>
+
+<!-- http://sourceforge.net/projects/mysql-python/files/mysql-python-test/1.2.3c1/MySQL-python-1.2.3c1.tar.gz/download -->
+
+
+<pre><code>(virtual)$ cd downloads
+(virtual)$ wget http://internap.dl.sourceforge.net/sourceforge/mysql-python/MySQL-python-1.2.3c1.tar.gz
+(virtual)$ tar xvzf MySQL-python-1.2.3c1.tar.gz
+(virtual)$ cd MySQL-python-1.2.3c1
+(virtual)$ python setup.py install
+</code></pre>
+
+<p>Check that you can import the database correctly (NB: do this from a different directory from the one where MySQL-python was installed, as you will get Module already imported warnings):</p>
+
+<pre><code>(virtual)$ cd ~
+(virtual)$ python
+&gt;&gt;&gt; import MySQLdb
+</code></pre>
+
+<p>If you don't get an error all succeeded OK.</p>
+
+<h2>Install Django</h2>
+
+<pre><code>(virtual)$ pip install Django
+</code></pre>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>24 Jun 2010</span> &raquo; <a href="/2010/06/ruby-quine-example">Ruby Quine Example</a></li>
+    
+      <li><span>11 May 2010</span> &raquo; <a href="/2010/05/what-is-the-difference-between-a-proc-and-a-lambda-in-ruby">What is the Difference Between a Proc and a Lambda in Ruby?</a></li>
+    
+      <li><span>09 May 2010</span> &raquo; <a href="/2010/05/code-kata-four-exercise-a-ruby-solution">Code Kata Four Exercise - A Ruby Solution</a></li>
+    
+  </ul>
+</div>
+ 
+            <div class="footer">  
+					    <div class="rss">
+					      <a href="http://feeds.feedburner.com/ben-emson">
+					        <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+					      </a>
+					    </div>
+                <p>A project by <a href="http://blog.emson.co.uk">Ben Emson</a> | <a href="http://twitter.com/emson">@emson</a>.</p> 
+            </div> 
+ 
+        </div> 
+				<!-- Google Analytics -->
+    </body> 
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Understanding RSpec Stories - a Tutorial</title> 
+				<meta name="author" content="Ben Emson" />
+				<link href="http://feeds.feedburner.com/ben-emson" rel="alternate" title="Ben Emsonr" type="application/atom+xml" />
+
+			   <!-- syntax highlighting CSS -->
+			   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+			   <!-- Homepage CSS -->
+			   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+    </head> 
+ 
+    <body>  
+        <div id="container"> 
+ 
+            <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
+            
+            <div id="post">
+<p>When I initially started writing this RSpec guide I had planned to cover both traditional RSpec <em>Specs</em> and the new <em>Stories</em> feature, however the guide quickly became to big so I decided to focus purely on RSpec Ruby Stories, as opposed to RSpec Rails Stories.</p>
+
+<h2>Why Unit Testing?</h2>
+
+<p>Every pragmatic programmer tells us that we should be writing unit tests, but are they really that important?  Well unfortunately they are.  Unit test ensure that we write good quality code mitigating the number of bugs we introduce into a software system.
+However more than that, they help us think about the problem from different perspectives which leads to further insights and gradually makes the domain problems more manageable.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Unit_test">Unit testing</a> is especially important when the language you use is interpreted.  With compiled languages like C and C++ for example, the compiler picks up on compile time errors, however with interpreted languages like Ruby, Perl and Python there is no compiler and bugs can easily be introduced which won't be uncovered until the interpreter executes that branch of the code.</p>
+
+<p>Traditionally tests have been written using a Unit Test framework like JUnit, NUnit or RUnit.  However it is easy to spending a lot of time writing tests that test every unit of code in your software system, what RSPec does is to provide a subtle shift of focus from Unit testing to Behaviour testing or <a href="http://behaviour-driven.org/">Behaviour Driven Development (BDD)</a>.  By focusing on the behaviour of the system it helps clarify in our minds what the system should actually be doing.  It also means that our energy is directed at more 'useful' tests.  Useful tests, cover what the system should be doing and build in enough redundancy so that it should be easy to <a href="http://en.wikipedia.org/wiki/Refactoring">refactor</a> our code without having to re-write every test.</p>
+
+<h2>What is RSpec?  Give me some background.</h2>
+
+<p>RSpec is a Behavioural Driven Development (BDD) tool, originally created by Dave Astels and Steven Baker.</p>
+
+<p>However <a href="http://blog.davidchelimsky.net">David Chelimsky</a> is really the gatekeeper of the RSpec project, and because it is an OpenSource project you can find the code on the <a href="http://github.com/dchelimsky/rspec/tree/master">GitHub RSpec Repository</a>.  If you would like to use <a href="http://en.wikipedia.org/wiki/Git_%28software%29">Git</a> to 'check out' a copy of the source code see my article:  <a href="http://blog.emson.co.uk/2008/06/installing-a-git-client-on-osx/">Installing Git on Apple OSX</a></p>
+
+<p>RSpec is really two projects merged into one.  The RSpec project pages describes these merged projects as:</p>
+
+<ul>
+<li>a Story Framework for describing behaviour at the application level</li>
+<li>a Spec Framework for describing behaviour at the object level</li>
+</ul>
+
+
+<p><a href="http://dannorth.net/2007/06/introducing-rbehave">Dan North created rbehave</a> which is the Story framework and he describes it as:</p>
+
+<blockquote><p> <strong>rbehave</strong> is a framework for defining and executing application requirements.
+ Using the vocabulary of behaviour-driven development, you define a feature
+ in terms of a Story with Scenarios that describe how the feature behaves.
+ Using a minimum of syntax (a few â€œquotesâ€ mostly), this becomes an executable
+ and self-describing requirements document.</p></blockquote>
+
+<p>The Spec framework was created by David Chelimsky, and is orientated at testing the behaviour of objects in your system.</p>
+
+<p>By encompassing two frameworks RSpec equips a programmer with a thorough set of testing tools, allowing you to think about your software problem from a number of perspectives.</p>
+
+<h2>What is an RSpec Story?</h2>
+
+<p><a href="http://dannorth.net/whats-in-a-story">Dan North</a> has a good article about what a Story actually is, but here is a quick summary.  A Story describes the functionality of a specific software feature, and it describes it in a way that is easy to understand from the point of view of a client.  In fact a story should be thought of as a conversation between a client and a programmer over some feature of the software. <br/>
+As this story unfolds the programmer guides the client by prompting different <strong>Scenarios</strong> and using specific words <strong>Given, When</strong> and <strong>Then</strong>, to capture the essence of the systems behaviour.</p>
+
+<p>A typical story template will take this structure but does not necessarily have to:</p>
+
+<pre><code>Title (one line describing the story)
+
+Narrative:
+As a [role]
+I want [feature]
+So that [benefit]
+
+Acceptance Criteria: (presented as Scenarios)
+
+Scenario 1: Title
+Given [context]
+  And [some more context]...
+When  [event]
+Then  [outcome]
+  And [another outcome]...
+
+Scenario 2: ...
+</code></pre>
+
+<p>The key points to a story are:</p>
+
+<ul>
+<li><strong>Title</strong> - this should describe an activity or action</li>
+<li><strong>Narrative</strong> - should include a <em>role</em>, <em>feature</em> and a <em>benefit</em>. "As a [role] I want [feature] so that [benefit]"</li>
+<li><strong>Scenario</strong> - describes what is different in the story. NB you can have a number of different scenarios.</li>
+<li><strong>Scenario: Given/Events/Outcomes</strong> - Given [some context], When [I do something], Then [this happens].  It is important to use the Given, When, Then language.</li>
+<li><strong>Givens</strong> should define all of, and no more than, the required context</li>
+<li><strong>Event</strong> should describe the feature</li>
+</ul>
+
+
+<p>RSpec actually has <a href="http://blog.davidchelimsky.net/articles/2007/10/21/story-runner-in-plain-english">four implementations of a Story</a>, which given the sporadic documentation can lead to much confusion.  Essentially from an RSpec point of view a Story consists of three parts:</p>
+
+<ul>
+<li>the <strong>Story</strong></li>
+<li><strong>Steps</strong> that the Story undertakes</li>
+<li><strong>Components</strong> to be tested, described by the Story</li>
+</ul>
+
+
+<h3>Installing RSpec on Apple OSX</h3>
+
+<p>The quickest and easiest way to install RSpec is to use Ruby gems.  In the Apple <strong>Terminal.app</strong> command prompt enter the following command, and install RSpec as root:</p>
+
+<pre><code>sudo gem install -r rspec
+</code></pre>
+
+<p>It should be noted that according to how you have setup your Mac, you may need to use <strong>sudo</strong> to install this gem.
+If all goes well you should get output such as this:</p>
+
+<pre><code>Bulk updating Gem source index for: http://gems.rubyforge.org/
+Successfully installed rspec-1.1.4
+1 gem installed
+Installing ri documentation for rspec-1.1.4...
+Installing RDoc documentation for rspec-1.1.4...
+</code></pre>
+
+<p>Finally if you are an Apple user and are using <a href="http://www.macromates.com">TextMate</a> you might want to read my article on how to <a href="http://blog.emson.co.uk/2008/06/installing-the-latest-rspec-textmate-bundle/">install the TextMate RSpec bundle</a>.</p>
+
+<h2>How to Create an RSpec Story</h2>
+
+<p>The simplest type of RSpec Story consists of a single file that contains both the Story and the executable Steps, all you need to do is require the library or class you wish to test.<br/>
+For example if we wish to use RSpec to test an <strong>Account</strong> object you would create your library file such as <strong>account.rb</strong>:</p>
+
+<pre><code>class Account
+  attr_accessor :balance
+
+  def initialize(amount)
+    @balance = amount
+  end
+
+  def transfer_to(account, amount)
+    @balance = @balance - amount.to_f
+    account.balance = account.balance.to_f + amount.to_f
+  end
+end
+</code></pre>
+
+<p>Now create your RSpec Story and save this file as <strong>account_story.rb</strong> with the following content.  Note that on Apple OSX systems you seem to have to require the <strong>rubygems</strong> library:</p>
+
+<pre><code>require 'rubygems'
+require 'spec'
+require 'spec/story'
+require 'account'
+
+Story "transfer to cash account",
+%(As a savings account holder
+  I want to transfer money from my savings account
+  So that I can get cash easily from an ATM) do
+
+  Scenario "savings account is in credit" do
+    Given "my savings account balance is", 100 do |balance|
+      @savings_account = Account.new(balance)
+    end
+    And "my cash account balance is", 10 do |balance|
+      @cash_account = Account.new(balance)
+    end
+    When "I transfer", 20 do |amount|
+      @savings_account.transfer_to(@cash_account, amount)
+    end
+    Then "my savings account balance should be", 80 do |expected_amount|
+      @savings_account.balance.should == expected_amount
+    end
+    And "my cash account balance should be", 30 do |expected_amount|
+      @cash_account.balance.should == expected_amount
+    end
+  end
+
+  Scenario "savings account is overdrawn" do
+    Given "my savings account balance is", -20
+    And "my cash account balance is", 10
+    When "I transfer", 20
+    Then "my savings account balance should be", -40
+    And "my cash account balance should be", 30
+  end
+end
+</code></pre>
+
+<p>Note that although you did not explicitly define the code in the Steps of the second Scenario the RSpec framework uses the <strong>Given, When, Then</strong> methods defined in the first Scenario.
+In fact if you look at the Story and think of it as a plain old Ruby code file you gradually understand what is happening.  The file defines a number of methods <strong>Story, Scenario, Given, When</strong> and <strong>Then</strong>, note that when RSpec analyses this Story file it parses the two Scenarios and is able to match the <strong>Given, When, Then</strong> methods with the other Scenario.</p>
+
+<h2>RSpec Plain Text Stories</h2>
+
+<p>This previous example gives us the basic understanding of how a Story works and is structured, but what about the RSpec plain text stories, how do I create one and how are they structured?</p>
+
+<p>The goal of a Plain Text Story is to extract the Steps into a separate file and write the Story in such a way that it looks just like plain text with no Ruby code.  In fact it is possible to name the Story file such that it does not even have the <strong>.rb</strong> file extension.</p>
+
+<p>However by extracting the Steps from the Story we will require a helper file to bind the Story to the Steps.  Therefore a plain text Story file will consist of four parts:</p>
+
+<ul>
+<li>the <strong>Story</strong></li>
+<li><strong>Steps</strong> that the Story undertakes</li>
+<li><strong>Components</strong> to be tested, described by the Story</li>
+<li><strong>Helper</strong> file to bind the Story to the Steps</li>
+</ul>
+
+
+<p>There isn't any hard and fast rules about how you should structure the file system with respect to Stories and Steps, however best practice seems to describe a <strong>stories</strong> directory and a <strong>steps</strong> subdirectory.</p>
+
+<pre><code>stories +
+        + steps
+</code></pre>
+
+<p>Story files are created without the <strong>.rb</strong> file extension and are placed in the stories directory and consequently a Step file is created with the same name as the Story file, but with <strong>_step.rb</strong> extension.
+Helper files can be put in the stories directory, and should have the same name as the story file but this time with the <strong>.rb</strong> file extension.</p>
+
+<p>Create a Story file with the following file name, <strong>bank</strong></p>
+
+<pre><code>This is a story about an transferring money between bank accounts. 
+Note that the text up here above the Story: declaration won't be 
+processed, so you can write whatever you wish!
+
+Story: transfer to cash account
+  As a savings account holder
+  I want to transfer money from my savings account
+  So that I can get cash easily from an ATM
+
+  Scenario: savings account is in credit
+    Given my savings account balance is '100'
+    And my cash account balance is '10'
+    When I transfer '20'
+    Then my savings account balance should be '80'
+
+  Scenario: savings account is overdrawn
+    Given my savings account balance is '-20'
+    And my cash account balance is '10'
+    When I transfer '20'
+    Then my savings account balance should be '-40'
+</code></pre>
+
+<p>Now create a steps file with the following name and place it in the steps directory, <strong>bank_steps.rb</strong></p>
+
+<pre><code>require 'rubygems'
+require 'spec/story'
+require 'spec/story/extensions/main'
+require File.join(File.dirname(__FILE__), "../account")
+
+steps_for(:bank) do
+  Given("my savings account balance is '$savings'") do |savings|
+    @savings_account ||= Account.new(savings)
+  end
+end
+
+steps_for(:bank) do
+  Given("my cash account balance is '$cash'") do |cash|
+    @cash_account ||= Account.new(cash)
+  end
+end
+
+steps_for(:bank) do
+  When("I transfer '$amount'")  do |amount|
+     @savings_account.transfer_to(@cash_account, amount)
+  end
+end
+
+steps_for(:bank) do
+  Then("my savings account balance should be '$expected_amount'") do |expected_amount| 
+     @savings_account.balance.should == expected_amount.to_f
+  end
+end
+</code></pre>
+
+<p>The helper file by default is given the same name as the Story file but this time <strong>with the .rb</strong> extension.  Here is an example of such a file, called <strong>bank.rb</strong>.</p>
+
+<pre><code>#!/usr/bin/env ruby
+require 'rubygems'
+require 'spec'
+require 'spec/story/runner'
+require 'account'
+
+# require all the steps files so that we can link the story to them
+Dir[File.join(File.dirname(__FILE__), "steps/*.rb")].each do |file|
+  require file
+end
+
+# execute the steps in the steps file
+with_steps_for :bank do
+  run File.expand_path(__FILE__).gsub(".rb","")
+end
+</code></pre>
+
+<p>Now to run this story all you have to do is from the Apple <strong>Terminal.app</strong> navigate to the stories directory and execute the following Ruby command:</p>
+
+<pre><code>ruby bank.rb
+</code></pre>
+
+<p>If all is successful you should see the following output:</p>
+
+<pre><code>requiring files ./steps/addition_steps.rb
+requiring files ./steps/bank_steps.rb
+Running 2 scenarios
+
+Story: transfer to cash account
+
+  As a savings account holder
+  I want to transfer money from my savings account
+  So that I can get cash easily from an ATM
+
+  Scenario: savings account is in credit
+
+    Given my savings account balance is '100'
+    And my cash account balance is '10'
+
+    When I transfer '20'
+
+    Then my savings account balance should be '80'
+
+  Scenario: savings account is overdrawn
+
+    Given my savings account balance is '-20'
+    And my cash account balance is '10'
+
+    When I transfer '20'
+
+    Then my savings account balance should be '-40'
+
+2 scenarios: 2 succeeded, 0 failed, 0 pending
+</code></pre>
+
+<p>I hope this gives you a good introduction and a basis for understanding how RSpec Stories work.  Finally here are a list of links which may help you further:</p>
+
+<ul>
+<li><p><a href="http://blog.davidchelimsky.net/articles/2007/05/14/an-introduction-to-rspec-part-i">An introduction to RSpec - Part I</a></p></li>
+<li><p><a href="http://blog.davidchelimsky.net/articles/2007/10/21/story-runner-in-plain-english">An introduction to RSpec Stories - Part I</a></p></li>
+<li><p><a href="http://blog.davidchelimsky.net/articles/2007/10/22/plain-text-stories-on-rails">An introduction to RSpec Stories - Part II</a>, although the <em>run_story</em> method now seems to be depreciated in the source code.</p></li>
+<li><p><a href="http://blog.davidchelimsky.net/articles/2007/10/25/plain-text-stories-part-iii">An introduction to RSpec Stories - Part III</a></p></li>
+<li><p><a href="http://times.usefulinc.com/2008/01/12-rspec-stories">Quick overview of stories</a></p></li>
+<li><p><a href="http://blog.davidchelimsky.net/articles/2007/10/21/story-runner-in-plain-english">RSpec Story Runner Creation</a></p></li>
+<li><p><a href="http://www.tomtenthij.co.uk/2008/1/25/rspec-plain-text-story-runner-on-a-fresh-rails-app">Blog describing creating a story and steps</a></p></li>
+<li><p><a href="http://www.vaporbase.com/postings/Beginners_Guide_to_Rspec_on_Story_Runner">Clear introduction to stories</a></p></li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>24 Jun 2010</span> &raquo; <a href="/2010/06/ruby-quine-example">Ruby Quine Example</a></li>
+    
+      <li><span>11 May 2010</span> &raquo; <a href="/2010/05/what-is-the-difference-between-a-proc-and-a-lambda-in-ruby">What is the Difference Between a Proc and a Lambda in Ruby?</a></li>
+    
+      <li><span>09 May 2010</span> &raquo; <a href="/2010/05/code-kata-four-exercise-a-ruby-solution">Code Kata Four Exercise - A Ruby Solution</a></li>
+    
+  </ul>
+</div>
+ 
+            <div class="footer">  
+					    <div class="rss">
+					      <a href="http://feeds.feedburner.com/ben-emson">
+					        <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+					      </a>
+					    </div>
+                <p>A project by <a href="http://blog.emson.co.uk">Ben Emson</a> | <a href="http://twitter.com/emson">@emson</a>.</p> 
+            </div> 
+ 
+        </div> 
+				<!-- Google Analytics -->
+    </body> 
+</html>

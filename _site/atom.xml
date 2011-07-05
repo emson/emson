@@ -1,0 +1,2888 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Ben Emson</title>
+ <link href="http://blog.emson.co.uk/atom.xml" rel="self"/>
+ <link href="http://blog.emson.co.uk/"/>
+ <updated>2011-07-05T22:32:31+01:00</updated>
+ <id>http://blog.emson.co.uk/</id>
+ <author>
+   <name>Ben Emson</name>
+   <email>ben@emson.co.uk</email>
+ </author>
+
+ 
+ <entry>
+   <title>Ruby Quine Example</title>
+   <link href="http://blog.emson.co.uk/2010/06/ruby-quine-example"/>
+   <updated>2010-06-24T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2010/06/ruby-quine-example</id>
+   <content type="html">&lt;p&gt;I was recently challenged to write a &lt;strong&gt;quine&lt;/strong&gt; in the language of my choice.
+If you are unsure what a &lt;strong&gt;quine&lt;/strong&gt; is you can find out from &lt;a href=&quot;http://en.wikipedia.org/wiki/Quine_(computing)&quot;&gt;http://en.wikipedia.org/wiki/Quine_(computing)&lt;/a&gt;.  However basically in our case it is a piece of code that when executed creates a copy of itself. This copy can then be executed and ad infinitum.&lt;/p&gt;
+
+&lt;p&gt;There are some official rules about how a &lt;strong&gt;quine&lt;/strong&gt; should be implemented:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A &lt;strong&gt;quine&lt;/strong&gt; must not take any input, as this would allow the source code to be fed in from the keyboard.&lt;/li&gt;
+&lt;li&gt;Following on from the previous rule a &lt;strong&gt;quine&lt;/strong&gt;, should not open it's own file and display it's contents.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Anyway here is my solution in Ruby...&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;    &lt;span class=&quot;nb&quot;&gt;lambda&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inspect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;lambda{|x| puts x + x.inspect}.call&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Here is a brief description of what is happening. The lambda creates an anonymous function that takes one parameter and outputs it's value&lt;/p&gt;
+
+&lt;p&gt;Officially I think passing a value into the lambda &lt;code&gt;x&lt;/code&gt; attribute violates one of the rules - but non-the-less it is quite a clear example and may be useful to get an idea of how a &lt;strong&gt;quine&lt;/strong&gt; works.&lt;/p&gt;
+
+&lt;h3&gt;Links&lt;/h3&gt;
+
+&lt;p&gt;Here is a list of interesting links that might help, good luck:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;An excellent overview of &lt;strong&gt;quine's&lt;/strong&gt; with a Ruby slant: &lt;a href=&quot;http://blog.onideas.ws/ruby_quine&quot;&gt;http://blog.onideas.ws/ruby_quine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Understanding the concepts of a &lt;strong&gt;quine&lt;/strong&gt;: &lt;a href=&quot;http://research.swtch.com/2010/03/zip-files-all-way-down.html&quot;&gt;http://research.swtch.com/2010/03/zip-files-all-way-down.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Using a &lt;strong&gt;quine&lt;/strong&gt; as an interview question: &lt;a href=&quot;http://www.skorks.com/2010/03/an-interview-question-that-prints-out-its-own-source-code-in-ruby/&quot;&gt;http://www.skorks.com/2010/03/an-interview-question-that-prints-out-its-own-source-code-in-ruby/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Shortest Ruby &lt;strong&gt;quine&lt;/strong&gt;: &lt;a href=&quot;http://stackoverflow.com/questions/2474861/shortest-ruby-quine&quot;&gt;http://stackoverflow.com/questions/2474861/shortest-ruby-quine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;More &lt;strong&gt;quine&lt;/strong&gt; links: &lt;a href=&quot;http://www.nyx.net/~gthompso/quine.htm&quot;&gt;http://www.nyx.net/~gthompso/quine.htm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>What is the Difference Between a Proc and a Lambda in Ruby?</title>
+   <link href="http://blog.emson.co.uk/2010/05/what-is-the-difference-between-a-proc-and-a-lambda-in-ruby"/>
+   <updated>2010-05-11T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2010/05/what-is-the-difference-between-a-proc-and-a-lambda-in-ruby</id>
+   <content type="html">&lt;p&gt;The concepts of a &lt;strong&gt;Proc&lt;/strong&gt; and a &lt;strong&gt;lambda&lt;/strong&gt; in Ruby are subtly different and this post aims to try and explain the differences.&lt;/p&gt;
+
+&lt;h2&gt;Procs and Lambdas&lt;/h2&gt;
+
+&lt;p&gt;Firstly why do we need Procs and lambdas? In order to answer this you need to understand what a &lt;strong&gt;block&lt;/strong&gt; is in Ruby.&lt;/p&gt;
+
+&lt;h3&gt;Understanding what a block is?&lt;/h3&gt;
+
+&lt;p&gt;A &lt;strong&gt;block&lt;/strong&gt; is simply a piece of code, which is usually attached to a method, Proc or lambda. It is important to note that this block of code is NOT an object (yet...), it is code that is defined either within braces {} or within a &lt;code&gt;do end&lt;/code&gt; container.&lt;/p&gt;
+
+&lt;p&gt;The code in a &lt;strong&gt;block&lt;/strong&gt; is just logic that hasn't been wrapped into an object yet. When this &lt;strong&gt;block&lt;/strong&gt; is passed to a method and that method has a &lt;strong&gt;yield&lt;/strong&gt; statement then Ruby will wrap that &lt;strong&gt;block&lt;/strong&gt; into a special type of object. That type of object is a &lt;strong&gt;Proc&lt;/strong&gt; object. Once the &lt;strong&gt;block&lt;/strong&gt; becomes a &lt;strong&gt;Proc&lt;/strong&gt; Ruby can use it and the &lt;strong&gt;block&lt;/strong&gt; code 'comes alive'.&lt;/p&gt;
+
+&lt;p&gt;Therefore we need a &lt;strong&gt;Proc&lt;/strong&gt; object in order to handle &lt;strong&gt;blocks&lt;/strong&gt;. The next question is how does a &lt;strong&gt;lambda&lt;/strong&gt; fit in.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;lambda&lt;/strong&gt; is a type of &lt;strong&gt;Proc&lt;/strong&gt; object, it is almost completely identical to a Proc apart from two differences. This little code snippet shows that a &lt;strong&gt;Proc&lt;/strong&gt; and a &lt;strong&gt;lambda&lt;/strong&gt; are derived from the same superclass, &lt;strong&gt;Proc&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;      &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;what_are_lambdas_and_procs&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;--- &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__method__&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ---&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;lam variable assigned a lambda&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;lam is a class of: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;lam method count: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;prc variable assigned a Proc&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;prc is a class of: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;prc method count: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;This will output:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;      &lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;what_are_lambdas_and_procs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;---&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assigned&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;lambda&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;55&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;variable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assigned&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;55&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;h2&gt;So what are the subtle differences between Proc and lambda?&lt;/h2&gt;
+
+&lt;p&gt;As mentioned there are two differences, and these differences are :&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;in how a Proc/lambda assigns arguments, and&lt;/li&gt;
+&lt;li&gt;in what happens, when a Proc/lambda calls return within a caller method.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;h3&gt;Proc, lambda argument assignment&lt;/h3&gt;
+
+&lt;p&gt;When a &lt;strong&gt;lambda&lt;/strong&gt; is called with more or less than the required number of arguments Ruby will throw an ArgumentError.&lt;/p&gt;
+
+&lt;p&gt;However when a &lt;strong&gt;Proc&lt;/strong&gt; is called with more arguments, no error is thrown and the extra values are simply thrown away.  When it is called with less arguments these parameters are simply assigned a value of &lt;strong&gt;nil&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;These two code snippets demonstrate this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;      &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;lambda_args&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;--- &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__method__&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ---&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;lambda with 2 arguments a:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;, b:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;second&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;lambda called with three arguments...&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;begin&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;second&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;third&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt;
+          &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;   ArgumentError: wrong number of arguments (3 for 2)&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;lambda called with no arguments...&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;begin&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;lam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;rescue&lt;/span&gt;
+          &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;   ArgumentError: wrong number of arguments (0 for 2)&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+      &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;proc_args&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;--- &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__method__&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ---&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Proc with 2 arguments a:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;nil&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;, b:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;nil&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;second&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Proc called with three arguments...&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;first&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;second&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;third&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Proc called with no arguments...&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;prc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;This will output:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;      &lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lambda_args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;---&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:second&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;called&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;three&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+         &lt;span class=&quot;no&quot;&gt;ArgumentError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrong&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;nb&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;called&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;no&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+         &lt;span class=&quot;no&quot;&gt;ArgumentError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;wrong&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;of&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+      &lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;proc_args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;---&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:second&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;called&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;three&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:second&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;called&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;no&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:nil&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;h3&gt;Proc and lambda return behaviour&lt;/h3&gt;
+
+&lt;p&gt;When a &lt;strong&gt;lambda&lt;/strong&gt; returns a value and this &lt;strong&gt;lambda&lt;/strong&gt; is called within a method then method will simply continue it's execution until it itself returns a value.&lt;/p&gt;
+
+&lt;p&gt;However when a &lt;strong&gt;Proc&lt;/strong&gt; returns a value and this &lt;strong&gt;Proc&lt;/strong&gt; is called within a method this containing method will be exited WITHOUT any further execution. This is slightly surprising behaviour, and consequently a &lt;strong&gt;Proc&lt;/strong&gt; should be handled with care.&lt;/p&gt;
+
+&lt;p&gt;These two code snippets demonstrate this behaviour:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;      &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;lam_return&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;--- &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__method__&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ---&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;simple function that calls a lambda and then returns it&amp;#39;s own string.&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;my_lam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Lambda has returned&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;my_lam&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt; 
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;lam_return method string returned&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+      &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;proc_return&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;--- &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__method__&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ---&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;simple function that calls a Proc, &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;BUT instead of returning it&amp;#39;s own string returns the Proc&amp;#39;s string.&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;my_proc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Proc string returned&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;my_proc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# this function returns and finishes here&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;proc_return method string returned&amp;#39;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the return is never called&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;This will output the following:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;      &lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lam_return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;---&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;that&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calls&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;s own string.&lt;/span&gt;
+&lt;span class=&quot;s1&quot;&gt;      lam_return method string returned&lt;/span&gt;
+
+&lt;span class=&quot;s1&quot;&gt;      --- proc_return ---&lt;/span&gt;
+&lt;span class=&quot;s1&quot;&gt;      simple function that calls a Proc, &lt;/span&gt;
+&lt;span class=&quot;s1&quot;&gt;      BUT instead of returning it&amp;#39;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;own&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returns&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returned&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;h4&gt;Proc return work around&lt;/h4&gt;
+
+&lt;p&gt;There is however a very simple work around to avoid a Proc from returning out of it's caller method. Simply removed the return statement, because Ruby always returns the last line this last line will be returned automatically.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;      &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;proc_return_work_around&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;--- &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__method__&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ---&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;simple function that calls a Proc, &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;however the method string still returns.&amp;quot;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;my_proc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Proc string returned&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;my_proc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# this function returns and finishes here&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__method__&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; method string returned&amp;quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# the return is never called&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;This will output:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;      &lt;span class=&quot;o&quot;&gt;---&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;proc_return_work_around&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;---&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;simple&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;that&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;calls&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Proc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+      &lt;span class=&quot;n&quot;&gt;however&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;still&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;proc_return_work_around&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;returned&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;As you have seen there are only two small differences between a &lt;strong&gt;Proc&lt;/strong&gt; and a &lt;strong&gt;lambda&lt;/strong&gt; but these differences have quite surprising behaviours.  Therefore following the Ruby principle of &lt;em&gt;&quot;...least surprise&quot;&lt;/em&gt;, it is best practice to use &lt;strong&gt;lambdas&lt;/strong&gt; over &lt;strong&gt;Procs&lt;/strong&gt; unless you absolutely need the &lt;strong&gt;Proc&lt;/strong&gt; behaviour.&lt;/p&gt;
+
+&lt;p&gt;For more information please see this article: &lt;a href=&quot;http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Method_Calls&quot;&gt;http://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Method_Calls&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Code Kata Four Exercise - A Ruby Solution</title>
+   <link href="http://blog.emson.co.uk/2010/05/code-kata-four-exercise-a-ruby-solution"/>
+   <updated>2010-05-09T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2010/05/code-kata-four-exercise-a-ruby-solution</id>
+   <content type="html">&lt;p&gt;I recently did &lt;a href=&quot;http://codekata.pragprog.com/2007/01/kata_four_data_.html&quot;&gt;code kata 4 (data munging)&lt;/a&gt;, and here is my solution to the problem. Like anything it can be improved but I think it is relatively simple to understand and yet flexible enough to work for a number of different formatted &lt;strong&gt;.dat&lt;/strong&gt; files.&lt;/p&gt;
+
+&lt;p&gt;The premiss is to write a program that will work out the deltas ( difference ) between two columns in &lt;strong&gt;.dat&lt;/strong&gt; files and return the lowest values.&lt;/p&gt;
+
+&lt;p&gt;These &lt;strong&gt;.dat&lt;/strong&gt; files have different numbers of columns and these columns can be in different order. The two &lt;strong&gt;.dat&lt;/strong&gt; files used for this program supplied weather temperature ranges and football (soccer) result scores.&lt;/p&gt;
+
+&lt;p&gt;Anyway here is my solution in the Ruby language and a description of how it works:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;# data_processor.rb&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;DataProcessor&lt;/span&gt;
+  
+      &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;process_dat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;regex&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/^\s*\d+\.?\s+/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;regex&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;current_items&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_items&lt;/span&gt;
+              &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clear&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_items&lt;/span&gt;
+              &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;delta&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;  
+        &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;__FILE__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$0&lt;/span&gt;
+  
+      &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;DataProcessor&lt;/span&gt;
+  
+      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;-------- Weather  --------&amp;quot;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;process_dat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;weather.dat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokens&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Lowest Day:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; Delta:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  
+      &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;-------- Football --------&amp;quot;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;process_dat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;football.dat&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokens&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokens&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokens&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokens&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Team:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; Delta:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;The code above was created as a &lt;strong&gt;module&lt;/strong&gt; as this will allow the &lt;strong&gt;process_dat&lt;/strong&gt; method to be mixed-in to other objects, allowing these objects to execute the code without having to instantiate another class to get this functionality.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;process_dat&lt;/strong&gt; method takes a filename and an optional regular expression. The regular expression (regex) is used to find the data in the text file for processing. In this case any line that starts with 0 or more spaces followed by at least one number and then an optional '.' after that number followed by at least one space.  This regular expression could have been used to extract the data from each row as well - but it actually became much easier to simply split each row and tokenise it around a space, as we are processing space separated files.&lt;/p&gt;
+
+&lt;p&gt;Using the &lt;strong&gt;IO.foreach&lt;/strong&gt; method will iterate over each line of the &lt;strong&gt;.dat&lt;/strong&gt; file allowing the logic to process that line. This is much more memory efficient, as only one line is loaded into memory at each iteration of the loop - thus allowing this method to process very large data files.&lt;/p&gt;
+
+&lt;p&gt;Next the method checks to see if the line matches the regex (&lt;code&gt;if line =~ regex&lt;/code&gt;) if it does it can be processed.&lt;/p&gt;
+
+&lt;p&gt;Processing each line is handled by a Ruby block, (as a &lt;strong&gt;yield&lt;/strong&gt; statement is used), in the &quot;weather.dat&quot; case the block simply splits the line around a white space. In the &quot;football.dat&quot; case the block splits the line around the white space but re orders the returned columns. Incidentally it is useful to know that if the number of tokens in the array exceeds the number of possible assignments (&lt;code&gt;num, max, min = yield line&lt;/code&gt;, where &lt;code&gt;yield line&lt;/code&gt; returns a 10 item array for instance) Ruby conveniently ignores the other values after assigning the first lot.&lt;/p&gt;
+
+&lt;p&gt;The next couple of lines simply calculate the delta and assigns it to a temporary array (&lt;code&gt;items&lt;/code&gt;) if items is empty. The items array simply holds the lowest values as a collection of lowest values with the same value.
+Note that the items array is an array of arrays. The item in the items array consists of a number and a delta.&lt;/p&gt;
+
+&lt;p&gt;Finally we get the lowest item from the items array and check to see if the current line delta is lower if it is, clear the items array and add this new item.  If it equals the same value simply add this item to the items array.
+Thus the items array will contain the same lowest values.&lt;/p&gt;
+
+&lt;p&gt;I hope you find this helpful - if you have an alternative solution, why don't you add it to the comments at the bottom.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>JavaScript The Good Parts Best Practices </title>
+   <link href="http://blog.emson.co.uk/2010/04/javascript-the-good-parts-best-practices"/>
+   <updated>2010-04-09T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2010/04/javascript-the-good-parts-best-practices</id>
+   <content type="html">&lt;h2&gt;Part I&lt;/h2&gt;
+
+&lt;p&gt;The best practice suggestions listed here are summaries from &lt;a href=&quot;http://www.crockford.com/&quot;&gt;Douglas Crockford's&lt;/a&gt; book: &lt;a href=&quot;http://www.amazon.com/gp/product/0596517742?ie=UTF8&amp;amp;tag=emson-20&amp;amp;linkCode=as2&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=0596517742&quot;&gt;JavaScript: The Good Parts&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;By following these principles you will write better JavaScript code.&lt;/p&gt;
+
+&lt;h2&gt;JavaScript Best Practices&lt;/h2&gt;
+
+&lt;h3&gt;1. Commenting&lt;/h3&gt;
+
+&lt;p&gt;Avoid using &lt;code&gt;/* */&lt;/code&gt; for commenting out your code instead use the &lt;code&gt;//&lt;/code&gt; method.  The reason being that &lt;code&gt;*/&lt;/code&gt; can occur in regular expressions and if you were to comment out a regular expression containing this, you would get a syntax error.&lt;/p&gt;
+
+&lt;h3&gt;2. Object Value Retrieval&lt;/h3&gt;
+
+&lt;p&gt;For an object such as &lt;code&gt;var myObj = {key:&quot;value&quot;};&lt;/code&gt; An object value can retrieved in two ways:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;                              
+    &lt;span class=&quot;nx&quot;&gt;myObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;key&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;// &amp;quot;value&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;myObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;      &lt;span class=&quot;c1&quot;&gt;// &amp;quot;value&amp;quot;&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;However the second version using '.' notation is preferred as it reads better.&lt;/p&gt;
+
+&lt;h3&gt;3. Avoid Global Variables&lt;/h3&gt;
+
+&lt;p&gt;Global variables will reduce the resiliency of your JavaScript programs so try to keep these to a minimum.  A best practice strategy for this is to use a single global variable for your program and simply assign objects to it. e.g.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MYAPP&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;MYAPP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;value&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;h3&gt;4. Capitalize Constructor Functions&lt;/h3&gt;
+
+&lt;p&gt;Functions that are created as &lt;em&gt;constructor functions&lt;/em&gt; should be capitalized. Think of a &lt;em&gt;constructor functions&lt;/em&gt; as a factory creating cloned functions.  Strictly this is not classical inheritance but &lt;strong&gt;prototypical inheritance&lt;/strong&gt;. This is essentially where a function is cloned and contains all the properties of it's parent.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;square&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Shape&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;square&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;This style of constructor functions is not recommended as if you forget to use &lt;code&gt;new&lt;/code&gt; then the &lt;code&gt;this&lt;/code&gt; object gets bound to the global variable.&lt;/p&gt;
+
+&lt;h3&gt;5. Avoid Recursion&lt;/h3&gt;
+
+&lt;p&gt;JavaScript does not offer &lt;em&gt;tail recursion optimization&lt;/em&gt;, therefore functions that recurse too deeply will eventually fail.&lt;/p&gt;
+
+&lt;h3&gt;6. Use Function Scope To Protect Against Namespace Collisions&lt;/h3&gt;
+
+&lt;p&gt;JavaScript does not have block scope, i.e. variables declared in a block statement (e.g. with in curly braces) are accessible from outside of that block.  However functions do have function scope, variables declared within a function cannot be accessed from outside of that function.&lt;/p&gt;
+
+&lt;p&gt;Best practice is to declare the variables used in a function at the top of the function.&lt;/p&gt;
+
+&lt;h3&gt;7. Use Functions To Create Modules&lt;/h3&gt;
+
+&lt;p&gt;A Module is a function or object that presents an interface but hides its state and implementation. This therefore avoids the use of global variables.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myModule&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;setCall&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myCall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myCall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;doCall&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// the () will immediately invoke this function&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myCaller&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myModule&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;myCaller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setCall&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Ben&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myCaller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;doCall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;h3&gt;8. Use Cascades&lt;/h3&gt;
+
+&lt;p&gt;If you have a method that changes state, be sure to return &lt;code&gt;this&lt;/code&gt; as opposed to &lt;code&gt;undefined&lt;/code&gt;. The reason is that you can then chain these methods together.  This is how JQuery works.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;    &lt;span class=&quot;nx&quot;&gt;getElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;myDiv&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;changeColour&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;red&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setFont&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Times&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setStyle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;italic&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;h3&gt;9. For Constructor That Take Many Parameters Use Object Specifiers&lt;/h3&gt;
+
+&lt;p&gt;If an object takes many parameters it can be tricky ensuring that these parameters are in the correct order. Therefore create a single object instead that holds all the parameters as properties:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;// Tricky&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;someObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// Better&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;someObject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;second&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;third&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fourth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;h2&gt;General JavaScript Notes&lt;/h2&gt;
+
+&lt;p&gt;Strings are immutable, in that once a string has been created that string object cannot be changed. However note that you can easily append and modify a string, the outcome just generates a new string.&lt;/p&gt;
+
+&lt;p&gt;JavaScript provides a prototype linkage function, which when used allows one object to 'inherit' the properties of the linked object.&lt;/p&gt;
+
+&lt;p&gt;A &lt;code&gt;try catch&lt;/code&gt; statement only allows a single catch block, to catch all exceptions. If you need to differentiate between exceptions then add code to inspect the name of the exception and handle it appropriately.&lt;/p&gt;
+
+&lt;h3&gt;Objects&lt;/h3&gt;
+
+&lt;p&gt;Object creation methods:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Set a default value if an object property doesn't exist:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;one&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;myObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;two&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;2&amp;quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// returns &amp;quot;2&amp;quot;&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Assigning a value to an object property that is undefined will simply augment (or create) that property in that object and assign it.&lt;/p&gt;
+
+&lt;p&gt;Objects are passed by reference, they are never copied.&lt;/p&gt;
+
+&lt;p&gt;Every object is linked to a prototype object from which it can inherit properties. This object is &lt;code&gt;Object.prototype&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The prototype link is only used in the retrieval of properties from objects, if the first object does not have the property then JavaScript will use this prototype link to get the next object up the chain and try and retrieve the property from this object. If no property exists then &lt;code&gt;undefined&lt;/code&gt; is returned.&lt;/p&gt;
+
+&lt;p&gt;When using &lt;code&gt;for in&lt;/code&gt; for enumerating over properties in an object, be aware that it will also enumerate the properties of objects further up the prototype chain.  If you don't want this simply just use &lt;code&gt;for&lt;/code&gt;,&lt;/p&gt;
+
+&lt;h3&gt;Functions&lt;/h3&gt;
+
+&lt;p&gt;As Douglas Crockford says:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;Functions are the fundamental modular unit of JavaScript. Use functions for code reuse, information hiding and composition. Functions are used to specify the behaviour of objects.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Functions are objects, but they have a prototype link to &lt;code&gt;Function.prototype&lt;/code&gt;, and then this root function object in turn links to &lt;code&gt;Object.prototype&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A function can take 0 or more specified parameters, however functions get two extra hidden parameters &lt;code&gt;this&lt;/code&gt; and &lt;code&gt;arguments&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;method&lt;/strong&gt; is simply a function assigned (bound) to an objects property. e.g.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;myMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Hello &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;A function always returns a value. If no return value is defined then the function will return &lt;code&gt;undefined&lt;/code&gt;. However if a function is constructed with the &lt;code&gt;new&lt;/code&gt; prefix and the return value is not an object the new object is returned.&lt;/p&gt;
+
+&lt;h2&gt;JavaScript Gotcha's&lt;/h2&gt;
+
+&lt;h3&gt;typeof Returns incorrect types&lt;/h3&gt;
+
+&lt;p&gt;Using the &lt;code&gt;typeof&lt;/code&gt; method will return six results:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;number&lt;/li&gt;
+&lt;li&gt;string&lt;/li&gt;
+&lt;li&gt;boolean&lt;/li&gt;
+&lt;li&gt;undefined&lt;/li&gt;
+&lt;li&gt;function&lt;/li&gt;
+&lt;li&gt;object&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;The problem occurs with &lt;code&gt;typeof ['1']&lt;/code&gt; or &lt;code&gt;typeof null&lt;/code&gt; which both return &lt;em&gt;object&lt;/em&gt; which is incorrect.&lt;/p&gt;
+
+&lt;h3&gt;Function Invocation Binds 'this' To The Global Object&lt;/h3&gt;
+
+&lt;p&gt;When a function is created by assigning it to a global variable, and the contents of that function contains a &lt;code&gt;this&lt;/code&gt; statement then the &lt;code&gt;this&lt;/code&gt; is bound to the Global Object&lt;/p&gt;
+
+&lt;p&gt;When a function, contains an internal function the &lt;code&gt;this&lt;/code&gt; of the internal function is bound to the Global Object and not the &lt;code&gt;this&lt;/code&gt; of the parent function. To fix this simply assign &lt;code&gt;this&lt;/code&gt; to a &lt;code&gt;that&lt;/code&gt; variable and use &lt;code&gt;that&lt;/code&gt; within your internal function.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      
+      &lt;span class=&quot;kr&quot;&gt;double&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;helper&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;that&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;helper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+&lt;h3&gt;arguments Is An Array Like Object Not An Array&lt;/h3&gt;
+
+&lt;p&gt;All functions have a parameter &lt;code&gt;arguments&lt;/code&gt; which gives a function access to all the arguments supplied with it's invocation - including excess arguments that are not assigned to a parameter.
+However note that &lt;code&gt;arguments&lt;/code&gt; is in fact a special object with a length method and not an Array object. So &lt;code&gt;arguments&lt;/code&gt; will lack methods that an Array object will have.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>How To Set Up and Build a Django Web Site</title>
+   <link href="http://blog.emson.co.uk/2010/04/how-to-set-up-and-build-a-django-web-site"/>
+   <updated>2010-04-01T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2010/04/how-to-set-up-and-build-a-django-web-site</id>
+   <content type="html">&lt;p&gt;This article outlines how to set up your new Django site from scratch. I tend to use &lt;a href=&quot;http://www.dreamhost.com/r.cgi?105422&quot;&gt;Dreamhost Web Site Hosting&lt;/a&gt; so there will be a few notes specific to them.&lt;/p&gt;
+
+&lt;p&gt;If you are unsure how to set up Python and Django using &lt;a href=&quot;http://www.dreamhost.com/r.cgi?105422&quot;&gt;Dreamhost&lt;/a&gt; then checkout my previous article.&lt;/p&gt;
+
+&lt;p&gt;I hope you find it useful and drop me a comment if you have any questions.&lt;/p&gt;
+
+&lt;h2&gt;Create the new site&lt;/h2&gt;
+
+&lt;p&gt;Create a project directory&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir -p mysite-project/mysite.com
+$ cd mysite-project/mysite.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create you new site:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ django-admin.py startproject mysite
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now create the following directories:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir -p mysite-project/settings
+$ mkdir -p mysite-project/mysite.com/tmp/
+$ mkdir -p mysite-project/mysite.com/public/appmedia
+$ mkdir -p mysite-project/mysite.com/mysite/scripts
+$ mkdir -p mysite-project/mysite.com/mysite/templates
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Initialise git&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd mysite-project/mysite.com
+$ git init
+$ touch .gitignore
+
+Add the following:
+
+.DS_Store
+*.pyc
+packages/
+work/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Add WSGI file&lt;/h2&gt;
+
+&lt;p&gt;The following should be carried out from this directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd mysite-project/mysite.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add the &lt;strong&gt;passenger_wsgi.py&lt;/strong&gt; file to mysite-project/mysite.com directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import sys, os
+if sys.hexversion &amp;lt; 0x2060000: os.execl(&quot;/home/myuser/opt/python261/bin/python2.6&quot;, &quot;python2.6&quot;, *sys.argv)
+
+sys.path.append(os.getcwd())
+# START
+# required if you are using VirtualEnv, to get Passenger to use local Python environment.
+# see: http://wiki.dreamhost.com/Passenger_WSGI
+INTERP = &quot;/home/myuser/virtual/bin/python2.6&quot;
+if sys.executable != INTERP: os.execl(INTERP, INTERP, *sys.argv)
+# END
+os.environ['DJANGO_SETTINGS_MODULE'] = &quot;mysite.settings&quot;
+import django.core.handlers.wsgi
+application = django.core.handlers.wsgi.WSGIHandler()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create the public/appmedia directory in this directory to.
+Create tmp/restart.txt&lt;/p&gt;
+
+&lt;h2&gt;Set up the VirtualEnv Environment&lt;/h2&gt;
+
+&lt;p&gt;Move to the mysite-project directory.
+Ensure that you have virtualenv installed on your local system:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd mysite-project
+$ pip install virtualenv
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create the &lt;strong&gt;virtual/&lt;/strong&gt; directories using virtualenv:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ virtualenv ./virtual
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a symbolic link to the &lt;strong&gt;activate&lt;/strong&gt; executable.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ln -s ./virtual/bin/activate ./activate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;NB: if you rename your mysite-project directory you may well need to delete the virtual directory and activate symbolic link and recreate them using the previous virtualenv steps.&lt;/p&gt;
+
+&lt;p&gt;You can check which Python site packages being used with this command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python -c &quot;from distutils.sysconfig import get_python_lib; print get_python_lib()&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Create Local Dev Database&lt;/h2&gt;
+
+&lt;p&gt;Change directory to the scripts directory in mysite-project/mysite.com/mysite:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd mysite-project/mysite.com/mysite/scripts
+$ touch scripts/create-db.sql
+$ touch scripts/drop-db.sql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;create-db.sql&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;create database mysite_com_dev;
+grant all on mysite_com_dev.* to 'root'@'localhost';
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;drop-db.sql&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;drop database mysite_com_dev;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now create the database&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mysql -u root &amp;lt; scripts/create-db.sql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Set up the Django Project Files&lt;/h2&gt;
+
+&lt;p&gt;Make the following changes to the &lt;strong&gt;settings.py&lt;/strong&gt; file.
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import sys
+import os
+import os.path
+import socket
+
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(PROJECT_ROOT)) # needed because of shared hosting PYTHONPATH problems
+
+# MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'public/appmedia/')
+MEDIA_ROOT = '/full/local/path/to/appmedia/'
+# MEDIA_URL = '/appmedia/'
+MEDIA_URL = 'http://media.mysite.com/appmedia/'
+ADMIN_MEDIA_PREFIX = 'http://media.mysite.com/media/'
+
+TEMPLATE_DIRS = ( os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'), )
+
+INSTALLED_APPS = (
+    'django.contrib.admin', # add this
+    'django.contrib.admindocs', # and this
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+)
+
+# Add this to the bottom to import your local settings
+try:
+    from settings_local import *
+except ImportError:
+    pass
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;p&gt;Now we need to create a settings_local.py file in the same directory as the main settings.py file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ touch settings_local.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then add your default settings (most probably your dev settings):
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DATABASE_ENGINE = 'mysql'     
+DATABASE_NAME = 'mysite_com_dev'
+DATABASE_USER = 'root'         
+DATABASE_PASSWORD = ''         
+DATABASE_HOST = 'localhost'    
+DATABASE_PORT = ''
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;p&gt;As we will be using multiple environments we need to have different configurations for each environment.  There are a number of ways to do this, however the DRYist and easiest is to have a main settings file that imports different settings according to the environment.&lt;/p&gt;
+
+&lt;p&gt;Change directory to the mysite-project/settings directory, and create the appropriate settings files - we will have a dev, staging and production file as well as the main one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd mysite-project/settings
+$ touch settings_dev.py; touch settings_staging.py; touch settings_production.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now add the appropriate settings to these files database settings. Note that these settings will overwrite the settings in the main settings file.&lt;/p&gt;
+
+&lt;h2&gt;Adding South to Your Application&lt;/h2&gt;
+
+&lt;p&gt;For detailed installation instructions see &lt;a href=&quot;http://south.aeracode.org/wiki/Download&quot;&gt;http://south.aeracode.org/wiki/Download&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note, for MySQL databases, you should install South to a new instance of your MySQL database and not an existing or legacy database. This is because South won't update it's self when you run: &lt;code&gt;python manage.py migrate&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Quick installation.&lt;/p&gt;
+
+&lt;p&gt;Add &lt;strong&gt;South&lt;/strong&gt; (Note the capital 'S') to your pip requirements.txt file, and pip install it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  pip install -r requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or just run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  pip install South
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install the &lt;strong&gt;south&lt;/strong&gt; (Note lowercase 's') into your project settings.py file. e.g.:
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  INSTALLED_APPS = (
+      'django.contrib.admin',
+      'django.contrib.admindocs',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.sites',
+      'south',
+  )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;p&gt;Now &lt;strong&gt;syncdb&lt;/strong&gt; with your database so that your App knows about South.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  $ python manage.py syncdb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should get an output similar to this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;      Syncing...
+      Creating table south_migrationhistory
+
+      Synced:
+       &amp;gt; django.contrib.admin
+       &amp;gt; django.contrib.auth
+       &amp;gt; django.contrib.contenttypes
+       &amp;gt; django.contrib.sessions
+       &amp;gt; django.contrib.sites
+       &amp;gt; django.contrib.markup
+       &amp;gt; south
+       &amp;gt; tagging
+
+      Not synced (use migrations):
+       - 
+      (use ./manage.py migrate to migrate these)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally you need to tell South what Apps you want it to manage (in terms of migrations). So for example say you have an App called 'firepages', then run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  python manage.py startmigration firepages --initial
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will create a migrations directory and will allow South to manage all the models in that App:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  Creating migrations directory at '/mypath/mysite-project/mysite.com/mysite/firepages/migrations'...
+  Creating __init__.py in '/mypath/mysite-project/mysite.com/mysite/firepages/migrations'...
+   + Added model 'firepages.Group'
+   + Added model 'firepages.Category'
+   + Added model 'firepages.Page'
+  Created 0001_initial.py.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that because you will be uploading this new migrations directory you shouldn't need to run this command on the server.&lt;/p&gt;
+
+&lt;p&gt;You will now need to execute the following command to migrate forward:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  python manage.py migrate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now if you want to change your database do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Modify your model. e.g. add / remove fields&lt;/li&gt;
+&lt;li&gt;Tell South to create a migration: &lt;code&gt;python manage.py startmigration myapp name-of-my-migration --auto&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Execute the migration: &lt;code&gt;python manage.py migrate&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;h2&gt;Change urls.py&lt;/h2&gt;
+
+&lt;p&gt;Use the following imports:
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from django.conf import settings
+from django.contrib import admin
+
+admin.autodiscover()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;p&gt;At the bottom add a new URL path so that the site can get access to the appmedia, NB don't forget to add a staging and production version to:
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# simple trick to use local css files for development.
+# (Just make sure DEBUG=False in production!!!)
+if settings.DEBUG:
+    urlpatterns += patterns('', 
+        url(r'^appmedia/(?P&amp;lt;path&amp;gt;.*)$', 'django.views.static.serve', { 
+            'document_root': settings.MEDIA_ROOT }),
+        )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;p&gt;Now add the following URLs:
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;urlpatterns = patterns('',
+    #Admin URLS
+    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^admin/', include(admin.site.urls)),
+
+    #Home URL
+    (r'^$', include('mysite.foo.urls'),
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;p&gt;You may want to change the &lt;strong&gt;admin&lt;/strong&gt; URL pattern to be something else. This will make the admin area more obscure thus helping to prevent hacking. e.g. &lt;strong&gt;mylogin&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2&gt;Add a views.py file&lt;/h2&gt;
+
+&lt;p&gt;In the mysite-production/mysite.com/mysite/ directory add a views.py file with the following:
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;from django.http import HttpResponse
+
+import settings
+
+def hello(request, path='none'):
+    &quot;&quot;&quot;quick hello test&quot;&quot;&quot;
+    return HttpResponse(&quot;Quick test, PROJECT_ROOT: %s&amp;lt;br/&amp;gt;URL path: %s&quot; % (settings.PROJECT_ROOT, path))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;h2&gt;Sync the DB and Start the Server&lt;/h2&gt;
+
+&lt;p&gt;Navigate to the mysite-project/mysite.com/mysite directory&lt;/p&gt;
+
+&lt;p&gt;Start the virtual environment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ . ../../activate
+(virtual)$ python manage.py syncdb
+** create a user **
+(virtual)$ python manage.py runserver
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now open a browser and point it at this URL:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ open http://localhost:8000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It should display your &lt;strong&gt;hello&lt;/strong&gt; view results.&lt;/p&gt;
+
+&lt;h2&gt;Requirements&lt;/h2&gt;
+
+&lt;p&gt;Add a requirements.txt file to the following directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ touch mysite-project/mysite/requirements.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add in any requirements e.g. django-tagging&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo mysite-project/mysite/requirements.txt &amp;lt;&amp;lt; django-tagging
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Execute and add requirements:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pip install -r requirements.txt 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Local Apps Directory&lt;/h2&gt;
+
+&lt;p&gt;Create an &lt;strong&gt;apps&lt;/strong&gt; directory in the root of your project folder. Then tell your settings.py file about it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  sys.path.insert(0, os.path.join(PROJECT_ROOT, &quot;apps&quot;))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now any apps that you want in here and not in your &quot;pip install&quot; directory just add them and they will be found.&lt;/p&gt;
+
+&lt;h2&gt;RequestContext on All Views&lt;/h2&gt;
+
+&lt;p&gt;All your views should implement a RequestContext variable, but first you will need to add the following CONTEXT_PROCESSORS to the settings.py file:
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.debug', # passes the DEBUG variable to the template
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media', # passes the MEDIA_URL to the template
+    'django.core.context_processors.request', # passes the request object to the template
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;p&gt;Now Make sure that you pass the RequestContext to the render.
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def home_page(request):
+    &quot;&quot;&quot;display home page&quot;&quot;&quot;
+    template = &quot;page_home.html&quot; 
+    return render_to_response(template, { 'foo':'bar' }, context_instance=RequestContext(request))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;p&gt;This will allow you to use generic templates, and also get a handle on certain variables in the template.&lt;/p&gt;
+
+&lt;h2&gt;Page Specific Menus&lt;/h2&gt;
+
+&lt;p&gt;See this article for more information:  &lt;a href=&quot;http://gnuvince.wordpress.com/2007/09/14/a-django-template-tag-for-the-current-active-page/&quot;&gt;http://gnuvince.wordpress.com/2007/09/14/a-django-template-tag-for-the-current-active-page/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Django doesn't out of the box provide a &lt;strong&gt;current_page&lt;/strong&gt; variable like Ruby on Rails - but it is easy enough to implement.&lt;/p&gt;
+
+&lt;p&gt;You will need to have the &lt;strong&gt;'django.core.context_processors.request',&lt;/strong&gt; setting set in the template context processors as specified above.&lt;/p&gt;
+
+&lt;p&gt;You will also need to create a module called &lt;strong&gt;templatetags&lt;/strong&gt; with a &lt;strong&gt;init&lt;/strong&gt;.py file in it.
+Now add a file called &lt;strong&gt;active_menus.py&lt;/strong&gt;
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    from django import template
+
+    register = template.Library()
+
+    @register.simple_tag
+    def link_to(request, pattern, url, name):
+        import re
+        if re.search(pattern, request.path):
+            return '&amp;lt;span class=&quot;active&quot;&amp;gt;%s&amp;lt;/span&amp;gt;' % name
+        return '&amp;lt;a href=&quot;%s&quot;&amp;gt;%s&amp;lt;/a&amp;gt;' % (url, name)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;p&gt;Now in your template &lt;em&gt;load&lt;/em&gt; this template tag and call it like this:
+{% highlight django %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    {% load active_menus %}
+    &amp;lt;li&amp;gt;{% link_to request &quot;^/$&quot; &quot;/&quot; &quot;home&quot; %}&amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;{% link_to request &quot;^/software/$&quot; &quot;/software/&quot; &quot;software&quot; %}&amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;{% link_to request &quot;^/books/$&quot; &quot;/books/&quot; &quot;books&quot; %}&amp;lt;/li&amp;gt;       
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;h2&gt;Template Includes&lt;/h2&gt;
+
+&lt;p&gt;When creating an include template file give it a name starting with an underscore e.g. &lt;code&gt;_nav.html&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2&gt;Add a Sitemap to Your Site&lt;/h2&gt;
+
+&lt;p&gt;Add the following to your settings.py file in the INSTALLED_APPS section:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    django.contrib.sitemaps
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now check that you have the following installed also.&lt;/p&gt;
+
+&lt;p&gt;This should be in the TEMPLATE_LOADERS:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  'django.template.loaders.app_directories.load_template_source',
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Make sure youâ€™ve installed the sites framework. Also make sure that you have set the site domain name and description correctly in the &lt;strong&gt;sites&lt;/strong&gt; project in the &lt;strong&gt;Admin Panel&lt;/strong&gt;.  It should not be &lt;strong&gt;example.com&lt;/strong&gt;, but something like: &lt;strong&gt;myproject.com&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Create a &lt;strong&gt;sitemaps.py&lt;/strong&gt; file in your project. This file should contain something like:&lt;/p&gt;
+
+&lt;p&gt;{% highlight python %}&lt;/p&gt;
+
+&lt;p&gt;from django.contrib.sitemaps import Sitemap
+from myproject.models import ProductPage, ProductCategory&lt;/p&gt;
+
+&lt;p&gt;class ProductPageSitemap(Sitemap):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;changefreq = &quot;never&quot;
+priority = 0.5
+
+def items(self):
+    return ProductPage.objects.all().filter(published=True)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;class ProductCategorySitemap(Sitemap):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;changefreq = &quot;never&quot;
+priority = 0.5
+
+def items(self):
+    return ProductCategory.objects.all()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;p&gt;Now add the following to your &lt;strong&gt;urls.py&lt;/strong&gt; file:
+{% highlight python %}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    from myproject.sitemaps import *
+    # from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
+
+    sitemaps = {
+        'product_pages': ProductPageSitemap,
+        'product_categories': ProductCategorySitemap,
+    }
+
+    urlpatterns = patterns('',
+      (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+    )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{% endhighlight %}&lt;/p&gt;
+
+&lt;h2&gt;Adding a new App&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python manage.py startapp myappname
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add myappname to your settings.py file INSTALLED_APPS
+Now create some models in your myappname/models.py file.&lt;/p&gt;
+
+&lt;p&gt;Then run a syncdb:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python manage.py syncdb 
+OR to see the SQL
+$ python manage.py sql myappname
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now if you want to add South migrations:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python manage.py startmigration myappname --initial
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Installing PIL&lt;/h2&gt;
+
+&lt;p&gt;PIL should not be installed as part of the requirements.txt file, as you will need to compile libjpeg first.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>How to Install Python on Dreamhost Shared Hosting</title>
+   <link href="http://blog.emson.co.uk/2010/04/how-to-install-python-on-dreamhost-shared-hosting"/>
+   <updated>2010-04-01T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2010/04/how-to-install-python-on-dreamhost-shared-hosting</id>
+   <content type="html">&lt;p&gt;This article describes how to install and set up Python and VirtualEnv on &lt;a href=&quot;http://www.dreamhost.com/r.cgi?105422&quot;&gt;Dreamhost web site hosting&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Some of these notes are based on this article:
+URL:  http://blog.localkinegrinds.com/2007/08/20/custom-python-installation-for-django-on-dreamhost/&lt;/p&gt;
+
+&lt;h2&gt;Set up&lt;/h2&gt;
+
+&lt;p&gt;Log into your shared server and do the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir -p opt/python261
+$ mkdir downloads
+$ cd downloads
+$ wget http://www.python.org/ftp/python/2.6.1/Python-2.6.1.tgz
+$ tar xvzf Python-2.6.1.tgz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that:
+According to the &lt;a href=&quot;http://www.pathname.com/fhs/pub/fhs-2.3.html#OPTADDONAPPLICATIONSOFTWAREPACKAGES&quot;&gt;Filesystem Hierarchy Standard&lt;/a&gt;, the /opt dir &quot;is reserved for the installation of add-on application software packages.&quot;&lt;/p&gt;
+
+&lt;p&gt;Now configure where your new Python instance will be installed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd Python-2.6.1
+$ ./configure --prefix=$HOME/opt/python261
+$ make
+$ make install &amp;gt; install.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;NB: The install.txt file is useful to locate files if you wish to uninstall Python later.
+NB: you might wish to use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./configure --prefix=$HOME/opt/python261  --enable-unicode=ucs4
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But Dreamhost does uses ucs2 by default (Python's default to), and there can be issues if you try to load packages that are compiled using a different Unicode setting.&lt;/p&gt;
+
+&lt;p&gt;Now edit your ~/.bash_profile file to specify the new Python install located in: ~/opt/&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export PATH=$PATH:$HOME/opt/python261/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You might also want to add an alias so that instead of typing &lt;strong&gt;python2.6&lt;/strong&gt; to access the python shell, you can just type &lt;strong&gt;python&lt;/strong&gt; in the command line.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias python='python2.6'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Don't forget to tell bash to load this file after you have made your changes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ source ~/.bash_profile
+$ python -V  # will display your new version 2.6.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Installing VirtualEnv&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd downloads/
+$ curl -O http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.4.5.tar.gz
+$ tar -xvzf virtualenv-1.4.5.tar.gz
+$ python virtualenv-1.4.5/virtualenv.py $HOME/virtual --no-site-packages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;NB: This binds your new install with virtualenv and creates a virtual directory in your user home directory.
+You will need to use the &lt;strong&gt;--no-site-packages&lt;/strong&gt; option so that virtualenv doesn't use any of the original Dreamhost Python install packages.&lt;/p&gt;
+
+&lt;p&gt;Update your &lt;strong&gt;~/.bash_profile&lt;/strong&gt; file so that it puts the virtualenv packages onto the Python path, and &lt;em&gt;activate(s)&lt;/em&gt; your virtual environment:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export PATH=&quot;$PATH:$HOME/opt/python261/bin:$HOME/virtual/bin&quot;
+source $HOME/virtual/bin/activate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check that the packages directory is in your new virtual &lt;strong&gt;site_packages&lt;/strong&gt; directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python -c &quot;from distutils.sysconfig import get_python_lib; print get_python_lib()&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now activate your virtual environment, by executing the &lt;strong&gt;.bash_profile&lt;/strong&gt; file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ source ~/.bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or manually activate it by:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ . ~/virtual/bin activate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Installing MySQL Python Bindings&lt;/h2&gt;
+
+&lt;!-- http://sourceforge.net/projects/mysql-python/files/mysql-python-test/1.2.3c1/MySQL-python-1.2.3c1.tar.gz/download --&gt;
+
+
+&lt;pre&gt;&lt;code&gt;(virtual)$ cd downloads
+(virtual)$ wget http://internap.dl.sourceforge.net/sourceforge/mysql-python/MySQL-python-1.2.3c1.tar.gz
+(virtual)$ tar xvzf MySQL-python-1.2.3c1.tar.gz
+(virtual)$ cd MySQL-python-1.2.3c1
+(virtual)$ python setup.py install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Check that you can import the database correctly (NB: do this from a different directory from the one where MySQL-python was installed, as you will get Module already imported warnings):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(virtual)$ cd ~
+(virtual)$ python
+&amp;gt;&amp;gt;&amp;gt; import MySQLdb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you don't get an error all succeeded OK.&lt;/p&gt;
+
+&lt;h2&gt;Install Django&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;(virtual)$ pip install Django
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>How to Automatically Log In Using SSH On Dreamhost</title>
+   <link href="http://blog.emson.co.uk/2009/09/how-to-automatically-log-in-using-ssh-on-dreamhost"/>
+   <updated>2009-09-25T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2009/09/how-to-automatically-log-in-using-ssh-on-dreamhost</id>
+   <content type="html">&lt;p&gt;If you build web sites and &lt;a href=&quot;http://www.dreamhost.com/r.cgi?105422&quot;&gt;host (or want to host) them on Dreamhost&lt;/a&gt;, you will be well aware that at some stage you will be using SSH to log in and out of your hosting server. If you have many sites then this gradually becomes tiresome - especially if you use tools like &lt;a href=&quot;http://www.capify.org/index.php/Capistrano&quot;&gt;Capistrano&lt;/a&gt; to deploy your applications, as you will constantly have to re-enter your passwords.&lt;/p&gt;
+
+&lt;p&gt;Fortunately you can certify your local computer, such that it will automatically enter the SSH password for you. Here are some quick tips on how to do it.&lt;/p&gt;
+
+&lt;h3&gt;Generate Your Security Keys&lt;/h3&gt;
+
+&lt;p&gt;Generate your private/public key pair on your local machine, from your home directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh-keygen -d
+
+Now DON'T enter a password - just press return, otherwise you 
+will still need to enter a password, when you log in with SSH.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Set Privileges And Copy The Public Key To Your Server&lt;/h3&gt;
+
+&lt;p&gt;Use the following command to copy your newly created &lt;strong&gt;~/.ssh/id_dsa.pub&lt;/strong&gt; file up to the server you wish to remote log in to.  Note that this command below will set the permissions both locally and remotely. The remote .ssh/* needs to be set to 0600.&lt;/p&gt;
+
+&lt;p&gt;N.B. Replace USERNAME and MY_DOMAIN with your own username and domain.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh USERNAME@ftp.MY_DOMAIN.COM 'test -d .ssh || mkdir -m 0700 .ssh ; cat &amp;gt;&amp;gt; .ssh/authorized_keys &amp;amp;&amp;amp; chmod 0600 .ssh/*' &amp;lt; ~/.ssh/id_dsa.pub
+
+  Enter the normal USERNAME password.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Log In Using SSH&lt;/h3&gt;
+
+&lt;p&gt;Now log in using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh USERNAME@ftp.MY_DOMAIN.COM
+
+You shouldn't neet to enter a password.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Taking It Further&lt;/h3&gt;
+
+&lt;p&gt;To simplify things even further you can modify the &lt;strong&gt;~/.ssh/config&lt;/strong&gt; file such:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Host NICKNAME
+Hostname MY_DOMAIN.COM
+User USERNAME
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you only need to type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh NICKNAME
+
+And you will be automatically logged in.
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Create Sinatra Partials The Rails Way</title>
+   <link href="http://blog.emson.co.uk/2009/09/create-sinatra-partials-the-rails-way"/>
+   <updated>2009-09-25T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2009/09/create-sinatra-partials-the-rails-way</id>
+   <content type="html">&lt;p&gt;This is just a quick post. I've been playing around with the &lt;a href=&quot;http://www.sinatrarb.com/&quot;&gt;Sinatra micro web framework&lt;/a&gt;, and have to say that it is excellent. It really is the perfect tool for rapidly creating small and useful &lt;a href=&quot;http://www.ruby-lang.org/en/&quot;&gt;Ruby&lt;/a&gt; micro-sites.&lt;/p&gt;
+
+&lt;p&gt;Being small and lightweight it doesn't have many of the features of larger frameworks like &lt;a href=&quot;http://rubyonrails.org/&quot;&gt;Ruby on Rails&lt;/a&gt;. One of the features I've begun to need is the handling of Rails like partials.&lt;/p&gt;
+
+&lt;p&gt;Notably I need to pass both local variables and collections to the partial code and have the partials rendered accordingly.
+I started implementing my own version, and then came across a nice little &lt;a href=&quot;http://github.com/&quot;&gt;Github&lt;/a&gt; project: &lt;a href=&quot;http://github.com/sbfaulkner/sinatra-helpers&quot;&gt;Sinatra-Helpers by sbfaulkner&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Anyway here is the code he uses for Sinatra partials:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def haml_partial(name, options = {})
+  item_name = name.to_sym
+  counter_name = &quot;#{name}_counter&quot;.to_sym
+  if collection = options.delete(:collection)
+    collection.enum_for(:each_with_index).collect do |item,index|
+      haml_partial name, options.merge(:locals =&amp;gt; {item_name =&amp;gt; item, counter_name =&amp;gt; index+1})
+    end.join
+  elsif object = options.delete(:object)
+    haml_partial name, options.merge(:locals =&amp;gt; {item_name =&amp;gt; object, counter_name =&amp;gt; nil})
+  else
+    haml &quot;_#{name}&quot;.to_sym, options.merge(:layout =&amp;gt; false)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can use his project or if you just need this feature just pop this code into your Sinatra helpers file  &lt;strong&gt;application_helper.rb&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;helpers do
+
+  def partial(name, options = {})
+    item_name = name.to_sym
+    counter_name = &quot;#{name}_counter&quot;.to_sym
+    if collection = options.delete(:collection)
+      collection.enum_for(:each_with_index).collect do |item, index|
+        partial(name, options.merge(:locals =&amp;gt; { item_name =&amp;gt; item, counter_name =&amp;gt; index + 1 }))
+      end.join
+
+    elsif object = options.delete(:object)
+      partial name, options.merge(:locals =&amp;gt; {item_name =&amp;gt; object, counter_name =&amp;gt; nil})
+    else
+      haml &quot;_#{name}&quot;.to_sym, options.merge(:layout =&amp;gt; false)
+    end
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can call the partial from a your page e.g. &lt;strong&gt;index.haml&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;= partial(&quot;mypartial&quot;, :locals =&amp;gt; {:var1 =&amp;gt; &quot;value 1&quot;, :var2 =&amp;gt; &quot;value 2 and so on&quot;})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a partial in the same directory as the calling page. Note that this code doesn't like filenames truncated with a '-', so avoid this if possible. Also like in Rails your partials should start with an underscore. e.g.  &lt;strong&gt;_mypartial.haml&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To access the variable from this partial simply call the local variable name in your code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;%h2 
+  This is var1:
+  = var1
+
+%p 
+  And this is var2:
+  = var2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Handling collections, again, is similar to the way Rails handles partial collections. From your page call the partial with a collection such as:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;= partial(&quot;listitem&quot;, :collection =&amp;gt; [&quot;item 1&quot;, &quot;item 2 and so on&quot;])
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now in the &lt;strong&gt;_listitem.haml&lt;/strong&gt; partial code simply provide the partial name as a variable or the partialname with _counter for the increment number e.g.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;%li
+  = listitem
+  is the 
+  = listitem_counter
+  in this array
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Anyway all pretty basic stuff but I hope it helps the casual Sinatra surfer.&lt;/p&gt;
+
+&lt;p&gt;Goodluck.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>18 Useful bash scripts for web developers</title>
+   <link href="http://blog.emson.co.uk/2009/06/18-useful-bash-scripts-for-web-developers"/>
+   <updated>2009-06-05T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2009/06/18-useful-bash-scripts-for-web-developers</id>
+   <content type="html">&lt;h2&gt;Using bash scripts to become a more efficient web developer&lt;/h2&gt;
+
+&lt;p&gt;Here are a few scripts, that I find really useful for speeding up my web development time.&lt;/p&gt;
+
+&lt;p&gt;I've been building up this list as I needed to use them - so they maybe a little raw.&lt;/p&gt;
+
+&lt;p&gt;For example often clients send me images with filenames that don't match my naming standard, so running the appropriate script really helps keep me focussed on the job in hand and not waste too much time reformatting filenames etc.&lt;/p&gt;
+
+&lt;p&gt;Finally if you have any useful little bash scripts why don't you add them to the comments below?&lt;/p&gt;
+
+&lt;h3&gt;Bash script to append a .txt extension to a filename&lt;/h3&gt;
+
+&lt;p&gt;Iterate over the current directory, get all files with .log and append .txt to the end of the entire filename:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in *.log*; do mv &quot;$i&quot; &quot;$i.txt&quot;; done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Script to make filenames lowercase&lt;/h3&gt;
+
+&lt;p&gt;Converts all the file names in a directory and converts them to lowercase.&lt;/p&gt;
+
+&lt;p&gt;echo version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in *.log*; do echo mv \&quot;$i\&quot; \&quot;`echo $i| tr [A-Z] [a-z]`\&quot;; done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;real version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in *.txt; do mv &quot;$i&quot; &quot;`echo $i| tr [A-Z] [a-z]`&quot;; done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Quick note on how to use grep to search for a string in file&lt;/h3&gt;
+
+&lt;p&gt;-o print Only the matched parts of a matching line, with each part on a separate line.
+-H print the filename for each match.
+-n prefix each line of output with the 1 based line number.
+-R, -r recursively read all files under subdirectories.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep -oHnr &quot;some pattern&quot;  *.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;{txt,log} this globs the file extensions together.
+2&gt;/dev/null this passes all errors to a blackhole, so that they won't be displayed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;grep 123741 ./adapter_logs/*.{txt,log} 2&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Find all occurrences of 123741 in all .txt and .log files in all subdirectories.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in 'find . -type d'; do grep 123741 $i/*.{txt,log}; done 2&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;List all files that match this regular expression in the current direcory&lt;/h3&gt;
+
+&lt;p&gt;All files with the number 5 in their name.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ls | grep -e .*5.*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Bash script to check whether a tag exists in a subversion repository&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;svn ls http://www.mysvnserver.co.uk/myproject/tags | grep mytag-0.7.0.1/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The [ ] is known as a Test, by default it tests integers
+Also to end an if statement you use fi&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if [ 1 = 1 ] ; then echo YES; else echo NO; fi
+
+if [ &quot;`svn ls http://mysvnserver/mysvnrepository/myproject/tags | grep R-9.20.400.0/`&quot; = &quot;R-9.20.400.0/&quot; ]; then echo YES; else echo NO; fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note need the / in the evaluation part of &quot;it-0.9.0.7/&quot;, don't really need it in grep it-0.9.0.7/&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ if [ &quot;`svn ls http://www.mysvnserver.co.uk/myproject/tags | grep it-0.7.0.1/`&quot; = &quot;it-0.7.0.1/&quot; ]; then echo YES; else echo NO; fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Quick note on how to increment a variable, in a bash script&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;j=0; j=$(($j+1))
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;incrementing in a loop&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;j=0;for i in *.txt; do echo &quot;some_file_&quot;$j&quot;.txt&quot;; j=$(($j+1)); done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Using a bash for loop to list all text files and append whoopee&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in *.txt; do echo $i&quot;whoopee&quot;; done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Change all filenames to be a specific incremented name, starting from file 16&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;j=16;for i in *.jpg; do mv &quot;$i&quot; &quot;gallery_&quot;$j&quot;.jpg&quot;; j=$(($j+1)); done;ls
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Script to loop through all .txt filenames and make them lower case&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in *.txt; do mv &quot;$i&quot; &quot;`echo $i| tr [A-Z] [a-z]`&quot;; done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Get all JPG files and create the appropriate HTML list tags for them and add them to a file&lt;/h3&gt;
+
+&lt;p&gt;Create an HTML version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in *.jpg; do echo &quot;\t&amp;lt;li&amp;gt;\r\t\t&amp;lt;img src='images/$i' alt='' /&amp;gt;\r\t&amp;lt;/li&amp;gt;&quot;; done &amp;gt; list_items.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create a HAML version:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in *.jpg; do echo &quot;\t%li\r\t\t%img{ :src =&amp;gt; 'images/$i', :alt =&amp;gt; '' }\r&quot;; done &amp;gt; imgs.haml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Batch change a misspelled filename of certain files, using string replacement&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in aples*.jpg; do mv $i ${i/aples/apples} ; done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Script to batch create files based on filenames in a file&lt;/h3&gt;
+
+&lt;p&gt;Create a file called something like &quot;my_files.txt&quot; with the following content:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;archive_error_112480_0040.txt
+archive_error_114390_0043.txt
+etc...&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in `sed -n -e 'p' my_files.txt`; do mkdir a_test/$i; done
+or
+while read x; do touch $x; done &amp;lt; my_files.txt
+or
+cat my_files.txt | xargs touch
+(xargs passes each line as an argument into EACH touch)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Using bash Expansions, and allow escapes&lt;/h3&gt;
+
+&lt;p&gt;-e is an undocumented flag that allows escapes
+Expansion ${command/parameter/substitution} everything else needs to be escaped.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo -e ${PATH//\:/\\n}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Executing a .bash_script after making changes&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;source .bash_profile
+or
+. .bash_profile
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;NB: you can 'include' other bash .sh scripts in a .bash_profile file by using 'source' or '.'&lt;/p&gt;
+
+&lt;h3&gt;Quick tip on using curl for downloading files off the web&lt;/h3&gt;
+
+&lt;p&gt;Use -O to name the remote file, curl will save it locally but remove the rest of the path.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -O http://rubyforge-files.ruby-forum.com/rubygems/rubygems-0.9.0.tgz
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Bash command for testing the existence of files and directories&lt;/h3&gt;
+
+&lt;p&gt;If a directory does NOT exist create it&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ -d &quot;/var/cache/git&quot; ] || mkdir /var/cache/git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If a file exists echo a message:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[ -f &quot;./new_file.txt&quot; ] &amp;amp;&amp;amp; echo &quot;its there&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Bash command to remove spaces from filenames&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in *.html; do mv &quot;$i&quot; &quot;`echo $i| tr -d ' '`&quot;; done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;replace spaces for underscores&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;for i in *.html; do mv &quot;$i&quot; &quot;`echo $i| tr ' ' '_'`&quot;; done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Vim regex to replace spaces in images file names of ah HTML page&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;:%s:\(images\/\)\(\w\+\)\s\(\w\+\.jpg\):\1\2_\3:g
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Copy text to the clipboard&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;echo 'hello world'|pbcopy
+cmd + v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Some of these are quite basic but useful none-the-less, please add your own to the comments below.
+Many thanks, and good luck.&lt;/p&gt;
+
+&lt;h2&gt;Updated...&lt;/h2&gt;
+
+&lt;h3&gt;Script function for .bash_profile to cd to the last opened finder location&lt;/h3&gt;
+
+&lt;p&gt;This is a script written by a colleague.  &lt;a href=&quot;http://www.visualcortex.co.uk/&quot;&gt;James Power&lt;/a&gt;.
+Add the following function to your &lt;strong&gt;.bash_profile&lt;/strong&gt; in Apple OSX.  Now open a directory in Finder, then open terminal and type &lt;strong&gt;cdf&lt;/strong&gt;, your terminal will now change directory to the same one as the last Finder opened.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# function to change directory to the one set in the last opened finder.
+cdf () {
+   currFolderPath=$( /usr/bin/osascript &amp;lt;&amp;lt;&quot;         EOT&quot;
+       tell application &quot;Finder&quot;
+           try
+               set currFolder to (folder of the front window as alias)
+           on error
+               set currFolder to (path to desktop folder as alias)
+           end try
+           POSIX path of currFolder
+       end tell
+            EOT
+   )
+   echo &quot;cd to \&quot;$currFolderPath\&quot;&quot;
+   cd &quot;$currFolderPath&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also for a much more comprehensive list of commands check out: &lt;a href=&quot;http://www.commandlinefu.com/commands/tagged/34/bash&quot;&gt;http://www.commandlinefu.com/commands/tagged/34/bash&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Ruby Rush command-line tool&lt;/h3&gt;
+
+&lt;p&gt;If you use &lt;strong&gt;Ruby&lt;/strong&gt; maybe check out &lt;a href=&quot;http://rush.heroku.com/&quot;&gt;Rush&lt;/a&gt;, it allows you do use Ruby in a bash command-line like way.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Halcyon Events logo on Jenson Button's Formula One helmet </title>
+   <link href="http://blog.emson.co.uk/2009/03/halcyon-events-logo-on-jenson-buttons-formula-one-helmet"/>
+   <updated>2009-03-28T00:00:00+00:00</updated>
+   <id>http://blog.emson.co.uk/2009/03/halcyon-events-logo-on-jenson-buttons-formula-one-helmet</id>
+   <content type="html">&lt;p&gt;Jenson Button has just got pole position ready for the Australian Formula One race tomorrow.  This is pretty exciting as on either side of his helmet is the &lt;a href=&quot;http://www.halcyonsport.com&quot;&gt;Halcyon Events Ltd. logo.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[caption id=&quot;attachment_39&quot; align=&quot;alignnone&quot; width=&quot;500&quot; caption=&quot;Jenson Button\'s Helmet with Halcyon Logo&quot;]&lt;a href=&quot;http://www.halcyonsport.com&quot;&gt;&lt;img src=&quot;http://blog.emson.co.uk/wp-content/uploads/2009/03/helmet_logo.jpg&quot; alt=&quot;Jenson Button&amp;#039;s Helmet with Halcyon Logo&quot; title=&quot;helmet_logo&quot; width=&quot;500&quot; height=&quot;333&quot; class=&quot;size-full wp-image-39&quot; /&gt;&lt;/a&gt;[/caption]&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.halcyonsport.com&quot;&gt;Halcyon Events&lt;/a&gt; is a company that specialises in high end bespoke Formula One events.  Through their contacts they can take you and your clients behind the scenes to areas not normally permitted, and give you a unique experience into Formula One (F1).&lt;/p&gt;
+
+&lt;p&gt;The web site was built by me, the design was created by &lt;a href=&quot;http://www.scamperbranding.com/&quot;&gt;Scamper Branding&lt;/a&gt; and the logo on Jenson's helmet was designed by &lt;a href=&quot;http://www.fireflycreative.co.uk/&quot;&gt;Firefly Creative&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.fireflycreative.com&quot;&gt;&lt;img src=&quot;http://blog.emson.co.uk/wp-content/uploads/2009/03/fireflylogo_sml.jpg&quot; alt=&quot;Firefly Creative logo&quot; title=&quot;Firefly Creative logo&quot; width=&quot;150&quot; height=&quot;49&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Anyway fingers crossed for Jenson Button to win the Australian Grand Prix!.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;-- Update --&lt;/strong&gt; Fantastic Jenson Button won the Melbourne Grand Prix!  How exciting.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>An apology and a promise</title>
+   <link href="http://blog.emson.co.uk/2009/03/an-apology-and-a-promise"/>
+   <updated>2009-03-12T00:00:00+00:00</updated>
+   <id>http://blog.emson.co.uk/2009/03/an-apology-and-a-promise</id>
+   <content type="html">&lt;p&gt;This is just a quick note to apologise for not posting for the last couple of months.  A lot has been happening and I have actually written a number of posts but never quite finished them.  Also I promise to write more regularly come the end of March 2009 (hopefully).&lt;/p&gt;
+
+&lt;p&gt;Well my New Year started with a '&lt;a href=&quot;http://www.theloonydook.co.uk/&quot;&gt;Looney Dook&lt;/a&gt;' in the &lt;a href=&quot;http://maps.google.co.uk/maps?f=q&amp;amp;source=s_q&amp;amp;hl=en&amp;amp;geocode=&amp;amp;q=elie,+scotland&amp;amp;sll=53.800651,-4.064941&amp;amp;sspn=14.253717,33.925781&amp;amp;ie=UTF8&amp;amp;ll=56.193812,-2.82177&amp;amp;spn=0.052339,0.132523&amp;amp;z=13&amp;amp;iwloc=addr&quot;&gt;Firth of Fourth&lt;/a&gt; on New Years day.  Man it was cold and a struggle to get in, but I felt fantastic afterwards.  Its seems like quite a good analogy of how my year has been so far.&lt;/p&gt;
+
+&lt;p&gt;Anyway I've been busy building a couple of web sites, with a number still under development, if you get a moment please check them out and let me know what you think:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.halcyonsport.com&quot;&gt;www.halcyonsport.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.guygoodfellow.com&quot;&gt;www.guygoodfellow.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.ledudy.com&quot;&gt;www.ledudy.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;I've also been coming up with a number of little side line projects which I hope to share with you soon.  One of them involves using &lt;a href=&quot;http://www.twitter.com&quot;&gt;Twitter&lt;/a&gt; and if you want to hear more when the time comes you can follow me on &lt;a href=&quot;http://www.twitter.com/emson&quot;&gt;twitter/emson&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally this year for me, and I'm sure everyone, seems to be about how to restructure and think in terms of business and income.  I expect if you are open to change and think a bit laterally there are many opportunities, if you don't change you are likely to struggle.&lt;/p&gt;
+
+&lt;p&gt;The business world is changing beneath our feet and we need to be quick to act on the opportunities it presents us.  &lt;a href=&quot;http://sethgodin.typepad.com/seths_blog/2009/03/pivots-for-change-swords-and-plowshares.html&quot;&gt;Seth Godin's quick article&lt;/a&gt; highlights this rather well.&lt;/p&gt;
+
+&lt;p&gt;So I'll start putting together some interesting articles from the beginning of April onwards - I hope you can wait till then, and thanks for following me.&lt;/p&gt;
+
+&lt;p&gt;Ben...&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Chrome is a Desktop Web Application platform</title>
+   <link href="http://blog.emson.co.uk/2008/09/chrome-is-a-desktop-web-application-platform"/>
+   <updated>2008-09-04T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/09/chrome-is-a-desktop-web-application-platform</id>
+   <content type="html">&lt;h2&gt;Google Chrome is not just a browser&lt;/h2&gt;
+
+&lt;p&gt;Google Chrome was launched a few days ago on the 2nd September 2008, since then there has been much hype and articles written about it.  So what is it?
+Well, Wikipedia describes it: &lt;a href=&quot;http://en.wikipedia.org/wiki/Google_Chrome&quot;&gt;&quot;Google Chrome is a free and open source web browser developed by Google.&quot;&lt;/a&gt;, however it is more than that.&lt;/p&gt;
+
+&lt;p&gt;It comes dressed as a web browser but is actually a &lt;strong&gt;Desktop Web Application platform&lt;/strong&gt;.  It facilitates the creation of Web Applications that are desktop like in functionality.
+These Web Applications will, be much more responsive, secure and stable than the previous generation of web applications because these new technologies are forming a suitable infrasructure.&lt;/p&gt;
+
+&lt;p&gt;It's one of the technologies ushering in a new era for the Internet.&lt;/p&gt;
+
+&lt;p&gt;I wrote an article recently that describes how these technologies are laying down foundations for applications should use the web: &lt;a href=&quot;http://rapidappsgroup.com/content/desktop-web-applications-using-sproutcore/&quot;&gt;Desktop web applications using SproutCore/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Why is Chrome significant&lt;/h2&gt;
+
+&lt;p&gt;Recently a number of the big Internet centred companies have been making strides to enable the next generation of Web Applications.&lt;/p&gt;
+
+&lt;p&gt;Adobe with its AIR technology, Microsoft with Silverlight, Apple with its endorsement of the SproutCore JavaScript framework, and Google, until this announcement, Gears.&lt;/p&gt;
+
+&lt;p&gt;The problem is none of these offerings is perfect, and some of them are very much propietary, tying users into their technology.&lt;/p&gt;
+
+&lt;p&gt;The problem Google has is that Gears is actually a very good product, but why would anybody download and install it if there aren't may web sites using it?  At the moment this is an additional step resulting in the fact that most users have no compelling reason to install it.  In a nut shell nobody is using it.&lt;/p&gt;
+
+&lt;p&gt;However with Chrome Google is able to hedge its bets, it has merged several standalone technologies into one very capable and pleasing package.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It has an awesome JavaScript engine enabling JavaScript to approach Desktop Application speeds.&lt;/li&gt;
+&lt;li&gt;It has Gears enabling developers to create offline applications that can interact with your desktop.&lt;/li&gt;
+&lt;li&gt;It can open a Web Application directly in its own window, without any of the traditional browser tool bar and menu overheads.  Making Web Applications look like Desktop Applications.&lt;/li&gt;
+&lt;li&gt;It has added stability by making each tab a separate process, essentially each tab behaves like its very own browser.&lt;/li&gt;
+&lt;li&gt;It is secure in that it has been designed from the ground up following proven security models, such as sandboxing.&lt;/li&gt;
+&lt;li&gt;Its elegant, meaning that it feels small, light and fit for purpose.  It has taken some leaves out of Apple's book and made the UI simple yet powerful.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Chrome is OpenSource and follows standards&lt;/h2&gt;
+
+&lt;p&gt;This next era of the Internet is going to very busy.  Everyday there are vast numbers of web pages and Web Applications created, and with this colosal amounts of data and information to sift through.&lt;/p&gt;
+
+&lt;p&gt;For an individual it is becoming harder and harder to focus and extract the useful information from all that data.  In essance &lt;strong&gt;attention is a currency&lt;/strong&gt; and with all these web sites and applications vying for our eyeballs how do we as users filter the wheat from the chaff?&lt;/p&gt;
+
+&lt;p&gt;That part of the Internet isn't completely written yet but for certain, by following Web Standards and by incorporating OpenSource technologies we are laying the foundations for future tools to help us do this.  Chrome is one such OpenSource technology.&lt;/p&gt;
+
+&lt;p&gt;Chrome needs to follow standards as these will pull it along and it will evolve into something very powerful.  Even if it doesn't some of its components may find there way into some technology that does.  I dare say that Google will have a finger in that pie no matter.  As a result it is a win win situation for Google.&lt;/p&gt;
+
+&lt;p&gt;This also highlights the point that Microsoft's Internet Explorer browser is gradually getting left behind.  Admittedly standards aren't followed by all these companies but Microsoft has certainly been more relunctant to endorse them.&lt;/p&gt;
+
+&lt;h2&gt;JavaScript is a key web technology&lt;/h2&gt;
+
+&lt;p&gt;JavaScript is old, it appeared in the early browser wars and there hasn't been any significant changes since.  Its been buggy, doesn't scale well, and there are differences on just about every browser implementation, but it is everywhere.&lt;/p&gt;
+
+&lt;p&gt;Recently, with Web 2.0, JavaScript has had a bit of a resurgance and some very useful frameworks have emerged which mitigate the implementation issues and improve its stability.  However up until recently it has been slow.  Too slow to be useful in terms of creating sophisticated Desktop like Web Applications.&lt;/p&gt;
+
+&lt;p&gt;It seems that in order to compete in the new Desktop Web Application arena companies need to implement a fast JavaScript engine.
+Apple's Safari is implementing SquirrelFish, and Firefox is implementing TraceMonkey and now Google has created V8.&lt;/p&gt;
+
+&lt;p&gt;John Resig has done a &lt;a href=&quot;http://ejohn.org/blog/javascript-performance-rundown/&quot;&gt;comparison of the relevant JavaScript engines&lt;/a&gt; and it seems that V8 is very fast.
+Matthieu Riou says that V8 is &lt;a href=&quot;http://offthelip.org/?p=113&quot;&gt;closer to a compiler than a traditional VM&lt;/a&gt;.  It takes JavaScript code and converts it into low level byte code.  It is still early days but we can expect this performance to keep improving.&lt;/p&gt;
+
+&lt;h2&gt;Desktop Web Applications, Slickening the Web.&lt;/h2&gt;
+
+&lt;p&gt;This era of the Internet is seeing a 'slickening of the web'.  Web Applications are becoming more Desktop like.  Platforms like Chrome are only going to push us faster along this path.&lt;/p&gt;
+
+&lt;p&gt;We can expect to see more applications like Gmail, MobileMe, GoogleMaps, GoogleDocs, etc. but Chrome puts Google very definately in one of the front seats for the future.&lt;/p&gt;
+
+&lt;p&gt;Its not fully there yet as its still missing features but it will evolve quickly.
+Google has vast resources and is able to test the browser against millions of web sites before it ever sees a user.  This will only help to refine and improve it.&lt;/p&gt;
+
+&lt;p&gt;With Google Chrome, the Web is changing up a Gear.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Cannot select text with mouse in Microsoft Word, fix.</title>
+   <link href="http://blog.emson.co.uk/2008/08/cannot-select-text-with-mouse-in-microsoft-word-fix"/>
+   <updated>2008-08-21T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/08/cannot-select-text-with-mouse-in-microsoft-word-fix</id>
+   <content type="html">&lt;p&gt;A friend had the following problem with their laptop the other day.
+When they open Microsoft Word they cannot select any text with the mouse, they couldn't even place the cursor into the text by clicking the mouse on the text.&lt;/p&gt;
+
+&lt;p&gt;She said that the situation seemed to have occured when Norton Antivirus requested an update at the same time she was doing something in Word.&lt;/p&gt;
+
+&lt;p&gt;I suspected that it was that Word had somehow got corrupted, so I ran a repair, by inserting her Microsoft Office DVD and bring up the installer, and selecting &lt;em&gt;Repair&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;This made no difference, I then reinstalled Office, still the problem persisted.  This made me think that the problem was related to the Registry, so I did a Google search.&lt;/p&gt;
+
+&lt;h2&gt;Fixing Word text selection&lt;/h2&gt;
+
+&lt;p&gt;I found these articles:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://support.microsoft.com/kb/921541&quot;&gt;http://support.microsoft.com/kb/921541&lt;/a&gt; which describes how to troubleshoot problems with Microsoft Word 2007/2003/2002. (Really I'm not impressed it just stinks of shoddy programming.)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.vistax64.com/vista-general/39390-cant-select-text-word-2007-vista.html&quot;&gt;http://www.vistax64.com/vista-general/39390-cant-select-text-word-2007-vista.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;To summarise the fix:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Backup the Word\Data part of the Registry first&lt;/li&gt;
+&lt;li&gt;delete the the Word\Data section&lt;/li&gt;
+&lt;li&gt;restart Word&lt;/li&gt;
+&lt;li&gt;if it works then its completed, else restore the backup and keep Google searching.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Warning about Word registry changes&lt;/h3&gt;
+
+&lt;p&gt;This fix involves removing the Word/Data registry key.  By deleting this key you will loose some options you have set, this just means that you will need to reset them again.  Additionally you will loose the list of files in your &lt;em&gt;recently used files list&lt;/em&gt; at the bottom of the file menu.&lt;/p&gt;
+
+&lt;p&gt;Additionally be really careful about deleting anything out of the registry, because it can cause serious problems.  All the main Windows programs use it, and you could end up reinstalling everything including your copy of Windows.&lt;/p&gt;
+
+&lt;h3&gt;Backup the offending part of your computer's registry:&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Exit all Office programs, Word, Excel, Outlook etc if they are running.&lt;/li&gt;
+&lt;li&gt;Open regedit by: Clicking &lt;strong&gt;Start/Run&lt;/strong&gt;, then type &lt;strong&gt;regedit&lt;/strong&gt;, and select &lt;strong&gt;OK&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Navigate the registry and select the appropriate Word registry subkey:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Word 2002:&lt;/strong&gt; &lt;br/&gt;HKEY_CURRENT_USER\Software\Microsoft Office\10.0\Word\Data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Word 2003:&lt;/strong&gt; &lt;br/&gt;HKEY_CURRENT_USER\Software\Microsoft Office\11.0\Word\Data&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Word 2007:&lt;/strong&gt; &lt;br/&gt;HKEY_CURRENT_USER\Software\Microsoft\Office\12.0\Word\Data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Select the Data node, then from the &lt;strong&gt;File&lt;/strong&gt; menu choose &lt;strong&gt;Export&lt;/strong&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Name this backup file something like &lt;strong&gt;word_data.reg&lt;/strong&gt;, and save it your desktop.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;h3&gt;Delete the Word\Data registry node&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Select the appropriate &lt;strong&gt;Word\Data&lt;/strong&gt; node mentioned in part 3.&lt;/li&gt;
+&lt;li&gt;From the &lt;strong&gt;Edit&lt;/strong&gt; menu select &lt;strong&gt;Delete&lt;/strong&gt;, and then click &lt;strong&gt;Yes&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Exit regedit.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;h3&gt;Restart Word&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Restart Word.  This will cause Word to recreate this registry node, but you may have to re-enter some of your Word options.  If everything is working as expected you can finish.  If you still have a problem follow the next section.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;h3&gt;Restore the backed up registry node&lt;/h3&gt;
+
+&lt;p&gt;If the problem still persists then restore your registry back, and keep looking for a solution.
+To restore the registry back to normal simply:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Double-click the &lt;strong&gt;word_data.reg&lt;/strong&gt; file on your desktop.&lt;/li&gt;
+&lt;li&gt;and select &lt;strong&gt;Yes&lt;/strong&gt;, and then &lt;strong&gt;OK&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>SproutCore and Web Applications</title>
+   <link href="http://blog.emson.co.uk/2008/08/sproutcore-and-web-applications"/>
+   <updated>2008-08-18T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/08/sproutcore-and-web-applications</id>
+   <content type="html">&lt;p&gt;It's been a wee while since my last article, which has largely been due to my summer holiday.
+Anyway I've been reading up and experimenting with the &lt;a href=&quot;http://www.sproutcore.com&quot;&gt;SproutCore&lt;/a&gt; JavaScript framework.&lt;/p&gt;
+
+&lt;p&gt;Its excellent but I wanted to explain why companies and developers should consider using it.  So I've written an article on my business partner's web site &lt;a href=&quot;http://rapidappsgroup.com/content/desktop-web-applications-using-sproutcore/&quot;&gt;http://rapidappsgroup.com/content/desktop-web-applications-using-sproutcore/&lt;/a&gt;. &lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Please check it out as it tries to answer a lot of the general questions about web applications and JavaScript frameworks.&lt;/p&gt;
+
+&lt;p&gt;BE...&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Everyday MySQL Commands</title>
+   <link href="http://blog.emson.co.uk/2008/08/everyday-mysql-commands"/>
+   <updated>2008-08-18T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/08/everyday-mysql-commands</id>
+   <content type="html">&lt;p&gt;I'm trying to put together a number of blog articles and many of them use the MySQL database, so I figured that I would post up some of my most used everyday MySQL SQL commands.  Most likely I will append further commands as I write more articles so this is page is really a work in progress.&lt;/p&gt;
+
+&lt;p&gt;I've also assumed that you want to have full rights when executing these commands so I've used &lt;strong&gt;sudo&lt;/strong&gt;, however you may not need this depending on your set up.&lt;/p&gt;
+
+&lt;p&gt;Finally if some other web site covers the command better or I'm feeling lazy I'll just pop it in the links list at the bottom of this page.&lt;/p&gt;
+
+&lt;h2&gt;Useful MySQL Commands&lt;/h2&gt;
+
+&lt;h3&gt;Starting MySQL Demon&lt;/h3&gt;
+
+&lt;p&gt;Start your MySQL database and get it running as a background process:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mysqld_safe
+Ctrl + Z
+bg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;MySQL create databases script&lt;/h3&gt;
+
+&lt;p&gt;Make a SQL script that creates 3 databases and assigns all rights to my username.
+Copy the following SQL and paste it into a file called &lt;strong&gt;create_databases.sql&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;create database mydb_development;
+create database mydb_test;
+create database mydb_production;
+grant all on mydb_development.* to 'my_username'@'localhost';
+grant all on mydb_test.* to 'my_username'@'localhost';
+grant all on mydb_production.* to 'my_username'@'localhost' identified by 'my_password';
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;MySQL drop databases script&lt;/h3&gt;
+
+&lt;p&gt;Make a script to drop databases.
+Copy the following SQL and paste it into a file called &lt;strong&gt;drop_databases.sql&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;drop database nemos_production;
+drop database mydb_development;
+drop database nemos_test;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Executing a script from MySQL&lt;/h3&gt;
+
+&lt;p&gt;The above scripts can be executed from the command-line with the either of these commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mysql &amp;lt; create_database.sql
+or
+sudo mysql &amp;lt; drop_database.sql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Showing MySQL databases&lt;/h3&gt;
+
+&lt;p&gt;To check that the databases were created :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mysqlshow
+or
+sudo mysql
+show databases;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Displaying database tables&lt;/h3&gt;
+
+&lt;p&gt;Displaying the tables of a database:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mysqlshow mydb_development
+or
+sudo mysql
+show tables from mydb_development;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Displaying details about a database table&lt;/h3&gt;
+
+&lt;p&gt;Displaying details about a particular database table:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mysqlshow mydb_development mytable
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Droping a database table&lt;/h3&gt;
+
+&lt;p&gt;Dropping a table from a database:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mysql
+use mydb_development;
+drop table mytable;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Displaying information about a table&lt;/h3&gt;
+
+&lt;p&gt;Displaying the fields and field metadata about a table:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;show fields from my_table; 
+or
+desc my_table;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Useful Links&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://openmaniak.com/mysql.php&quot;&gt;http://openmaniak.com/mysql.php&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;These are just a few quick and simple MySQL commands that you will always use.
+Hope this helps.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>An Almost Fix for Creating RubyGems on Windows</title>
+   <link href="http://blog.emson.co.uk/2008/06/an-almost-fix-for-creating-rubygems-on-windows"/>
+   <updated>2008-06-25T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/06/an-almost-fix-for-creating-rubygems-on-windows</id>
+   <content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;I wrote this article originally so that I could write command-line apps using Ruby, as I got further and further down the line I realised that what I really wanted to do was create a command-line app using RubyGems.  I use both Windows and an Apple Mac and I quickly found myself having problems trying to create RubyGems on Windows.&lt;/p&gt;
+
+&lt;p&gt;In this article I try to explain my thought process and the problems I encountered.  Unfortunately I had to employ a manual process when trying to package up my project into a &lt;em&gt;tar&lt;/em&gt; file, as there isn't a simple way to do this in Windows (let me know if you have a solution), however everything else seems to work.&lt;/p&gt;
+
+&lt;h2&gt;What's a RubyGem?&lt;/h2&gt;
+
+&lt;p&gt;One of the joys of Ruby is the &lt;a href=&quot;http://www.rubygems.org/&quot;&gt;RubyGems&lt;/a&gt; packaging system.
+It is essentially a tool written in Ruby, for packaging up source code for deployment.&lt;/p&gt;
+
+&lt;p&gt;The RubyGems site describes it as follows:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;RubyGems is the premier ruby packaging system. It provides:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A standard format for destributing Ruby programs and libraries.&lt;/li&gt;
+&lt;li&gt;An easy to use tool for managing the installation of gem packages.&lt;/li&gt;
+&lt;li&gt;A gem server utility for serving gems from any machine where RubyGems is installed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2&gt;Why should I create a RubyGem?&lt;/h2&gt;
+
+&lt;p&gt;Maybe a better question should be &lt;em&gt;when&lt;/em&gt; should I package my code up into a RubyGem.  Obviously there are no hard and fast rules but if you are going to share your code libraries with others or even with other applications of yours, you should think about using a gem.&lt;/p&gt;
+
+&lt;p&gt;Now you might think that you don't want to make all your code public on &lt;a href=&quot;http://rubyforge.org/&quot;&gt;RubyForge&lt;/a&gt;, and there are very good reason not to publish every gem, so you don't have to.
+RubyGems comes with its own &lt;em&gt;local&lt;/em&gt; gem server so you can create your own gem library and share it amoung your other Ruby applications.&lt;/p&gt;
+
+&lt;p&gt;This is really quite useful, you get the power of RubyGems without the commitment and maintenance work of making your code OpenSource.  Plus at any point in time you can then make it OpenSource, and live off the joy of the Ruby community :).&lt;/p&gt;
+
+&lt;p&gt;The reason I wrote this article is because I wanted to create a simple command-line application using Ruby. I went through a number of steps before realising that the best way was to use RubyGems.&lt;/p&gt;
+
+&lt;p&gt;I started by creating my own command-line structure and then found this great article by &lt;a href=&quot;http://blog.infinitered.com/entries/show/5&quot;&gt;Todd Werth&lt;/a&gt;.  He has a single Ruby file that you just replace various sections and viola you have a very simple command-line app.  But it wasn't quite what I wanted.  I didn't want to have to type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;./my_super_app 'some params'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I wanted to type:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;my_super_app 'some params'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I also wanted the structure of the application to follow a standard structure and I didn't want to put '.' into my path, for security reasons.
+&lt;a href=&quot;http://drnicwilliams.com/&quot;&gt;Dr Nic&lt;/a&gt; came to the rescue with a couple of excellent articles describing how to &lt;a href=&quot;http://drnicwilliams.com/2006/10/11/generating-new-gems/&quot;&gt;create gems using &lt;strong&gt;newgem&lt;/strong&gt;&lt;/a&gt; and specifically &lt;a href=&quot;http://drnicwilliams.com/2006/10/18/create-and-deploy-command-line-apps-with-rubygems/&quot;&gt;command-line apps as gems&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Installing newgem on Windows&lt;/h2&gt;
+
+&lt;p&gt;To install &lt;strong&gt;newgem&lt;/strong&gt; on Windows use the RubyGems install method.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install newgem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will install the gem and its dependencies.  However one of its dependencies is the &lt;a href=&quot;http://seattlerb.rubyforge.org/hoe/&quot;&gt;Hoe gem&lt;/a&gt;, and there is a slight issue using it on Windows.&lt;/p&gt;
+
+&lt;h3&gt;What is hoe?&lt;/h3&gt;
+
+&lt;p&gt;Hoe is a compliment to &lt;strong&gt;rake&lt;/strong&gt;, it was created by &lt;a href=&quot;http://zenspider.com/&quot;&gt;Ryan Davis&lt;/a&gt; and provides &lt;strong&gt;rake&lt;/strong&gt; tasks for testing, packaging, and releasing RubyGems.  &lt;a href=&quot;http://nubyonrails.com/articles/tutorial-publishing-rubygems-with-hoe&quot;&gt;Geoffrey Grosenbach has a nice tutorial for using hoe&lt;/a&gt; and also describes how to create a project structure using the &lt;strong&gt;sow&lt;/strong&gt; task.&lt;/p&gt;
+
+&lt;p&gt;Hoe uses a &lt;strong&gt;.hoerc&lt;/strong&gt; file for configuration, and this file should reside in the user's home directory, something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C:\Documents and Settings\MyUserName
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;An example &lt;strong&gt;.hoerc&lt;/strong&gt; file should look like the one below.  Please note that this is a &lt;a href=&quot;http://en.wikipedia.org/wiki/YAML&quot;&gt;YAML&lt;/a&gt; file and if you copy it from here remember to follow the indentation convention:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+publish_on_announce: false
+exclude: !ruby/regexp/tmp$|CVS|\.svn|_darcs|\.git|log$|local/.*\.rb$|Makefile|.*\.o$|.*\.bundle$|.*\.so$|.*\.dll$/ 
+str: &quot;&quot;
+&quot;@taguri&quot;: tag:ruby.yaml.org,2002:regexp/tmp$|CVS|\.svn|_darcs|\.git|log$|local/.*\.rb$|Makefile|.*\.o$|.*\.bundle$|.*\.so$|.*\.dll$/
+blogs:
+- user: user
+  url: url
+  extra_headers:
+    mt_convert_breaks: markdown
+  blog_id: blog_id
+  password: password
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On Unix systems there is a shortcut to the user's home directory which is '~' and on Windows this isn't a shortcut.  Windows however does have an environment variable &lt;strong&gt;HOMEPATH&lt;/strong&gt; which will point to the user's home directory.  The problem is that the Hoe gem code uses '~' in its &lt;strong&gt;hoe.rb&lt;/strong&gt; file and this causes problems for Windows users.&lt;/p&gt;
+
+&lt;h3&gt;Patching the hoe.rb file&lt;/h3&gt;
+
+&lt;p&gt;OK, be brave, lets tweak the hoe.rb file so that it will work on the Windows platform.
+The Hoe gem &lt;strong&gt;hoe.rb&lt;/strong&gt; file can be found in the following directory (assuming you installed Ruby to the standard location):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C:\ruby\lib\ruby\gems\1.8\gems\hoe-1.6.0\lib
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To make it work for Windows PCs you will need to modify this file with the following changes.&lt;/p&gt;
+
+&lt;p&gt;Locate the &lt;strong&gt;define_tasks&lt;/strong&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def define_tasks # :nodoc:
+  def with_config # :nodoc:
+    rc = File.expand_path(&quot;~/.hoerc&quot;)
+    exists = File.exist? rc
+    config = exists ? YAML.load_file(rc) : {}
+    yield(config, rc)
+  end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And add a new method above it such as this, and modify the line &lt;strong&gt;rc = File.expand_path(&quot;~/.hoerc&quot;)&lt;/strong&gt; as below:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def get_home_dir
+  home_file_path = &quot;~/&quot;
+  home_file_path = &quot;#{ENV['HOMEPATH']}\\&quot; if WINDOZE
+  home_file_path
+end
+
+def define_tasks # :nodoc:
+ def with_config # :nodoc:
+   rc = File.expand_path(get_home_dir + '.hoerc')
+   exists = File.exist? rc
+   config = exists ? YAML.load_file(rc) : {}
+   yield(config, rc)
+ end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally you will need to locate and change the &lt;strong&gt;task :config_hoe&lt;/strong&gt; so that it reads:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&quot;signing_key_file&quot; =&amp;gt; &quot;#{get_home_dir}.gem/gem-private_key.pem&quot;,
+&quot;signing_cert_file&quot; =&amp;gt; &quot;#{get_home_dir}.gem/gem-public_cert.pem&quot;,
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If all has gone correctly save this file and you are now ready to create a RubyGem.&lt;/p&gt;
+
+&lt;h2&gt;Creating a basic RubyGem&lt;/h2&gt;
+
+&lt;p&gt;Using the &lt;strong&gt;newgem&lt;/strong&gt; RubyGem enter the following command at the command prompt:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;newgem my_app -b greetings -T rspec -W
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will create a &lt;strong&gt;my_app&lt;/strong&gt; subdirectory, with a command-line command app called &lt;em&gt;greetings&lt;/em&gt; located in the &lt;strong&gt;bin&lt;/strong&gt; directory.  It will use the testing framework &lt;em&gt;RSpec&lt;/em&gt; and finally will not generate the RubyForge web site code.  This is assuming you don't want to relese your code as OpenSource.
+The output will be something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;     create
+     create  config
+     create  doc
+     create  lib
+     create  script
+     ... blah ...
+     create  script/console
+     create  script/console.cmd
+     create  Manifest.txt
+     readme  readme
+Important
+=========
+
+* Open config/hoe.rb
+* Update missing details (gem description, dependent gems, etc.)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you want to add &lt;a href=&quot;http://blog.emson.co.uk/2008/06/understanding-rspec-stories-a-tutorial/&quot;&gt;RSpec Stories&lt;/a&gt; to this project there is a useful command-line generator to do this.  First navigate into the root of you new project app directory, in this case &lt;strong&gt;my_app&lt;/strong&gt;.  Now execute the generate script:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ruby script/generate install_rspec_stories
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should then get the following output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  create  stories/steps
+  create  stories/steps/my_app_steps.rb
+  create  stories/sell_my_app.story
+  create  stories/all.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Modify your &lt;strong&gt;greetings&lt;/strong&gt; command so that it does something.  Do this by editing the file located here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;my_app/bin/greetings
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Open up this file and at the very end, add some code such as this, and save the file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# do stuff
+puts 'Greetings the world is my oyster!'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Packaging caveat&lt;/h3&gt;
+
+&lt;p&gt;As mentioned in the begining of this article I couldn't use &lt;strong&gt;rake&lt;/strong&gt; to &lt;em&gt;tar&lt;/em&gt; this project up for deployment to RubyForge.
+The reason is that &lt;strong&gt;rake&lt;/strong&gt; makes a Unix platform dependent call to &lt;em&gt;tar&lt;/em&gt; the package using a Ruby task file &lt;strong&gt;packagetask.rb&lt;/strong&gt; located:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;C:\ruby\lib\ruby\gems\1.8\gems\rake-0.8.1\lib\rake 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This means that on Windows you will have to manually &lt;em&gt;tar&lt;/em&gt; this file.&lt;/p&gt;
+
+&lt;p&gt;However you can still create the gem using the rake task, and a gem file &lt;strong&gt;my_app-0.0.1.gem&lt;/strong&gt;, will appear in the &lt;strong&gt;pkg&lt;/strong&gt; directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rake gem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This new RubyGem can now be installed by using the &lt;strong&gt;gem install&lt;/strong&gt; commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install pkg/my_app-0.0.1.gem
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should get the following output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;For more information on my_app, see http://my_app.rubyforge.org
+
+NOTE: Change this information in PostInstall.txt
+You can also delete it if you don't want it.
+
+
+Successfully installed my_app, version 0.0.1
+Installing ri documentation for my_app-0.0.1...
+Installing RDoc documentation for my_app-0.0.1...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally you should now be able to execute your command-line command in the command prompt, simply by typing:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;greetings
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I hope this is useful and helps with your understanding of how RubyGems work, specifically on Windows, also please jot down some comments if you have any ideas or suggestions.&lt;/p&gt;
+
+&lt;h2&gt;Links&lt;/h2&gt;
+
+&lt;p&gt;Here is a list of useful RubyGems links:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.rubygems.org/&quot;&gt;RubyGems.org&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.linuxjournal.com/article/8967&quot;&gt;Linux Journal article about RubyGems&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://drnicwilliams.com/2006/10/11/generating-new-gems/&quot;&gt;Dr Nic's generating new gems article&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://drnicwilliams.com/2006/10/18/create-and-deploy-command-line-apps-with-rubygems/&quot;&gt;Dr Nic's article for creating and deploying command line apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://nubyonrails.com/articles/tutorial-publishing-rubygems-with-hoe&quot;&gt;NubyOnRails article for using Hoe&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.jayfields.com/2006/10/ruby-project-tree.html&quot;&gt;Jay Fields Ruby Project Tree&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Understanding RSpec Stories - a Tutorial</title>
+   <link href="http://blog.emson.co.uk/2008/06/understanding-rspec-stories-a-tutorial"/>
+   <updated>2008-06-10T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/06/understanding-rspec-stories-a-tutorial</id>
+   <content type="html">&lt;p&gt;When I initially started writing this RSpec guide I had planned to cover both traditional RSpec &lt;em&gt;Specs&lt;/em&gt; and the new &lt;em&gt;Stories&lt;/em&gt; feature, however the guide quickly became to big so I decided to focus purely on RSpec Ruby Stories, as opposed to RSpec Rails Stories.&lt;/p&gt;
+
+&lt;h2&gt;Why Unit Testing?&lt;/h2&gt;
+
+&lt;p&gt;Every pragmatic programmer tells us that we should be writing unit tests, but are they really that important?  Well unfortunately they are.  Unit test ensure that we write good quality code mitigating the number of bugs we introduce into a software system.
+However more than that, they help us think about the problem from different perspectives which leads to further insights and gradually makes the domain problems more manageable.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Unit_test&quot;&gt;Unit testing&lt;/a&gt; is especially important when the language you use is interpreted.  With compiled languages like C and C++ for example, the compiler picks up on compile time errors, however with interpreted languages like Ruby, Perl and Python there is no compiler and bugs can easily be introduced which won't be uncovered until the interpreter executes that branch of the code.&lt;/p&gt;
+
+&lt;p&gt;Traditionally tests have been written using a Unit Test framework like JUnit, NUnit or RUnit.  However it is easy to spending a lot of time writing tests that test every unit of code in your software system, what RSPec does is to provide a subtle shift of focus from Unit testing to Behaviour testing or &lt;a href=&quot;http://behaviour-driven.org/&quot;&gt;Behaviour Driven Development (BDD)&lt;/a&gt;.  By focusing on the behaviour of the system it helps clarify in our minds what the system should actually be doing.  It also means that our energy is directed at more 'useful' tests.  Useful tests, cover what the system should be doing and build in enough redundancy so that it should be easy to &lt;a href=&quot;http://en.wikipedia.org/wiki/Refactoring&quot;&gt;refactor&lt;/a&gt; our code without having to re-write every test.&lt;/p&gt;
+
+&lt;h2&gt;What is RSpec?  Give me some background.&lt;/h2&gt;
+
+&lt;p&gt;RSpec is a Behavioural Driven Development (BDD) tool, originally created by Dave Astels and Steven Baker.&lt;/p&gt;
+
+&lt;p&gt;However &lt;a href=&quot;http://blog.davidchelimsky.net&quot;&gt;David Chelimsky&lt;/a&gt; is really the gatekeeper of the RSpec project, and because it is an OpenSource project you can find the code on the &lt;a href=&quot;http://github.com/dchelimsky/rspec/tree/master&quot;&gt;GitHub RSpec Repository&lt;/a&gt;.  If you would like to use &lt;a href=&quot;http://en.wikipedia.org/wiki/Git_%28software%29&quot;&gt;Git&lt;/a&gt; to 'check out' a copy of the source code see my article:  &lt;a href=&quot;http://blog.emson.co.uk/2008/06/installing-a-git-client-on-osx/&quot;&gt;Installing Git on Apple OSX&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;RSpec is really two projects merged into one.  The RSpec project pages describes these merged projects as:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a Story Framework for describing behaviour at the application level&lt;/li&gt;
+&lt;li&gt;a Spec Framework for describing behaviour at the object level&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;&lt;a href=&quot;http://dannorth.net/2007/06/introducing-rbehave&quot;&gt;Dan North created rbehave&lt;/a&gt; which is the Story framework and he describes it as:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt; &lt;strong&gt;rbehave&lt;/strong&gt; is a framework for defining and executing application requirements.
+ Using the vocabulary of behaviour-driven development, you define a feature
+ in terms of a Story with Scenarios that describe how the feature behaves.
+ Using a minimum of syntax (a few â€œquotesâ€ mostly), this becomes an executable
+ and self-describing requirements document.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;The Spec framework was created by David Chelimsky, and is orientated at testing the behaviour of objects in your system.&lt;/p&gt;
+
+&lt;p&gt;By encompassing two frameworks RSpec equips a programmer with a thorough set of testing tools, allowing you to think about your software problem from a number of perspectives.&lt;/p&gt;
+
+&lt;h2&gt;What is an RSpec Story?&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://dannorth.net/whats-in-a-story&quot;&gt;Dan North&lt;/a&gt; has a good article about what a Story actually is, but here is a quick summary.  A Story describes the functionality of a specific software feature, and it describes it in a way that is easy to understand from the point of view of a client.  In fact a story should be thought of as a conversation between a client and a programmer over some feature of the software. &lt;br/&gt;
+As this story unfolds the programmer guides the client by prompting different &lt;strong&gt;Scenarios&lt;/strong&gt; and using specific words &lt;strong&gt;Given, When&lt;/strong&gt; and &lt;strong&gt;Then&lt;/strong&gt;, to capture the essence of the systems behaviour.&lt;/p&gt;
+
+&lt;p&gt;A typical story template will take this structure but does not necessarily have to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Title (one line describing the story)
+
+Narrative:
+As a [role]
+I want [feature]
+So that [benefit]
+
+Acceptance Criteria: (presented as Scenarios)
+
+Scenario 1: Title
+Given [context]
+  And [some more context]...
+When  [event]
+Then  [outcome]
+  And [another outcome]...
+
+Scenario 2: ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The key points to a story are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Title&lt;/strong&gt; - this should describe an activity or action&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Narrative&lt;/strong&gt; - should include a &lt;em&gt;role&lt;/em&gt;, &lt;em&gt;feature&lt;/em&gt; and a &lt;em&gt;benefit&lt;/em&gt;. &quot;As a [role] I want [feature] so that [benefit]&quot;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scenario&lt;/strong&gt; - describes what is different in the story. NB you can have a number of different scenarios.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scenario: Given/Events/Outcomes&lt;/strong&gt; - Given [some context], When [I do something], Then [this happens].  It is important to use the Given, When, Then language.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Givens&lt;/strong&gt; should define all of, and no more than, the required context&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Event&lt;/strong&gt; should describe the feature&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;RSpec actually has &lt;a href=&quot;http://blog.davidchelimsky.net/articles/2007/10/21/story-runner-in-plain-english&quot;&gt;four implementations of a Story&lt;/a&gt;, which given the sporadic documentation can lead to much confusion.  Essentially from an RSpec point of view a Story consists of three parts:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the &lt;strong&gt;Story&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Steps&lt;/strong&gt; that the Story undertakes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Components&lt;/strong&gt; to be tested, described by the Story&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h3&gt;Installing RSpec on Apple OSX&lt;/h3&gt;
+
+&lt;p&gt;The quickest and easiest way to install RSpec is to use Ruby gems.  In the Apple &lt;strong&gt;Terminal.app&lt;/strong&gt; command prompt enter the following command, and install RSpec as root:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo gem install -r rspec
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It should be noted that according to how you have setup your Mac, you may need to use &lt;strong&gt;sudo&lt;/strong&gt; to install this gem.
+If all goes well you should get output such as this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Bulk updating Gem source index for: http://gems.rubyforge.org/
+Successfully installed rspec-1.1.4
+1 gem installed
+Installing ri documentation for rspec-1.1.4...
+Installing RDoc documentation for rspec-1.1.4...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally if you are an Apple user and are using &lt;a href=&quot;http://www.macromates.com&quot;&gt;TextMate&lt;/a&gt; you might want to read my article on how to &lt;a href=&quot;http://blog.emson.co.uk/2008/06/installing-the-latest-rspec-textmate-bundle/&quot;&gt;install the TextMate RSpec bundle&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;How to Create an RSpec Story&lt;/h2&gt;
+
+&lt;p&gt;The simplest type of RSpec Story consists of a single file that contains both the Story and the executable Steps, all you need to do is require the library or class you wish to test.&lt;br/&gt;
+For example if we wish to use RSpec to test an &lt;strong&gt;Account&lt;/strong&gt; object you would create your library file such as &lt;strong&gt;account.rb&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class Account
+  attr_accessor :balance
+
+  def initialize(amount)
+    @balance = amount
+  end
+
+  def transfer_to(account, amount)
+    @balance = @balance - amount.to_f
+    account.balance = account.balance.to_f + amount.to_f
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now create your RSpec Story and save this file as &lt;strong&gt;account_story.rb&lt;/strong&gt; with the following content.  Note that on Apple OSX systems you seem to have to require the &lt;strong&gt;rubygems&lt;/strong&gt; library:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require 'rubygems'
+require 'spec'
+require 'spec/story'
+require 'account'
+
+Story &quot;transfer to cash account&quot;,
+%(As a savings account holder
+  I want to transfer money from my savings account
+  So that I can get cash easily from an ATM) do
+
+  Scenario &quot;savings account is in credit&quot; do
+    Given &quot;my savings account balance is&quot;, 100 do |balance|
+      @savings_account = Account.new(balance)
+    end
+    And &quot;my cash account balance is&quot;, 10 do |balance|
+      @cash_account = Account.new(balance)
+    end
+    When &quot;I transfer&quot;, 20 do |amount|
+      @savings_account.transfer_to(@cash_account, amount)
+    end
+    Then &quot;my savings account balance should be&quot;, 80 do |expected_amount|
+      @savings_account.balance.should == expected_amount
+    end
+    And &quot;my cash account balance should be&quot;, 30 do |expected_amount|
+      @cash_account.balance.should == expected_amount
+    end
+  end
+
+  Scenario &quot;savings account is overdrawn&quot; do
+    Given &quot;my savings account balance is&quot;, -20
+    And &quot;my cash account balance is&quot;, 10
+    When &quot;I transfer&quot;, 20
+    Then &quot;my savings account balance should be&quot;, -40
+    And &quot;my cash account balance should be&quot;, 30
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that although you did not explicitly define the code in the Steps of the second Scenario the RSpec framework uses the &lt;strong&gt;Given, When, Then&lt;/strong&gt; methods defined in the first Scenario.
+In fact if you look at the Story and think of it as a plain old Ruby code file you gradually understand what is happening.  The file defines a number of methods &lt;strong&gt;Story, Scenario, Given, When&lt;/strong&gt; and &lt;strong&gt;Then&lt;/strong&gt;, note that when RSpec analyses this Story file it parses the two Scenarios and is able to match the &lt;strong&gt;Given, When, Then&lt;/strong&gt; methods with the other Scenario.&lt;/p&gt;
+
+&lt;h2&gt;RSpec Plain Text Stories&lt;/h2&gt;
+
+&lt;p&gt;This previous example gives us the basic understanding of how a Story works and is structured, but what about the RSpec plain text stories, how do I create one and how are they structured?&lt;/p&gt;
+
+&lt;p&gt;The goal of a Plain Text Story is to extract the Steps into a separate file and write the Story in such a way that it looks just like plain text with no Ruby code.  In fact it is possible to name the Story file such that it does not even have the &lt;strong&gt;.rb&lt;/strong&gt; file extension.&lt;/p&gt;
+
+&lt;p&gt;However by extracting the Steps from the Story we will require a helper file to bind the Story to the Steps.  Therefore a plain text Story file will consist of four parts:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;the &lt;strong&gt;Story&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Steps&lt;/strong&gt; that the Story undertakes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Components&lt;/strong&gt; to be tested, described by the Story&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Helper&lt;/strong&gt; file to bind the Story to the Steps&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;There isn't any hard and fast rules about how you should structure the file system with respect to Stories and Steps, however best practice seems to describe a &lt;strong&gt;stories&lt;/strong&gt; directory and a &lt;strong&gt;steps&lt;/strong&gt; subdirectory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;stories +
+        + steps
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Story files are created without the &lt;strong&gt;.rb&lt;/strong&gt; file extension and are placed in the stories directory and consequently a Step file is created with the same name as the Story file, but with &lt;strong&gt;_step.rb&lt;/strong&gt; extension.
+Helper files can be put in the stories directory, and should have the same name as the story file but this time with the &lt;strong&gt;.rb&lt;/strong&gt; file extension.&lt;/p&gt;
+
+&lt;p&gt;Create a Story file with the following file name, &lt;strong&gt;bank&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;This is a story about an transferring money between bank accounts. 
+Note that the text up here above the Story: declaration won't be 
+processed, so you can write whatever you wish!
+
+Story: transfer to cash account
+  As a savings account holder
+  I want to transfer money from my savings account
+  So that I can get cash easily from an ATM
+
+  Scenario: savings account is in credit
+    Given my savings account balance is '100'
+    And my cash account balance is '10'
+    When I transfer '20'
+    Then my savings account balance should be '80'
+
+  Scenario: savings account is overdrawn
+    Given my savings account balance is '-20'
+    And my cash account balance is '10'
+    When I transfer '20'
+    Then my savings account balance should be '-40'
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now create a steps file with the following name and place it in the steps directory, &lt;strong&gt;bank_steps.rb&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;require 'rubygems'
+require 'spec/story'
+require 'spec/story/extensions/main'
+require File.join(File.dirname(__FILE__), &quot;../account&quot;)
+
+steps_for(:bank) do
+  Given(&quot;my savings account balance is '$savings'&quot;) do |savings|
+    @savings_account ||= Account.new(savings)
+  end
+end
+
+steps_for(:bank) do
+  Given(&quot;my cash account balance is '$cash'&quot;) do |cash|
+    @cash_account ||= Account.new(cash)
+  end
+end
+
+steps_for(:bank) do
+  When(&quot;I transfer '$amount'&quot;)  do |amount|
+     @savings_account.transfer_to(@cash_account, amount)
+  end
+end
+
+steps_for(:bank) do
+  Then(&quot;my savings account balance should be '$expected_amount'&quot;) do |expected_amount| 
+     @savings_account.balance.should == expected_amount.to_f
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The helper file by default is given the same name as the Story file but this time &lt;strong&gt;with the .rb&lt;/strong&gt; extension.  Here is an example of such a file, called &lt;strong&gt;bank.rb&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env ruby
+require 'rubygems'
+require 'spec'
+require 'spec/story/runner'
+require 'account'
+
+# require all the steps files so that we can link the story to them
+Dir[File.join(File.dirname(__FILE__), &quot;steps/*.rb&quot;)].each do |file|
+  require file
+end
+
+# execute the steps in the steps file
+with_steps_for :bank do
+  run File.expand_path(__FILE__).gsub(&quot;.rb&quot;,&quot;&quot;)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now to run this story all you have to do is from the Apple &lt;strong&gt;Terminal.app&lt;/strong&gt; navigate to the stories directory and execute the following Ruby command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ruby bank.rb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If all is successful you should see the following output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;requiring files ./steps/addition_steps.rb
+requiring files ./steps/bank_steps.rb
+Running 2 scenarios
+
+Story: transfer to cash account
+
+  As a savings account holder
+  I want to transfer money from my savings account
+  So that I can get cash easily from an ATM
+
+  Scenario: savings account is in credit
+
+    Given my savings account balance is '100'
+    And my cash account balance is '10'
+
+    When I transfer '20'
+
+    Then my savings account balance should be '80'
+
+  Scenario: savings account is overdrawn
+
+    Given my savings account balance is '-20'
+    And my cash account balance is '10'
+
+    When I transfer '20'
+
+    Then my savings account balance should be '-40'
+
+2 scenarios: 2 succeeded, 0 failed, 0 pending
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I hope this gives you a good introduction and a basis for understanding how RSpec Stories work.  Finally here are a list of links which may help you further:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://blog.davidchelimsky.net/articles/2007/05/14/an-introduction-to-rspec-part-i&quot;&gt;An introduction to RSpec - Part I&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://blog.davidchelimsky.net/articles/2007/10/21/story-runner-in-plain-english&quot;&gt;An introduction to RSpec Stories - Part I&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://blog.davidchelimsky.net/articles/2007/10/22/plain-text-stories-on-rails&quot;&gt;An introduction to RSpec Stories - Part II&lt;/a&gt;, although the &lt;em&gt;run_story&lt;/em&gt; method now seems to be depreciated in the source code.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://blog.davidchelimsky.net/articles/2007/10/25/plain-text-stories-part-iii&quot;&gt;An introduction to RSpec Stories - Part III&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://times.usefulinc.com/2008/01/12-rspec-stories&quot;&gt;Quick overview of stories&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://blog.davidchelimsky.net/articles/2007/10/21/story-runner-in-plain-english&quot;&gt;RSpec Story Runner Creation&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.tomtenthij.co.uk/2008/1/25/rspec-plain-text-story-runner-on-a-fresh-rails-app&quot;&gt;Blog describing creating a story and steps&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.vaporbase.com/postings/Beginners_Guide_to_Rspec_on_Story_Runner&quot;&gt;Clear introduction to stories&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>How to determine whether a column exists on SQLServer</title>
+   <link href="http://blog.emson.co.uk/2008/06/how-to-determine-whether-a-column-exists-on-sqlserver"/>
+   <updated>2008-06-10T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/06/how-to-determine-whether-a-column-exists-on-sqlserver</id>
+   <content type="html">&lt;p&gt;I run some SQL scripts against Microsoft's SQLServer in a number of environments, test, staging and production.&lt;/p&gt;
+
+&lt;p&gt;One of my problems is that these scripts alter the database schema and I only want them to execute if the change hasn't already been made.&lt;/p&gt;
+
+&lt;p&gt;One of these changes was to remove a column from the database, so my question is 'how can I ask SQLServer whether a particular column exists'.&lt;/p&gt;
+
+&lt;p&gt;Well the SQL query to check if a column exists and execute a query if it does is as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;IF EXISTS ( SELECT * FROM INFORMATION_SCHEMA.COLUMNS
+                 WHERE TABLE_NAME='my_table_name' AND
+                 COLUMN_NAME='my_column_name' )
+BEGIN
+  PRINT 'Execute some query here'
+END
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hope it is useful.
+Ben...&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Installing the Latest RSpec TextMate Bundle</title>
+   <link href="http://blog.emson.co.uk/2008/06/installing-the-latest-rspec-textmate-bundle"/>
+   <updated>2008-06-04T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/06/installing-the-latest-rspec-textmate-bundle</id>
+   <content type="html">&lt;p&gt;If you are using &lt;a href=&quot;http://www.macromates.com&quot;&gt;TextMate&lt;/a&gt; on your Apple Mac you may wish to download the RSpec TextMate Bundle and install it.  The TextMate bundle can be found in the &lt;a href=&quot;http://github.com/dchelimsky/rspec-tmbundle/tree/master&quot;&gt;RSpec Git repository&lt;/a&gt;.  In your &lt;strong&gt;Terminal.app&lt;/strong&gt; enter the following commands.  Please note that you will need Git installed on your Apple Mac in order to do this, please see my article &lt;a href=&quot;http://blog.emson.co.uk/2008/06/installing-a-git-client-on-osx/&quot;&gt;Installing Git on Apple OSX&lt;/a&gt; on how to do this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd /Applications/TextMate.app/Contents/SharedSupport/Bundles
+git clone git://github.com/dchelimsky/rspec-tmbundle.git RSpec.tmbundle
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should get output like this in your &lt;strong&gt;Terminal&lt;/strong&gt; window:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Initialized empty Git repository in /Applications/TextMate.app/Contents/SharedSupport/Bundles/RSpec.tmbundle/.git/
+remote: Counting objects: 46199, done.
+remote: Compressing objects: 100% (10514/10514), done.
+Indexing 46199 objects...
+remote: Total 46199 (delta 33049), reused 46199 (delta 33049)
+ 100% (46199/46199) done
+Resolving 33049 deltas...
+ 100% (33049/33049) done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you will need to reload your TextMate Bundle Editor for this new bundle to be applied.  In TextMate select the following menu items and button:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  Bundles &amp;gt; Bundle Editor &amp;gt; Reload Bundles
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you ever need to get a more uptodate version of the &lt;strong&gt;RSpec.tmbundle&lt;/strong&gt; then simply navigate to your TextMate Bundle directory and use Git to pull the latest version down to your machine.  Don't forget to reload your bundles once this has been done.  To pull the latest version from the Git hub use this command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git pull
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For older instructions on how to do this see &lt;a href=&quot;http://www.robbyonrails.com/articles/2007/02/12/rspec-bundle-for-textmate&quot;&gt;Robby on Rails - RSpec Bundle for TextMate&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Installing Sqlite3 on Windows for Rails</title>
+   <link href="http://blog.emson.co.uk/2008/06/installing-sqlite3-on-windows-for-rails"/>
+   <updated>2008-06-04T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/06/installing-sqlite3-on-windows-for-rails</id>
+   <content type="html">&lt;p&gt;The Windows version of &lt;a href=&quot;http://www.rubyonrails.org&quot;&gt;Ruby on Rails&lt;/a&gt; does not ship with the &lt;a href=&quot;http://www.sqlite.org&quot;&gt;Sqlite3 database&lt;/a&gt;, even though the &lt;strong&gt;database.yaml&lt;/strong&gt; configuration file is preconfigured to use Sqlite.&lt;/p&gt;
+
+&lt;p&gt;This is a &lt;em&gt;how to&lt;/em&gt; guide on how to install Sqlite3 on your Windows PC.
+This article assumes that you already have &lt;a href=&quot;http://www.ruby-lang.org&quot;&gt;Ruby&lt;/a&gt; and &lt;a href=&quot;http://www.rubyonrails.org&quot;&gt;Ruby on Rails&lt;/a&gt; installed on your PC.&lt;/p&gt;
+
+&lt;p&gt;First you will need to download two files from the Sqlite web site &lt;a href=&quot;http://www.sqlite.org/download.html&quot;&gt;http://www.sqlite.org/download.html&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    sqlite-3_5_9.zip (214.32 KiB)
+    A command-line program for accessing and modifing SQLite databases. 
+    See the documentation for additional information.
+
+    sqlitedll-3_5_9.zip (213.17 KiB)
+    This is a DLL of the SQLite library without the TCL bindings. 
+    The only external dependency is MSVCRT.DLL.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first file is the Sqlite command line program used for modifing the Sqlite database.  You may or may not use this.&lt;/p&gt;
+
+&lt;p&gt;The second file is the Windows DLL library file and Ruby uses this when Rails makes Sqlite database calls.&lt;/p&gt;
+
+&lt;p&gt;When both these ZIP files have been extracted you should have the following files:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sqlite3.exe&lt;/li&gt;
+&lt;li&gt;sqlite3.def&lt;/li&gt;
+&lt;li&gt;sqlite3.dll&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Copy these file to the &lt;strong&gt;bin&lt;/strong&gt; directory of your Ruby installation, if you followed the default Ruby installation it will be located here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    C:\ruby\bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now that you have the Sqlite3 files installed you need to tell Ruby how to use them.  To do this you need to download the Ruby bindings for Sqlite3.&lt;br/&gt;Fortunately this is easy to do, using Ruby gems.  Simply at the command prompt type the following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    gem install sqlite3-ruby
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will now need to tell Gems which version you need as you will be presented with the following output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    Bulk updating Gem source index for: http://gems.rubyforge.org
+    Select which gem to install for your platform (i386-mswin32)
+     1. sqlite3-ruby 1.2.2 (mswin32)
+     2. sqlite3-ruby 1.2.2 (ruby)
+     3. sqlite3-ruby 1.2.1 (mswin32)
+     4. sqlite3-ruby 1.2.1 (ruby)
+     5. Skip this gem
+     6. Cancel installation
+    &amp;gt;_
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please select option 1, &lt;strong&gt;sqlite3-ruby 1.2.2 (mswin32)&lt;/strong&gt;.  All being successful you will get some output like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    Successfully installed sqlite3-ruby-1.2.2-mswin32
+    Installing ri documentation for sqlite3-ruby-1.2.2-mswin32...
+    Installing RDoc documentation for sqlite3-ruby-1.2.2-mswin32...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you are using Rails 2+ you should be able to run the following rake tasks from your Rails application directory.  For example say you created a Rails application located here: &lt;strong&gt;C:\MyApp&lt;/strong&gt; you should be able to execute:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    C:\MyApp&amp;gt;rake db:create
+    or
+    C:\MyApp&amp;gt;rake db:migrate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hope this is useful.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Installing Git on Apple OSX</title>
+   <link href="http://blog.emson.co.uk/2008/06/installing-a-git-client-on-osx"/>
+   <updated>2008-06-03T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/06/installing-a-git-client-on-osx</id>
+   <content type="html">&lt;p&gt;Git is a version control system like CVS and Subversion.  It was created by Linus Torvalds and used for Linux.  It has recently been adopted by the Ruby community and many of the new Ruby and Ruby on Rails projects now use it.  One of the reason's for it's popularity amongst the Ruby community is because of &lt;a href=&quot;http://github.com/&quot;&gt;github&lt;/a&gt;.  In there own words:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;GitHub is the easiest (and prettiest) way to participate in that collaboration:
+fork projects, send pull requests, monitor development, all with ease.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h2&gt;How to quickly setup Git on Apple OSX&lt;/h2&gt;
+
+&lt;p&gt;The simplest way to install Git on Apple OSX (for Intel Mac) is to use this pre-packaged installer: &lt;a href=&quot;http://metastatic.org/text/Concern/2007/08/18/git-package-for-mac-os-x/&quot;&gt;http://metastatic.org/text/Concern/2007/08/18/git-package-for-mac-os-x/&lt;/a&gt;, however if you have a PowerPC Mac or wish to use an alternative installation method, try the information on this site: &lt;a href=&quot;http://bc.tech.coop/blog/070827.html&quot;&gt;http://bc.tech.coop/blog/070827.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Launch the installer, and accept the license agreements.  Once the installer has completed open up OSX Terminal.app (&lt;em&gt;cmd + space&lt;/em&gt;, then type terminal), and type &lt;strong&gt;git&lt;/strong&gt; at the command prompt, if all has been successful you should see something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;usage: git [--version] [--exec-path[=GIT_EXEC_PATH]] [-p|--paginate|--no-pager] [--bare] [--git-dir=GIT_DIR] [--work-tree=GIT_WORK_TREE] [--help] COMMAND [ARGS]
+
+The most commonly used git commands are:
+   add           Add file contents to the index
+   apply         Apply a patch on a git index file and a working tree
+   archive       Create an archive of files from a named tree
+   bisect        Find the change that introduced a bug by binary search
+   branch        List, create, or delete branches
+   checkout      Checkout and switch to a branch
+
+...  continued with more commands ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Configuring Git&lt;/h3&gt;
+
+&lt;p&gt;One of the interesting things about Git is that it can be configured from the command line.  Therefore the first thing to do is setup your user details so that when you add changes it uses your details.  This web site has some very good instructions on how to get up and running using Git very quickly &lt;a href=&quot;http://git.or.cz/course/svn.html&quot;&gt;http://git.or.cz/course/svn.html&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To configure your Git user details enter the following at the command prompt:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git config --global user.name &quot;Your Name Comes Here&quot;
+git config --global user.email you@yourdomain.example.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Clone / Checkout the RSpec Git Repository&lt;/h3&gt;
+
+&lt;p&gt;Now you should be able to clone (Subversion calls this &lt;em&gt;checkout&lt;/em&gt;) a repository so that you can view the source code.  To do this enter the following command at the command prompt.  I intend to checkout the &lt;a href=&quot;http://github.com/dchelimsky/rspec/tree/master&quot;&gt;RSpec&lt;/a&gt; repository from github:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git://github.com/dchelimsky/rspec.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All being well you should see output in your Terminal like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Initialized empty Git repository in /Users/myname/my_repositories/rspec/.git/
+remote: Counting objects: 46810, done.
+Compressing objects: 100% (10646/10646), done.)   
+Indexing 46810 objects...
+remote: Total 46810 (delta 33521), reused 46810 (delta 33521)
+ 100% (46810/46810) done
+Resolving 33521 deltas...
+ 100% (33521/33521) done
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you should have all the source code in your new repository.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Named Pipes and TCP/IP Connection Strings</title>
+   <link href="http://blog.emson.co.uk/2008/05/named-pipes-and-tcpip-connection-strings"/>
+   <updated>2008-05-28T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/05/named-pipes-and-tcpip-connection-strings</id>
+   <content type="html">&lt;h2&gt;Manually Creating a SQL Connection String&lt;/h2&gt;
+
+&lt;p&gt;There are many different connection strings for connecting to a SQLServer database for C#.  Have a look at this web site &lt;a href=&quot;http://www.connectionstrings.com/?carrier=sqlserver&quot;&gt;http://www.connectionstrings.com/?carrier=sqlserver&lt;/a&gt; for examples.&lt;/p&gt;
+
+&lt;p&gt;I needed to create a connection to a SQLServer and started using this as my connection string:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;server=myServer;database=myDatabase;uid=someUser;pwd=somePassword
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However I got the following error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;An error has occurred while establishing a connection to the server. 
+When connecting to SQL Server 2005, this failure may be caused by
+the fact that under the default settings SQL Server does not allow 
+remote connections. (provider: Named Pipes Provider, error: 40 - 
+Could not open a connection to SQL Server)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Pipes are actually quite an old technology, but what are they?&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+
+&lt;h2&gt;What are Named Pipes on Windows&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/aa365590.aspx&quot;&gt;MSDN&lt;/a&gt; defines a pipe as:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt; A named pipe is a named, one-way or duplex pipe for communication between the pipe server and one or more pipe clients.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Pipes are like sockets and allow peer-to-peer communication.  Additionally any process can act as either a server or a client.
+Pipes can be accessed remotely but you can also deny access to it from other networked authorities.&lt;/p&gt;
+
+&lt;p&gt;Really we should use TCP/IP for our database connections and initially I thought I had to create a special connection string defining TCP/IP settings.&lt;/p&gt;
+
+&lt;p&gt;Again as I looked into the problem more closely it turned out that I was again connecting to a server that was not running SQLServer.
+Anyway I am now using the following connection string:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Data Source=myServer;Database=myDatabase;User ID=someUser;Password=somePassword;
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>List of Apple OSX Terminal Commands</title>
+   <link href="http://blog.emson.co.uk/2008/05/list-of-apple-osx-terminal-commands"/>
+   <updated>2008-05-28T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/05/list-of-apple-osx-terminal-commands</id>
+   <content type="html">&lt;p&gt;This web site has a list and description of a large amount of Apple OSX &lt;strong&gt;Terminal&lt;/strong&gt; commands:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ss64.com/osx/&quot;&gt;http://www.ss64.com/osx/&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>IManage error - The semaphore is set and cannot be closed</title>
+   <link href="http://blog.emson.co.uk/2008/05/imanage-error-the-semaphore-is-set-and-cannot-be-closed"/>
+   <updated>2008-05-28T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/05/imanage-error-the-semaphore-is-set-and-cannot-be-closed</id>
+   <content type="html">&lt;p&gt;Using the Interwoven IManage API, I was trying to create a connection to the IManage server and kept getting this error message:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;The semaphore is set and cannot be closed.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It turns out that this error message is misleading and can hide a multitude of symptoms.  In this case it was returned because the system cannot create a connection to the server, as I had accidentally put in an incorrect server name into my connection method.&lt;/p&gt;
+
+&lt;p&gt;I did however do some research into what a &lt;strong&gt;semaphore&lt;/strong&gt; actually is.
+The choice of word comes from a time when flags were used to signal telegraph messages.&lt;/p&gt;
+
+&lt;p&gt;However the &lt;a href=&quot;http://dictionary.reference.com/browse/semaphore&quot;&gt;Dictionary&lt;/a&gt; computer definition of a semaphore is:&lt;/p&gt;
+
+&lt;blockquote&gt;semaphores are a software mechanism to regulate process synchronization, proposed by Edsger W. Dijkstra.&lt;/blockquote&gt;
+
+
+&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Semaphore_%28programming%29&quot;&gt;Wikipedia&lt;/a&gt; gives a more detailed explaination of a &lt;strong&gt;semaphore&lt;/strong&gt;, see below:&lt;/p&gt;
+
+&lt;blockquote&gt;A semaphore, in computer science, is a protected variable (an entity storing a value) or abstract data type (an entity grouping several variables that may or may not be numerical) which constitutes the classic method for restricting access to shared resources, such as shared memory, in a multiprogramming environment (a system where several programs may be executing, or taking turns to execute, at once). Semaphores exist in many variants, though usually the term refers to a counting semaphore, since a binary semaphore is better known as a mutex. A counting semaphore is a counter for a set of available resources, rather than a locked/unlocked flag of a single resource. It was invented by Edsger Dijkstra. Semaphores are the classic solution to preventing race conditions in the dining philosophers problem, although they do not prevent resource deadlocks.&lt;/blockquote&gt;
+
+
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Rapid Apps Group for Enterprise 2.0</title>
+   <link href="http://blog.emson.co.uk/2008/05/rapid-apps-group-for-enterprise-20"/>
+   <updated>2008-05-23T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/05/rapid-apps-group-for-enterprise-20</id>
+   <content type="html">&lt;p&gt;Welcome to the first post of my blog. It is actually my third attempt at writing a blog so hopefully this will be third time lucky.&lt;/p&gt;
+
+&lt;p&gt;I have also started a company with a colleague and you can see our web site:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.rapidappsgroup.com&quot;&gt;http://www.rapidappsgroup.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This company already has a number of software products revolving around Web 2.0 for the Enterprise and SMS services.&lt;/p&gt;
+
+&lt;p&gt;Anyway please have a look and let me know what you think.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>.Net not recognising regional settings</title>
+   <link href="http://blog.emson.co.uk/2008/05/net-not-recognising-regional-settings"/>
+   <updated>2008-05-23T00:00:00+01:00</updated>
+   <id>http://blog.emson.co.uk/2008/05/net-not-recognising-regional-settings</id>
+   <content type="html">&lt;p&gt;The other day I had the following problem.
+One of my test servers had been setup with US regional settings and should have been setup with UK settings.&lt;/p&gt;
+
+&lt;p&gt;The problem had been unnoticed for a while until our C# .Net application tried to call a stored procedure on a database on another server. This database server had UK regional settings.
+The stored procedure expected to get a date in UK 'Long format'.  The error message was a database error saying something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;convertion error can't convert from NVarChar to DateTime
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As the application was already compiled and being used on a live server I could not modify the code, I therefore had to run SQL Profiler and see what values were being passed into the stored procedure.  This is where I saw the US 'Long Date' format being passed in.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+
+&lt;h2&gt;.Net regional settings fix&lt;/h2&gt;
+
+&lt;p&gt;So I tried changing the regional settings on my server back to the UK, but the application was still sending the US 'Long Date' value.
+I dug real deep and suspected that IIS was doing something funny and found further regional settings in an &lt;strong&gt;Advanced&lt;/strong&gt; tab, but still this didn't fix the issue.&lt;/p&gt;
+
+&lt;p&gt;The problem I soon discovered is that when you install the .Net framework it internalises the regional settings but when you try and change them on the server these internalised settings don't get changed.&lt;br/&gt;
+The only solution to this is then to modify the &lt;b&gt;machine.config&lt;/b&gt; file.&lt;/p&gt;
+
+&lt;p&gt;The &lt;b&gt;machine.config&lt;/b&gt; file is in each installation of the .Net framework.  I happen to have both .Net 1.1 and .Net 2.0, however I changed the &lt;b&gt;machine.config&lt;/b&gt; file in only the .Net 1.1 installation directory (even though our application is .Net 2.0) and all worked fine.
+The &lt;b&gt;machine.config&lt;/b&gt; can be found in this directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;pre&amp;gt;C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\CONFIG&amp;lt;/pre&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you are using .Net 2.0 I'm sure you can make the same changes to the &lt;strong&gt;globalization&lt;/strong&gt; XML node.
+Please change the &lt;strong&gt;globalization&lt;/strong&gt; XML node to have the correct cultural settings in our case &lt;strong&gt;en-GB&lt;/strong&gt;:
+&lt;code&gt;&lt;pre&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;amp;lt;globalization
+    fileEncoding=&quot;utf-8&quot;
+    requestEncoding=&quot;utf-8&quot;
+    responseEncoding=&quot;utf-8&quot;
+    culture=&quot;en-GB&quot;
+    uiCulture=&quot;en-GB&quot;                           
+/&amp;amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;To test that a .Net application would send the correct settings I wrote a simple test app which would print the 'Long Date' to the console.  Here is the source code if you want to quickly test it yourself:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ShowLongDate.cs&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;using System;
+
+namespace examples
+{
+    class ShowLongDate
+    {
+        static void Main(string[] args)
+        {
+            DateTime current = DateTime.Now;
+            string longDate = current.ToLongDateString();
+            System.Console.WriteLine(string.Format(&quot;Date as longDate: {0}&quot;, longDate));
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Interesting things I learned&lt;/h2&gt;
+
+&lt;p&gt;You can open the regional settings from the commandline or from &lt;strong&gt;Start/Run&lt;/strong&gt; by typing&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    intl.cpl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also all the regional settings are located in the registry here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    HKEY_CURRENT_USER/Control Panel/International
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Useful URLs:
+&lt;a href=&quot;http://www.microsoft.com/globaldev/reference/localetable.mspx&quot;&gt;http://www.microsoft.com/globaldev/reference/localetable.mspx&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Anyway I hope this helps if you have the same problem.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>
