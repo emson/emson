@@ -20,6 +20,8 @@
             <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
             
             <div id="post">
+<h1>.Net not recognising regional settings</h1>
+
 <p>The other day I had the following problem.
 One of my test servers had been setup with US regional settings and should have been setup with UK settings.</p>
 
@@ -52,13 +54,13 @@ The <b>machine.config</b> can be found in this directory:</p>
 Please change the <strong>globalization</strong> XML node to have the correct cultural settings in our case <strong>en-GB</strong>:
 <code><pre></p>
 
-<pre><code>&amp;lt;globalization
+<pre><code>&lt;globalization
     fileEncoding="utf-8"
     requestEncoding="utf-8"
     responseEncoding="utf-8"
     culture="en-GB"
     uiCulture="en-GB"                           
-/&amp;gt;
+/&gt;
 </code></pre>
 
 <p></pre></code></p>
@@ -67,21 +69,23 @@ Please change the <strong>globalization</strong> XML node to have the correct cu
 
 <p><strong>ShowLongDate.cs</strong></p>
 
-<pre><code>using System;
-
-namespace examples
-{
-    class ShowLongDate
-    {
-        static void Main(string[] args)
-        {
-            DateTime current = DateTime.Now;
-            string longDate = current.ToLongDateString();
-            System.Console.WriteLine(string.Format("Date as longDate: {0}", longDate));
-        }
-    }
-}
+<div class="highlight"><pre><code class="c"><span class="n">using</span> <span class="n">System</span><span class="p">;</span>
+    
+<span class="n">namespace</span> <span class="n">examples</span>
+<span class="p">{</span>
+    <span class="n">class</span> <span class="n">ShowLongDate</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="kt">void</span> <span class="n">Main</span><span class="p">(</span><span class="n">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">DateTime</span> <span class="n">current</span> <span class="o">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Now</span><span class="p">;</span>
+            <span class="n">string</span> <span class="n">longDate</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="n">ToLongDateString</span><span class="p">();</span>
+            <span class="n">System</span><span class="p">.</span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;Date as longDate: {0}&quot;</span><span class="p">,</span> <span class="n">longDate</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
+</div>
+
 
 <h2>Interesting things I learned</h2>
 

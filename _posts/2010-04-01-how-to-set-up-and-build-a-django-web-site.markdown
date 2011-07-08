@@ -4,6 +4,7 @@ title: How To Set Up and Build a Django Web Site
 wordpress_id: 84
 wordpress_url: http://blog.emson.co.uk/?p=84
 ---
+#How To Set Up and Build a Django Web Site
 This article outlines how to set up your new Django site from scratch. I tend to use [Dreamhost Web Site Hosting](http://www.dreamhost.com/r.cgi?105422) so there will be a few notes specific to them.
 
 If you are unsure how to set up Python and Django using [Dreamhost](http://www.dreamhost.com/r.cgi?105422) then checkout my previous article.
@@ -13,30 +14,34 @@ I hope you find it useful and drop me a comment if you have any questions.
 ##Create the new site
 
 Create a project directory
-
-    $ mkdir -p mysite-project/mysite.com
-    $ cd mysite-project/mysite.com
+{% highlight bash %}
+$ mkdir -p mysite-project/mysite.com
+$ cd mysite-project/mysite.com
+{% endhighlight %}
     
 Create you new site:
-
-    $ django-admin.py startproject mysite
+{% highlight bash %}
+$ django-admin.py startproject mysite
+{% endhighlight %}
 
 Now create the following directories:
-    
-    $ mkdir -p mysite-project/settings
-    $ mkdir -p mysite-project/mysite.com/tmp/
-    $ mkdir -p mysite-project/mysite.com/public/appmedia
-    $ mkdir -p mysite-project/mysite.com/mysite/scripts
-    $ mkdir -p mysite-project/mysite.com/mysite/templates
+{% highlight bash %}
+$ mkdir -p mysite-project/settings
+$ mkdir -p mysite-project/mysite.com/tmp/
+$ mkdir -p mysite-project/mysite.com/public/appmedia
+$ mkdir -p mysite-project/mysite.com/mysite/scripts
+$ mkdir -p mysite-project/mysite.com/mysite/templates
+{% endhighlight %}
 
 
 ##Initialise git
-
-    $ cd mysite-project/mysite.com
-    $ git init
-    $ touch .gitignore
+{% highlight bash %}
+$ cd mysite-project/mysite.com
+$ git init
+$ touch .gitignore
+{% endhighlight %}
     
-    Add the following:
+Add the following:
     
     .DS_Store
     *.pyc
@@ -47,26 +52,28 @@ Now create the following directories:
 ##Add WSGI file
 
 The following should be carried out from this directory:
-
-    $ cd mysite-project/mysite.com
+{% highlight bash %}
+$ cd mysite-project/mysite.com
+{% endhighlight %}
     
 Add the **passenger_wsgi.py** file to mysite-project/mysite.com directory:
 
-    
-    import sys, os
-    if sys.hexversion < 0x2060000: os.execl("/home/myuser/opt/python261/bin/python2.6", "python2.6", *sys.argv)
+{% highlight bash %}
+import sys, os
+if sys.hexversion < 0x2060000: os.execl("/home/myuser/opt/python261/bin/python2.6", "python2.6", *sys.argv)
 
-    sys.path.append(os.getcwd())
-    # START
-    # required if you are using VirtualEnv, to get Passenger to use local Python environment.
-    # see: http://wiki.dreamhost.com/Passenger_WSGI
-    INTERP = "/home/myuser/virtual/bin/python2.6"
-    if sys.executable != INTERP: os.execl(INTERP, INTERP, *sys.argv)
-    # END
-    os.environ['DJANGO_SETTINGS_MODULE'] = "mysite.settings"
-    import django.core.handlers.wsgi
-    application = django.core.handlers.wsgi.WSGIHandler()
+sys.path.append(os.getcwd())
+# START
+# required if you are using VirtualEnv, to get Passenger to use local Python environment.
+# see: http://wiki.dreamhost.com/Passenger_WSGI
+INTERP = "/home/myuser/virtual/bin/python2.6"
+if sys.executable != INTERP: os.execl(INTERP, INTERP, *sys.argv)
+# END
+os.environ['DJANGO_SETTINGS_MODULE'] = "mysite.settings"
+import django.core.handlers.wsgi
+application = django.core.handlers.wsgi.WSGIHandler()
 
+{% endhighlight %}
 Create the public/appmedia directory in this directory to.
 Create tmp/restart.txt
 
@@ -75,103 +82,115 @@ Create tmp/restart.txt
 
 Move to the mysite-project directory.
 Ensure that you have virtualenv installed on your local system: 
-
-    $ cd mysite-project
-    $ pip install virtualenv
+{% highlight bash %}
+$ cd mysite-project
+$ pip install virtualenv
+{% endhighlight %}
 
 Create the **virtual/** directories using virtualenv:
-    
-    $ virtualenv ./virtual
+{% highlight bash %}
+$ virtualenv ./virtual
+{% endhighlight %}
     
 Create a symbolic link to the **activate** executable.
-
-    $ ln -s ./virtual/bin/activate ./activate
+{% highlight bash %}
+$ ln -s ./virtual/bin/activate ./activate
+{% endhighlight %}
 
 NB: if you rename your mysite-project directory you may well need to delete the virtual directory and activate symbolic link and recreate them using the previous virtualenv steps. 
 
 You can check which Python site packages being used with this command:
-
-    $ python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"
+{% highlight bash %}
+$ python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"
+{% endhighlight %}
 
 ##Create Local Dev Database
 
 Change directory to the scripts directory in mysite-project/mysite.com/mysite:
-
-    $ cd mysite-project/mysite.com/mysite/scripts
-    $ touch scripts/create-db.sql
-    $ touch scripts/drop-db.sql
+{% highlight bash %}
+$ cd mysite-project/mysite.com/mysite/scripts
+$ touch scripts/create-db.sql
+$ touch scripts/drop-db.sql
+{% endhighlight %}
     
 create-db.sql
-
-    create database mysite_com_dev;
-    grant all on mysite_com_dev.* to 'root'@'localhost';
+{% highlight sql %}
+create database mysite_com_dev;
+grant all on mysite_com_dev.* to 'root'@'localhost';
+{% endhighlight %}
     
 drop-db.sql
-
-    drop database mysite_com_dev;
+{% highlight sql %}
+drop database mysite_com_dev;
+{% endhighlight %}
 
 Now create the database
-
-    $ mysql -u root < scripts/create-db.sql
+{% highlight bash %}
+$ mysql -u root < scripts/create-db.sql
+{% endhighlight %}
 
 ##Set up the Django Project Files
 
 Make the following changes to the **settings.py** file.
 {% highlight python %}
-    import sys
-    import os
-    import os.path
-    import socket
 
-    PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
-    sys.path.insert(0, os.path.join(PROJECT_ROOT)) # needed because of shared hosting PYTHONPATH problems
+import sys
+import os
+import os.path
+import socket
 
-    # MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'public/appmedia/')
-    MEDIA_ROOT = '/full/local/path/to/appmedia/'
-    # MEDIA_URL = '/appmedia/'
-    MEDIA_URL = 'http://media.mysite.com/appmedia/'
-    ADMIN_MEDIA_PREFIX = 'http://media.mysite.com/media/'
-    
-    TEMPLATE_DIRS = ( os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'), )
-    
-    INSTALLED_APPS = (
-        'django.contrib.admin', # add this
-        'django.contrib.admindocs', # and this
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.sites',
-    )
-    
-    # Add this to the bottom to import your local settings
-    try:
-        from settings_local import *
-    except ImportError:
-        pass
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(PROJECT_ROOT)) # needed because of shared hosting PYTHONPATH problems
+
+# MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'public/appmedia/')
+MEDIA_ROOT = '/full/local/path/to/appmedia/'
+# MEDIA_URL = '/appmedia/'
+MEDIA_URL = 'http://media.mysite.com/appmedia/'
+ADMIN_MEDIA_PREFIX = 'http://media.mysite.com/media/'
+
+TEMPLATE_DIRS = ( os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'), )
+
+INSTALLED_APPS = (
+    'django.contrib.admin', # add this
+    'django.contrib.admindocs', # and this
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+)
+
+# Add this to the bottom to import your local settings
+try:
+    from settings_local import *
+except ImportError:
+    pass
+        
 {% endhighlight %}
 
 Now we need to create a settings_local.py file in the same directory as the main settings.py file:
-
-    $ touch settings_local.py
+{% highlight bash %}
+$ touch settings_local.py
+{% endhighlight %}
 
 Then add your default settings (most probably your dev settings):
 {% highlight python %}
 
-    DATABASE_ENGINE = 'mysql'     
-    DATABASE_NAME = 'mysite_com_dev'
-    DATABASE_USER = 'root'         
-    DATABASE_PASSWORD = ''         
-    DATABASE_HOST = 'localhost'    
-    DATABASE_PORT = ''
+DATABASE_ENGINE = 'mysql'     
+DATABASE_NAME = 'mysite_com_dev'
+DATABASE_USER = 'root'         
+DATABASE_PASSWORD = ''         
+DATABASE_HOST = 'localhost'    
+DATABASE_PORT = ''
     
 {% endhighlight %}
 
 As we will be using multiple environments we need to have different configurations for each environment.  There are a number of ways to do this, however the DRYist and easiest is to have a main settings file that imports different settings according to the environment.
 
 Change directory to the mysite-project/settings directory, and create the appropriate settings files - we will have a dev, staging and production file as well as the main one:
-
-    $ cd mysite-project/settings
-    $ touch settings_dev.py; touch settings_staging.py; touch settings_production.py
+{% highlight bash %}
+$ cd mysite-project/settings
+$ touch settings_dev.py; touch settings_staging.py; touch settings_production.py
+{% endhighlight %}
 
 Now add the appropriate settings to these files database settings. Note that these settings will overwrite the settings in the main settings file.
 
@@ -185,54 +204,58 @@ Note, for MySQL databases, you should install South to a new instance of your My
 Quick installation.
 
 Add **South** (Note the capital 'S') to your pip requirements.txt file, and pip install it:
-
-      pip install -r requirements.txt
+{% highlight bash %}
+$ pip install -r requirements.txt
+{% endhighlight %}
 
 Or just run:
-
-      pip install South
+{% highlight bash %}
+$ pip install South
+{% endhighlight %}
     
 Install the **south** (Note lowercase 's') into your project settings.py file. e.g.:
 {% highlight python %}
 
-      INSTALLED_APPS = (
-          'django.contrib.admin',
-          'django.contrib.admindocs',
-          'django.contrib.auth',
-          'django.contrib.contenttypes',
-          'django.contrib.sessions',
-          'django.contrib.sites',
-          'south',
-      )
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.admindocs',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'south',
+)
       
 {% endhighlight %}
 
 Now **syncdb** with your database so that your App knows about South.
-
-      $ python manage.py syncdb
+{% highlight bash %}
+$ python manage.py syncdb
+{% endhighlight %}
 
 You should get an output similar to this:
 
-          Syncing...
-          Creating table south_migrationhistory
+    Syncing...
+    Creating table south_migrationhistory
 
-          Synced:
-           > django.contrib.admin
-           > django.contrib.auth
-           > django.contrib.contenttypes
-           > django.contrib.sessions
-           > django.contrib.sites
-           > django.contrib.markup
-           > south
-           > tagging
+    Synced:
+     > django.contrib.admin
+     > django.contrib.auth
+     > django.contrib.contenttypes
+     > django.contrib.sessions
+     > django.contrib.sites
+     > django.contrib.markup
+     > south
+     > tagging
 
-          Not synced (use migrations):
-           - 
-          (use ./manage.py migrate to migrate these)
+    Not synced (use migrations):
+     - 
+    (use ./manage.py migrate to migrate these)
 
 Finally you need to tell South what Apps you want it to manage (in terms of migrations). So for example say you have an App called 'firepages', then run:
-
-      python manage.py startmigration firepages --initial
+{% highlight bash %}
+$ python manage.py startmigration firepages --initial
+{% endhighlight %}
       
 This will create a migrations directory and will allow South to manage all the models in that App:
 
@@ -246,8 +269,9 @@ This will create a migrations directory and will allow South to manage all the m
 Note that because you will be uploading this new migrations directory you shouldn't need to run this command on the server.
 
 You will now need to execute the following command to migrate forward:
-
-      python manage.py migrate
+{% highlight bash %}
+$ python manage.py migrate
+{% endhighlight %}
 
 Now if you want to change your database do the following:
 
@@ -262,36 +286,36 @@ Now if you want to change your database do the following:
 Use the following imports:
 {% highlight python %}
 
-    from django.conf import settings
-    from django.contrib import admin
+from django.conf import settings
+from django.contrib import admin
 
-    admin.autodiscover()
+admin.autodiscover()
     
 {% endhighlight %}
 
 At the bottom add a new URL path so that the site can get access to the appmedia, NB don't forget to add a staging and production version to:
 {% highlight python %}
 
-    # simple trick to use local css files for development.
-    # (Just make sure DEBUG=False in production!!!)
-    if settings.DEBUG:
-        urlpatterns += patterns('', 
-            url(r'^appmedia/(?P<path>.*)$', 'django.views.static.serve', { 
-                'document_root': settings.MEDIA_ROOT }),
-            )
+# simple trick to use local css files for development.
+# (Just make sure DEBUG=False in production!!!)
+if settings.DEBUG:
+    urlpatterns += patterns('', 
+        url(r'^appmedia/(?P<path>.*)$', 'django.views.static.serve', { 
+            'document_root': settings.MEDIA_ROOT }),
+        )
 {% endhighlight %}    
 
 Now add the following URLs:
 {% highlight python %}
 
-    urlpatterns = patterns('',
-        #Admin URLS
-        # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-        (r'^admin/', include(admin.site.urls)),
-        
-        #Home URL
-        (r'^$', include('mysite.foo.urls'),
-    )
+urlpatterns = patterns('',
+    #Admin URLS
+    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^admin/', include(admin.site.urls)),
+    
+    #Home URL
+    (r'^$', include('mysite.foo.urls'),
+)
 {% endhighlight %}
 
 You may want to change the **admin** URL pattern to be something else. This will make the admin area more obscure thus helping to prevent hacking. e.g. **mylogin**
@@ -302,13 +326,13 @@ You may want to change the **admin** URL pattern to be something else. This will
 In the mysite-production/mysite.com/mysite/ directory add a views.py file with the following:
 {% highlight python %}
 
-    from django.http import HttpResponse
+from django.http import HttpResponse
 
-    import settings
+import settings
 
-    def hello(request, path='none'):
-        """quick hello test"""
-        return HttpResponse("Quick test, PROJECT_ROOT: %s<br/>URL path: %s" % (settings.PROJECT_ROOT, path))
+def hello(request, path='none'):
+    """quick hello test"""
+    return HttpResponse("Quick test, PROJECT_ROOT: %s<br/>URL path: %s" % (settings.PROJECT_ROOT, path))
 
 {% endhighlight %}
 
@@ -317,15 +341,17 @@ In the mysite-production/mysite.com/mysite/ directory add a views.py file with t
 Navigate to the mysite-project/mysite.com/mysite directory
 
 Start the virtual environment:
-
-    $ . ../../activate
-    (virtual)$ python manage.py syncdb
-    ** create a user **
-    (virtual)$ python manage.py runserver
+{% highlight bash %}
+$ . ../../activate
+(virtual)$ python manage.py syncdb
+** create a user **
+(virtual)$ python manage.py runserver
+{% endhighlight %}
     
 Now open a browser and point it at this URL:
-
-    $ open http://localhost:8000
+{% highlight bash %}
+$ open http://localhost:8000
+{% endhighlight %}
     
 It should display your **hello** view results.
 
@@ -333,16 +359,19 @@ It should display your **hello** view results.
 ##Requirements
 
 Add a requirements.txt file to the following directory:
-
-    $ touch mysite-project/mysite/requirements.txt
+{% highlight bash %}
+$ touch mysite-project/mysite/requirements.txt
+{% endhighlight %}
     
 Add in any requirements e.g. django-tagging
-
-    echo mysite-project/mysite/requirements.txt << django-tagging
+{% highlight bash %}
+$ echo mysite-project/mysite/requirements.txt << django-tagging
+{% endhighlight %}
 
 Execute and add requirements:
-
-    pip install -r requirements.txt 
+{% highlight bash %}
+$ pip install -r requirements.txt 
+{% endhighlight %}
 
 
 ##Local Apps Directory
@@ -360,22 +389,22 @@ Now any apps that you want in here and not in your "pip install" directory just 
 All your views should implement a RequestContext variable, but first you will need to add the following CONTEXT_PROCESSORS to the settings.py file:
 {% highlight python %}
 
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        'django.core.context_processors.auth',
-        'django.core.context_processors.debug', # passes the DEBUG variable to the template
-        'django.core.context_processors.i18n',
-        'django.core.context_processors.media', # passes the MEDIA_URL to the template
-        'django.core.context_processors.request', # passes the request object to the template
-    )
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.debug', # passes the DEBUG variable to the template
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media', # passes the MEDIA_URL to the template
+    'django.core.context_processors.request', # passes the request object to the template
+)
 {% endhighlight %}
 
 Now Make sure that you pass the RequestContext to the render.
 {% highlight python %}
 
-    def home_page(request):
-        """display home page"""
-        template = "page_home.html" 
-        return render_to_response(template, { 'foo':'bar' }, context_instance=RequestContext(request))
+def home_page(request):
+    """display home page"""
+    template = "page_home.html" 
+    return render_to_response(template, { 'foo':'bar' }, context_instance=RequestContext(request))
 {% endhighlight %}
 
 This will allow you to use generic templates, and also get a handle on certain variables in the template.
@@ -394,26 +423,26 @@ You will also need to create a module called **templatetags** with a __init__.py
 Now add a file called **active_menus.py**
 {% highlight python %}
 
-        from django import template
+from django import template
 
-        register = template.Library()
+register = template.Library()
 
-        @register.simple_tag
-        def link_to(request, pattern, url, name):
-            import re
-            if re.search(pattern, request.path):
-                return '<span class="active">%s</span>' % name
-            return '<a href="%s">%s</a>' % (url, name)
+@register.simple_tag
+def link_to(request, pattern, url, name):
+    import re
+    if re.search(pattern, request.path):
+        return '<span class="active">%s</span>' % name
+    return '<a href="%s">%s</a>' % (url, name)
             
 {% endhighlight %}
 
 Now in your template *load* this template tag and call it like this:
 {% highlight django %}
 
-        {% load active_menus %}
-        <li>{% link_to request "^/$" "/" "home" %}</li>
-        <li>{% link_to request "^/software/$" "/software/" "software" %}</li>
-        <li>{% link_to request "^/books/$" "/books/" "books" %}</li>       
+{{ "{% load active_menus " }}%}
+<li>{{ '{% link_to request "^/$" "/" "home" '}}%}</li>
+<li>{{ '{% link_to request "^/software/$" "/software/" "software" '}}%}</li>
+<li>{{ '{% link_to request "^/books/$" "/books/" "books" '}}%}</li>       
 {% endhighlight %}
 
 ##Template Includes
@@ -462,36 +491,39 @@ class ProductCategorySitemap(Sitemap):
 Now add the following to your **urls.py** file:
 {% highlight python %}
         
-        from myproject.sitemaps import *
-        # from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
-        
-        sitemaps = {
-            'product_pages': ProductPageSitemap,
-            'product_categories': ProductCategorySitemap,
-        }
-        
-        urlpatterns = patterns('',
-          (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
-        )
+from myproject.sitemaps import *
+# from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
+
+sitemaps = {
+    'product_pages': ProductPageSitemap,
+    'product_categories': ProductCategorySitemap,
+}
+
+urlpatterns = patterns('',
+  (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+)
 
 {% endhighlight %}
 
 ##Adding a new App
-
-    $ python manage.py startapp myappname
+{% highlight bash %}
+$ python manage.py startapp myappname
+{% endhighlight %}
 
 Add myappname to your settings.py file INSTALLED_APPS
 Now create some models in your myappname/models.py file.
 
 Then run a syncdb:
-
-    $ python manage.py syncdb 
-    OR to see the SQL
-    $ python manage.py sql myappname
+{% highlight bash %}
+$ python manage.py syncdb 
+OR to see the SQL
+$ python manage.py sql myappname
+{% endhighlight %}
 
 Now if you want to add South migrations:
-
-    $ python manage.py startmigration myappname --initial
+{% highlight bash %}
+$ python manage.py startmigration myappname --initial
+{% endhighlight %}
 
 
 

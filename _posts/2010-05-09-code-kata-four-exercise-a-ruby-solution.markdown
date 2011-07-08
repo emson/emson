@@ -4,7 +4,7 @@ title: Code Kata Four Exercise - A Ruby Solution
 wordpress_id: 101
 wordpress_url: http://blog.emson.co.uk/?p=101
 ---
-
+#Code Kata Four Exercise - A Ruby Solution
 I recently did [code kata 4 (data munging)](http://codekata.pragprog.com/2007/01/kata_four_data_.html), and here is my solution to the problem. Like anything it can be improved but I think it is relatively simple to understand and yet flexible enough to work for a number of different formatted **.dat** files.
 
 The premiss is to write a program that will work out the deltas ( difference ) between two columns in **.dat** files and return the lowest values.
@@ -14,41 +14,44 @@ These **.dat** files have different numbers of columns and these columns can be 
 Anyway here is my solution in the Ruby language and a description of how it works:
 {% highlight ruby %}
 
-    # data_processor.rb
-    
-    module DataProcessor
-  
-      def process_dat(filename, regex=/^\s*\d+\.?\s+/)
-        items = []
-        IO.foreach(filename) do |line|
-          if line =~ regex
-            num, max, min = yield line
-            delta = max.to_i - min.to_i
-            items << [num, delta] if items.size == 0
-            current_items = items[0][1]
-            if delta <= current_items
-              items.clear if delta < current_items
-              items << [num, delta]
-            end
-          end
-        end  
-        items
-      end
-  
-    end
+# data_processor.rb
 
-    if __FILE__ == $0
-  
-      include DataProcessor
-  
-      puts "-------- Weather  --------"
-      list = process_dat('weather.dat') { |line| tokens = line.split(' ') }
-      list.each { |item| puts "Lowest Day:#{item[0]} Delta:#{item[1]}"}
-  
-      puts "\n-------- Football --------"
-      list = process_dat('football.dat') { |line| tokens = line.split(' ');[tokens[1], tokens[6], tokens[8]] }
-      list.each { |item| puts "Team:#{item[0]} Delta:#{item[1]}"}
-    end
+module DataProcessor
+
+  def process_dat(filename, regex=/^\s*\d+\.?\s+/)
+    items = []
+    IO.foreach(filename) do |line|
+      if line =~ regex
+        num, max, min = yield line
+        delta = max.to_i - min.to_i
+        items << [num, delta] if items.size == 0
+        current_items = items[0][1]
+        if delta <= current_items
+          items.clear if delta < current_items
+          items << [num, delta]
+        end
+      end
+    end  
+    items
+  end
+
+end
+
+if __FILE__ == $0
+
+  include DataProcessor
+
+  puts "-------- Weather  --------"
+  list = process_dat('weather.dat') { |line| tokens = line.split(' ') }
+  list.each { |item| puts "Lowest Day:#{item[0]} Delta:#{item[1]}"}
+
+  puts "\n-------- Football --------"
+  list = process_dat('football.dat') do |line| 
+    tokens = line.split(' ')
+    [tokens[1], tokens[6], tokens[8]]
+  end
+  list.each { |item| puts "Team:#{item[0]} Delta:#{item[1]}"}
+end
     
 {% endhighlight %}
 

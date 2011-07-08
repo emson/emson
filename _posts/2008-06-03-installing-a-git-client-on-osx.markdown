@@ -4,6 +4,8 @@ title: Installing Git on Apple OSX
 wordpress_id: 8
 wordpress_url: http://blog.emson.co.uk/2008/06/installing-a-git-client-on-osx/
 ---
+#Installing Git on Apple OSX
+
 Git is a version control system like CVS and Subversion.  It was created by Linus Torvalds and used for Linux.  It has recently been adopted by the Ruby community and many of the new Ruby and Ruby on Rails projects now use it.  One of the reason's for it's popularity amongst the Ruby community is because of [github](http://github.com/).  In there own words:
 > GitHub is the easiest (and prettiest) way to participate in that collaboration: 
 > fork projects, send pull requests, monitor development, all with ease.

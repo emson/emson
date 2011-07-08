@@ -4,6 +4,8 @@ title: Named Pipes and TCP/IP Connection Strings
 wordpress_id: 5
 wordpress_url: http://blog.emson.co.uk/?p=5
 ---
+#Named Pipes and TCP/IP Connection Strings
+
 ##Manually Creating a SQL Connection String
 
 There are many different connection strings for connecting to a SQLServer database for C#.  Have a look at this web site [http://www.connectionstrings.com/?carrier=sqlserver](http://www.connectionstrings.com/?carrier=sqlserver) for examples.

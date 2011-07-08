@@ -9,7 +9,7 @@ html {
 }
  
 body {
-    max-width: 640px;
+    max-width: 720px;
     padding: 0 10px;
     margin: 0 auto;
     font: 1em/1.4 Calibri, sans-serif;
@@ -85,7 +85,7 @@ li {
  
 h1 { 
     margin: 0.25em 0 0.5em;
-    font-size: 3.5em; 
+    font-size: 2em; 
 }
  
 h2 { 

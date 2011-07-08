@@ -20,6 +20,8 @@
             <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
             
             <div id="post">
+<h1>18 Useful bash scripts for web developers</h1>
+
 <h2>Using bash scripts to become a more efficient web developer</h2>
 
 <p>Here are a few scripts, that I find really useful for speeding up my web development time.</p>
@@ -34,8 +36,10 @@
 
 <p>Iterate over the current directory, get all files with .log and append .txt to the end of the entire filename:</p>
 
-<pre><code>for i in *.log*; do mv "$i" "$i.txt"; done
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in *.log*; <span class="k">do </span>mv <span class="s2">&quot;$i&quot;</span> <span class="s2">&quot;$i.txt&quot;</span>; <span class="k">done</span>
 </code></pre>
+</div>
+
 
 <h3>Script to make filenames lowercase</h3>
 
@@ -43,13 +47,17 @@
 
 <p>echo version:</p>
 
-<pre><code>for i in *.log*; do echo mv \"$i\" \"`echo $i| tr [A-Z] [a-z]`\"; done
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in *.log*; <span class="k">do </span><span class="nb">echo </span>mv <span class="se">\&quot;</span><span class="nv">$i</span><span class="se">\&quot;</span> <span class="se">\&quot;</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$i</span>| tr <span class="o">[</span>A-Z<span class="o">]</span> <span class="o">[</span>a-z<span class="o">]</span><span class="sb">`</span><span class="se">\&quot;</span>; <span class="k">done</span>
 </code></pre>
+</div>
+
 
 <p>real version:</p>
 
-<pre><code>for i in *.txt; do mv "$i" "`echo $i| tr [A-Z] [a-z]`"; done
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in *.txt; <span class="k">do </span>mv <span class="s2">&quot;$i&quot;</span> <span class="s2">&quot;`echo $i| tr [A-Z] [a-z]`&quot;</span>; <span class="k">done</span>
 </code></pre>
+</div>
+
 
 <h3>Quick note on how to use grep to search for a string in file</h3>
 
@@ -58,86 +66,116 @@
 -n prefix each line of output with the 1 based line number.
 -R, -r recursively read all files under subdirectories.</p>
 
-<pre><code>grep -oHnr "some pattern"  *.txt
+<div class="highlight"><pre><code class="bash">grep -oHnr <span class="s2">&quot;some pattern&quot;</span>  *.txt
 </code></pre>
+</div>
+
 
 <p>{txt,log} this globs the file extensions together.
 2>/dev/null this passes all errors to a blackhole, so that they won't be displayed.</p>
 
-<pre><code>grep 123741 ./adapter_logs/*.{txt,log} 2&gt;/dev/null
+<div class="highlight"><pre><code class="bash">grep 123741 ./adapter_logs/*.<span class="o">{</span>txt,log<span class="o">}</span> 2&gt;/dev/null
 </code></pre>
+</div>
+
 
 <p>Find all occurrences of 123741 in all .txt and .log files in all subdirectories.</p>
 
-<pre><code>for i in 'find . -type d'; do grep 123741 $i/*.{txt,log}; done 2&gt;/dev/null
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in <span class="s1">&#39;find . -type d&#39;</span>; <span class="k">do </span>grep 123741 <span class="nv">$i</span>/*.<span class="o">{</span>txt,log<span class="o">}</span>; <span class="k">done </span>2&gt;/dev/null
 </code></pre>
+</div>
+
 
 <h3>List all files that match this regular expression in the current direcory</h3>
 
 <p>All files with the number 5 in their name.</p>
 
-<pre><code>ls | grep -e .*5.*
+<div class="highlight"><pre><code class="bash">ls | grep -e .*5.*
 </code></pre>
+</div>
+
 
 <h3>Bash script to check whether a tag exists in a subversion repository</h3>
 
-<pre><code>svn ls http://www.mysvnserver.co.uk/myproject/tags | grep mytag-0.7.0.1/
+<div class="highlight"><pre><code class="bash">svn ls http://www.mysvnserver.co.uk/myproject/tags | grep mytag-0.7.0.1/
 </code></pre>
+</div>
+
 
 <p>The [ ] is known as a Test, by default it tests integers
 Also to end an if statement you use fi</p>
 
-<pre><code>if [ 1 = 1 ] ; then echo YES; else echo NO; fi
+<div class="highlight"><pre><code class="bash"><span class="k">if</span> <span class="o">[</span> <span class="nv">1</span> <span class="o">=</span> 1 <span class="o">]</span> ; <span class="k">then </span><span class="nb">echo </span>YES; <span class="k">else </span><span class="nb">echo </span>NO; <span class="k">fi</span>
 
-if [ "`svn ls http://mysvnserver/mysvnrepository/myproject/tags | grep R-9.20.400.0/`" = "R-9.20.400.0/" ]; then echo YES; else echo NO; fi
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;`svn ls http://mysvnserver/mysvnrepository/myproject/tags | grep R-9.20.400.0/`&quot;</span> <span class="o">=</span> <span class="s2">&quot;R-9.20.400.0/&quot;</span> <span class="o">]</span>; <span class="k">then </span><span class="nb">echo </span>YES; <span class="k">else </span><span class="nb">echo </span>NO; <span class="k">fi</span>
 </code></pre>
+</div>
+
 
 <p>Note need the / in the evaluation part of "it-0.9.0.7/", don't really need it in grep it-0.9.0.7/</p>
 
-<pre><code>$ if [ "`svn ls http://www.mysvnserver.co.uk/myproject/tags | grep it-0.7.0.1/`" = "it-0.7.0.1/" ]; then echo YES; else echo NO; fi
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;`svn ls http://www.mysvnserver.co.uk/myproject/tags | grep it-0.7.0.1/`&quot;</span> <span class="o">=</span> <span class="s2">&quot;it-0.7.0.1/&quot;</span> <span class="o">]</span>; <span class="k">then </span><span class="nb">echo </span>YES; <span class="k">else </span><span class="nb">echo </span>NO; <span class="k">fi</span>
 </code></pre>
+</div>
+
 
 <h3>Quick note on how to increment a variable, in a bash script</h3>
 
-<pre><code>j=0; j=$(($j+1))
+<div class="highlight"><pre><code class="bash"><span class="nv">j</span><span class="o">=</span>0; <span class="nv">j</span><span class="o">=</span><span class="k">$((</span><span class="nv">$j</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>
 </code></pre>
+</div>
+
 
 <p>incrementing in a loop</p>
 
-<pre><code>j=0;for i in *.txt; do echo "some_file_"$j".txt"; j=$(($j+1)); done
+<div class="highlight"><pre><code class="bash"><span class="nv">j</span><span class="o">=</span>0;for i in *.txt; <span class="k">do </span><span class="nb">echo</span> <span class="s2">&quot;some_file_&quot;</span><span class="nv">$j</span><span class="s2">&quot;.txt&quot;</span>; <span class="nv">j</span><span class="o">=</span><span class="k">$((</span><span class="nv">$j</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>; <span class="k">done</span>
 </code></pre>
+</div>
+
 
 <h3>Using a bash for loop to list all text files and append whoopee</h3>
 
-<pre><code>for i in *.txt; do echo $i"whoopee"; done
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in *.txt; <span class="k">do </span><span class="nb">echo</span> <span class="nv">$i</span><span class="s2">&quot;whoopee&quot;</span>; <span class="k">done</span>
 </code></pre>
+</div>
+
 
 <h3>Change all filenames to be a specific incremented name, starting from file 16</h3>
 
-<pre><code>j=16;for i in *.jpg; do mv "$i" "gallery_"$j".jpg"; j=$(($j+1)); done;ls
+<div class="highlight"><pre><code class="bash"><span class="nv">j</span><span class="o">=</span>16;for i in *.jpg; <span class="k">do </span>mv <span class="s2">&quot;$i&quot;</span> <span class="s2">&quot;gallery_&quot;</span><span class="nv">$j</span><span class="s2">&quot;.jpg&quot;</span>; <span class="nv">j</span><span class="o">=</span><span class="k">$((</span><span class="nv">$j</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>; <span class="k">done</span>;ls
 </code></pre>
+</div>
+
 
 <h3>Script to loop through all .txt filenames and make them lower case</h3>
 
-<pre><code>for i in *.txt; do mv "$i" "`echo $i| tr [A-Z] [a-z]`"; done
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in *.txt; <span class="k">do </span>mv <span class="s2">&quot;$i&quot;</span> <span class="s2">&quot;`echo $i| tr [A-Z] [a-z]`&quot;</span>; <span class="k">done</span>
 </code></pre>
+</div>
+
 
 <h3>Get all JPG files and create the appropriate HTML list tags for them and add them to a file</h3>
 
 <p>Create an HTML version:</p>
 
-<pre><code>for i in *.jpg; do echo "\t&lt;li&gt;\r\t\t&lt;img src='images/$i' alt='' /&gt;\r\t&lt;/li&gt;"; done &gt; list_items.html
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in *.jpg; <span class="k">do </span><span class="nb">echo</span> <span class="s2">&quot;\t&lt;li&gt;\r\t\t&lt;img src=&#39;images/$i&#39; alt=&#39;&#39; /&gt;\r\t&lt;/li&gt;&quot;</span>; <span class="k">done</span> &gt; list_items.html
 </code></pre>
+</div>
+
 
 <p>Create a HAML version:</p>
 
-<pre><code>for i in *.jpg; do echo "\t%li\r\t\t%img{ :src =&gt; 'images/$i', :alt =&gt; '' }\r"; done &gt; imgs.haml
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in *.jpg; <span class="k">do </span><span class="nb">echo</span> <span class="s2">&quot;\t%li\r\t\t%img{ :src =&gt; &#39;images/$i&#39;, :alt =&gt; &#39;&#39; }\r&quot;</span>; <span class="k">done</span> &gt; imgs.haml
 </code></pre>
+</div>
+
 
 <h3>Batch change a misspelled filename of certain files, using string replacement</h3>
 
-<pre><code>for i in aples*.jpg; do mv $i ${i/aples/apples} ; done
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in aples*.jpg; <span class="k">do </span>mv <span class="nv">$i</span> <span class="k">${</span><span class="nv">i</span><span class="p">/aples/apples</span><span class="k">}</span> ; <span class="k">done</span>
 </code></pre>
+</div>
+
 
 <h3>Script to batch create files based on filenames in a file</h3>
 
@@ -149,28 +187,34 @@ etc...</p></blockquote>
 
 <p>Commands:</p>
 
-<pre><code>for i in `sed -n -e 'p' my_files.txt`; do mkdir a_test/$i; done
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in <span class="sb">`</span>sed -n -e <span class="s1">&#39;p&#39;</span> my_files.txt<span class="sb">`</span>; <span class="k">do </span>mkdir a_test/<span class="nv">$i</span>; <span class="k">done</span>
 or
-while read x; do touch $x; done &lt; my_files.txt
+<span class="k">while </span><span class="nb">read </span>x; <span class="k">do </span>touch <span class="nv">$x</span>; <span class="k">done</span> &lt; my_files.txt
 or
 cat my_files.txt | xargs touch
-(xargs passes each line as an argument into EACH touch)
+<span class="o">(</span>xargs passes each line as an argument into EACH touch<span class="o">)</span>
 </code></pre>
+</div>
+
 
 <h3>Using bash Expansions, and allow escapes</h3>
 
 <p>-e is an undocumented flag that allows escapes
 Expansion ${command/parameter/substitution} everything else needs to be escaped.</p>
 
-<pre><code>echo -e ${PATH//\:/\\n}
+<div class="highlight"><pre><code class="bash"><span class="nb">echo</span> -e <span class="k">${</span><span class="nv">PATH</span><span class="p">//\:/\\n</span><span class="k">}</span>
 </code></pre>
+</div>
+
 
 <h3>Executing a .bash_script after making changes</h3>
 
-<pre><code>source .bash_profile
+<div class="highlight"><pre><code class="bash"><span class="nb">source</span> .bash_profile
 or
 . .bash_profile
 </code></pre>
+</div>
+
 
 <p>NB: you can 'include' other bash .sh scripts in a .bash_profile file by using 'source' or '.'</p>
 
@@ -178,41 +222,55 @@ or
 
 <p>Use -O to name the remote file, curl will save it locally but remove the rest of the path.</p>
 
-<pre><code>curl -O http://rubyforge-files.ruby-forum.com/rubygems/rubygems-0.9.0.tgz
+<div class="highlight"><pre><code class="bash">curl -O http://rubyforge-files.ruby-forum.com/rubygems/rubygems-0.9.0.tgz
 </code></pre>
+</div>
+
 
 <h3>Bash command for testing the existence of files and directories</h3>
 
 <p>If a directory does NOT exist create it</p>
 
-<pre><code>[ -d "/var/cache/git" ] || mkdir /var/cache/git
+<div class="highlight"><pre><code class="bash"><span class="o">[</span> -d <span class="s2">&quot;/var/cache/git&quot;</span> <span class="o">]</span> <span class="o">||</span> mkdir /var/cache/git
 </code></pre>
+</div>
+
 
 <p>If a file exists echo a message:</p>
 
-<pre><code>[ -f "./new_file.txt" ] &amp;&amp; echo "its there"
+<div class="highlight"><pre><code class="bash"><span class="o">[</span> -f <span class="s2">&quot;./new_file.txt&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;its there&quot;</span>
 </code></pre>
+</div>
+
 
 <h3>Bash command to remove spaces from filenames</h3>
 
-<pre><code>for i in *.html; do mv "$i" "`echo $i| tr -d ' '`"; done
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in *.html; <span class="k">do </span>mv <span class="s2">&quot;$i&quot;</span> <span class="s2">&quot;`echo $i| tr -d &#39; &#39;`&quot;</span>; <span class="k">done</span>
 </code></pre>
+</div>
+
 
 <p>replace spaces for underscores</p>
 
-<pre><code>for i in *.html; do mv "$i" "`echo $i| tr ' ' '_'`"; done
+<div class="highlight"><pre><code class="bash"><span class="k">for </span>i in *.html; <span class="k">do </span>mv <span class="s2">&quot;$i&quot;</span> <span class="s2">&quot;`echo $i| tr &#39; &#39; &#39;_&#39;`&quot;</span>; <span class="k">done</span>
 </code></pre>
+</div>
+
 
 <p>Vim regex to replace spaces in images file names of ah HTML page</p>
 
-<pre><code>:%s:\(images\/\)\(\w\+\)\s\(\w\+\.jpg\):\1\2_\3:g
+<div class="highlight"><pre><code class="bash">:%s:<span class="se">\(</span>images<span class="se">\/\)\(\w\+\)\s\(\w\+\.</span>jpg<span class="se">\)</span>:<span class="se">\1\2</span>_<span class="se">\3</span>:g
 </code></pre>
+</div>
+
 
 <h3>Copy text to the clipboard</h3>
 
-<pre><code>echo 'hello world'|pbcopy
+<div class="highlight"><pre><code class="bash"><span class="nb">echo</span> <span class="s1">&#39;hello world&#39;</span>|pbcopy
 cmd + v
 </code></pre>
+</div>
+
 
 <h2>Conclusion</h2>
 
@@ -226,23 +284,25 @@ Many thanks, and good luck.</p>
 <p>This is a script written by a colleague.  <a href="http://www.visualcortex.co.uk/">James Power</a>.
 Add the following function to your <strong>.bash_profile</strong> in Apple OSX.  Now open a directory in Finder, then open terminal and type <strong>cdf</strong>, your terminal will now change directory to the same one as the last Finder opened.</p>
 
-<pre><code># function to change directory to the one set in the last opened finder.
-cdf () {
-   currFolderPath=$( /usr/bin/osascript &lt;&lt;"         EOT"
-       tell application "Finder"
+<div class="highlight"><pre><code class="bash"><span class="c"># function to change directory to the one set in the last opened finder.</span>
+cdf <span class="o">()</span> <span class="o">{</span>
+   <span class="nv">currFolderPath</span><span class="o">=</span><span class="k">$(</span> /usr/bin/osascript &lt;&lt;<span class="s2">&quot;           EOT&quot;</span>
+       tell application <span class="s2">&quot;Finder&quot;</span>
            try
-               set currFolder to (folder of the front window as alias)
+               <span class="nb">set </span>currFolder to <span class="o">(</span>folder of the front window as <span class="nb">alias</span><span class="k">)</span>
            on error
-               set currFolder to (path to desktop folder as alias)
+               <span class="nb">set </span>currFolder to <span class="o">(</span>path to desktop folder as <span class="nb">alias</span><span class="o">)</span>
            end try
            POSIX path of currFolder
        end tell
             EOT
-   )
-   echo "cd to \"$currFolderPath\""
-   cd "$currFolderPath"
-}
+   <span class="o">)</span>
+   <span class="nb">echo</span> <span class="s2">&quot;cd to \&quot;$currFolderPath\&quot;&quot;</span>
+   <span class="nb">cd</span> <span class="s2">&quot;$currFolderPath&quot;</span>
+<span class="o">}</span>
 </code></pre>
+</div>
+
 
 <p>Also for a much more comprehensive list of commands check out: <a href="http://www.commandlinefu.com/commands/tagged/34/bash">http://www.commandlinefu.com/commands/tagged/34/bash</a></p>
 

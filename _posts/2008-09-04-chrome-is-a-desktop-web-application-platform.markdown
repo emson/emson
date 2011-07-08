@@ -4,7 +4,7 @@ title: Chrome is a Desktop Web Application platform
 wordpress_id: 19
 wordpress_url: http://blog.emson.co.uk/2008/09/chrome-is-a-desktop-web-application-platform/
 ---
-
+#Chrome is a Desktop Web Application platform
 ##Google Chrome is not just a browser
 
 Google Chrome was launched a few days ago on the 2nd September 2008, since then there has been much hype and articles written about it.  So what is it?

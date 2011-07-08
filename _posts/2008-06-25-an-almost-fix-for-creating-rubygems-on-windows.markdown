@@ -4,6 +4,7 @@ title: An Almost Fix for Creating RubyGems on Windows
 wordpress_id: 14
 wordpress_url: http://blog.emson.co.uk/2008/06/an-almost-fix-for-creating-rubygems-on-windows/
 ---
+#An Almost Fix for Creating RubyGems on Windows
 
 ##Introduction
 I wrote this article originally so that I could write command-line apps using Ruby, as I got further and further down the line I realised that what I really wanted to do was create a command-line app using RubyGems.  I use both Windows and an Apple Mac and I quickly found myself having problems trying to create RubyGems on Windows.
@@ -91,30 +92,32 @@ The Hoe gem **hoe.rb** file can be found in the following directory (assuming yo
 To make it work for Windows PCs you will need to modify this file with the following changes.  
 
 Locate the **define_tasks** method:
-
-    def define_tasks # :nodoc:
-      def with_config # :nodoc:
-        rc = File.expand_path("~/.hoerc")
-        exists = File.exist? rc
-        config = exists ? YAML.load_file(rc) : {}
-        yield(config, rc)
-      end
+{% highlight ruby %}
+def define_tasks # :nodoc:
+  def with_config # :nodoc:
+    rc = File.expand_path("~/.hoerc")
+    exists = File.exist? rc
+    config = exists ? YAML.load_file(rc) : {}
+    yield(config, rc)
+  end
+{% endhighlight %}
 
 And add a new method above it such as this, and modify the line **rc = File.expand_path("~/.hoerc")** as below:
-  
-    def get_home_dir
-      home_file_path = "~/"
-      home_file_path = "#{ENV['HOMEPATH']}\\" if WINDOZE
-      home_file_path
-    end
+{% highlight ruby %}
+def get_home_dir
+  home_file_path = "~/"
+  home_file_path = "#{ENV['HOMEPATH']}\\" if WINDOZE
+  home_file_path
+end
 
-    def define_tasks # :nodoc:
-     def with_config # :nodoc:
-       rc = File.expand_path(get_home_dir + '.hoerc')
-       exists = File.exist? rc
-       config = exists ? YAML.load_file(rc) : {}
-       yield(config, rc)
-     end
+def define_tasks # :nodoc:
+ def with_config # :nodoc:
+   rc = File.expand_path(get_home_dir + '.hoerc')
+   exists = File.exist? rc
+   config = exists ? YAML.load_file(rc) : {}
+   yield(config, rc)
+ end
+{% endhighlight %}
 
 Finally you will need to locate and change the **task :config_hoe** so that it reads:
 
@@ -149,8 +152,9 @@ The output will be something like this:
     * Update missing details (gem description, dependent gems, etc.)
 
 If you want to add [RSpec Stories](http://blog.emson.co.uk/2008/06/understanding-rspec-stories-a-tutorial/) to this project there is a useful command-line generator to do this.  First navigate into the root of you new project app directory, in this case **my_app**.  Now execute the generate script:
-
-    ruby script/generate install_rspec_stories
+{% highlight bash %}
+ruby script/generate install_rspec_stories
+{% endhighlight %}
 
 You should then get the following output:
 

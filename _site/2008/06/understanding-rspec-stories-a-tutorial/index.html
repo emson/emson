@@ -20,6 +20,8 @@
             <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
             
             <div id="post">
+<h1>Understanding RSpec Stories - a Tutorial</h1>
+
 <p>When I initially started writing this RSpec guide I had planned to cover both traditional RSpec <em>Specs</em> and the new <em>Stories</em> feature, however the guide quickly became to big so I decided to focus purely on RSpec Ruby Stories, as opposed to RSpec Rails Stories.</p>
 
 <h2>Why Unit Testing?</h2>
@@ -128,59 +130,63 @@ Installing RDoc documentation for rspec-1.1.4...
 <p>The simplest type of RSpec Story consists of a single file that contains both the Story and the executable Steps, all you need to do is require the library or class you wish to test.<br/>
 For example if we wish to use RSpec to test an <strong>Account</strong> object you would create your library file such as <strong>account.rb</strong>:</p>
 
-<pre><code>class Account
-  attr_accessor :balance
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Account</span>
+  <span class="kp">attr_accessor</span> <span class="ss">:balance</span>
 
-  def initialize(amount)
-    @balance = amount
-  end
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+    <span class="vi">@balance</span> <span class="o">=</span> <span class="n">amount</span>
+  <span class="k">end</span>
 
-  def transfer_to(account, amount)
-    @balance = @balance - amount.to_f
-    account.balance = account.balance.to_f + amount.to_f
-  end
-end
+  <span class="k">def</span> <span class="nf">transfer_to</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+    <span class="vi">@balance</span> <span class="o">=</span> <span class="vi">@balance</span> <span class="o">-</span> <span class="n">amount</span><span class="o">.</span><span class="n">to_f</span>
+    <span class="n">account</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="n">account</span><span class="o">.</span><span class="n">balance</span><span class="o">.</span><span class="n">to_f</span> <span class="o">+</span> <span class="n">amount</span><span class="o">.</span><span class="n">to_f</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
+
 
 <p>Now create your RSpec Story and save this file as <strong>account_story.rb</strong> with the following content.  Note that on Apple OSX systems you seem to have to require the <strong>rubygems</strong> library:</p>
 
-<pre><code>require 'rubygems'
-require 'spec'
-require 'spec/story'
-require 'account'
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;spec&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;spec/story&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;account&#39;</span>
 
-Story "transfer to cash account",
-%(As a savings account holder
-  I want to transfer money from my savings account
-  So that I can get cash easily from an ATM) do
+<span class="no">Story</span> <span class="s2">&quot;transfer to cash account&quot;</span><span class="p">,</span>
+<span class="sx">%(As a savings account holder</span>
+<span class="sx">  I want to transfer money from my savings account</span>
+<span class="sx">  So that I can get cash easily from an ATM)</span> <span class="k">do</span>
 
-  Scenario "savings account is in credit" do
-    Given "my savings account balance is", 100 do |balance|
-      @savings_account = Account.new(balance)
-    end
-    And "my cash account balance is", 10 do |balance|
-      @cash_account = Account.new(balance)
-    end
-    When "I transfer", 20 do |amount|
-      @savings_account.transfer_to(@cash_account, amount)
-    end
-    Then "my savings account balance should be", 80 do |expected_amount|
-      @savings_account.balance.should == expected_amount
-    end
-    And "my cash account balance should be", 30 do |expected_amount|
-      @cash_account.balance.should == expected_amount
-    end
-  end
+  <span class="no">Scenario</span> <span class="s2">&quot;savings account is in credit&quot;</span> <span class="k">do</span>
+    <span class="no">Given</span> <span class="s2">&quot;my savings account balance is&quot;</span><span class="p">,</span> <span class="mi">100</span> <span class="k">do</span> <span class="o">|</span><span class="n">balance</span><span class="o">|</span>
+      <span class="vi">@savings_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">balance</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="no">And</span> <span class="s2">&quot;my cash account balance is&quot;</span><span class="p">,</span> <span class="mi">10</span> <span class="k">do</span> <span class="o">|</span><span class="n">balance</span><span class="o">|</span>
+      <span class="vi">@cash_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">balance</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="no">When</span> <span class="s2">&quot;I transfer&quot;</span><span class="p">,</span> <span class="mi">20</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="o">|</span>
+      <span class="vi">@savings_account</span><span class="o">.</span><span class="n">transfer_to</span><span class="p">(</span><span class="vi">@cash_account</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="no">Then</span> <span class="s2">&quot;my savings account balance should be&quot;</span><span class="p">,</span> <span class="mi">80</span> <span class="k">do</span> <span class="o">|</span><span class="n">expected_amount</span><span class="o">|</span>
+      <span class="vi">@savings_account</span><span class="o">.</span><span class="n">balance</span><span class="o">.</span><span class="n">should</span> <span class="o">==</span> <span class="n">expected_amount</span>
+    <span class="k">end</span>
+    <span class="no">And</span> <span class="s2">&quot;my cash account balance should be&quot;</span><span class="p">,</span> <span class="mi">30</span> <span class="k">do</span> <span class="o">|</span><span class="n">expected_amount</span><span class="o">|</span>
+      <span class="vi">@cash_account</span><span class="o">.</span><span class="n">balance</span><span class="o">.</span><span class="n">should</span> <span class="o">==</span> <span class="n">expected_amount</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 
-  Scenario "savings account is overdrawn" do
-    Given "my savings account balance is", -20
-    And "my cash account balance is", 10
-    When "I transfer", 20
-    Then "my savings account balance should be", -40
-    And "my cash account balance should be", 30
-  end
-end
+  <span class="no">Scenario</span> <span class="s2">&quot;savings account is overdrawn&quot;</span> <span class="k">do</span>
+    <span class="no">Given</span> <span class="s2">&quot;my savings account balance is&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span>
+    <span class="no">And</span> <span class="s2">&quot;my cash account balance is&quot;</span><span class="p">,</span> <span class="mi">10</span>
+    <span class="no">When</span> <span class="s2">&quot;I transfer&quot;</span><span class="p">,</span> <span class="mi">20</span>
+    <span class="no">Then</span> <span class="s2">&quot;my savings account balance should be&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span>
+    <span class="no">And</span> <span class="s2">&quot;my cash account balance should be&quot;</span><span class="p">,</span> <span class="mi">30</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
+
 
 <p>Note that although you did not explicitly define the code in the Steps of the second Scenario the RSpec framework uses the <strong>Given, When, Then</strong> methods defined in the first Scenario.
 In fact if you look at the Story and think of it as a plain old Ruby code file you gradually understand what is happening.  The file defines a number of methods <strong>Story, Scenario, Given, When</strong> and <strong>Then</strong>, note that when RSpec analyses this Story file it parses the two Scenarios and is able to match the <strong>Given, When, Then</strong> methods with the other Scenario.</p>
@@ -236,54 +242,58 @@ Story: transfer to cash account
 
 <p>Now create a steps file with the following name and place it in the steps directory, <strong>bank_steps.rb</strong></p>
 
-<pre><code>require 'rubygems'
-require 'spec/story'
-require 'spec/story/extensions/main'
-require File.join(File.dirname(__FILE__), "../account")
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;spec/story&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;spec/story/extensions/main&#39;</span>
+<span class="nb">require</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">),</span> <span class="s2">&quot;../account&quot;</span><span class="p">)</span>
 
-steps_for(:bank) do
-  Given("my savings account balance is '$savings'") do |savings|
-    @savings_account ||= Account.new(savings)
-  end
-end
+<span class="n">steps_for</span><span class="p">(</span><span class="ss">:bank</span><span class="p">)</span> <span class="k">do</span>
+  <span class="no">Given</span><span class="p">(</span><span class="s2">&quot;my savings account balance is &#39;$savings&#39;&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">savings</span><span class="o">|</span>
+    <span class="vi">@savings_account</span> <span class="o">||=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">savings</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-steps_for(:bank) do
-  Given("my cash account balance is '$cash'") do |cash|
-    @cash_account ||= Account.new(cash)
-  end
-end
+<span class="n">steps_for</span><span class="p">(</span><span class="ss">:bank</span><span class="p">)</span> <span class="k">do</span>
+  <span class="no">Given</span><span class="p">(</span><span class="s2">&quot;my cash account balance is &#39;$cash&#39;&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">cash</span><span class="o">|</span>
+    <span class="vi">@cash_account</span> <span class="o">||=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">cash</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-steps_for(:bank) do
-  When("I transfer '$amount'")  do |amount|
-     @savings_account.transfer_to(@cash_account, amount)
-  end
-end
+<span class="n">steps_for</span><span class="p">(</span><span class="ss">:bank</span><span class="p">)</span> <span class="k">do</span>
+  <span class="no">When</span><span class="p">(</span><span class="s2">&quot;I transfer &#39;$amount&#39;&quot;</span><span class="p">)</span>  <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="o">|</span>
+     <span class="vi">@savings_account</span><span class="o">.</span><span class="n">transfer_to</span><span class="p">(</span><span class="vi">@cash_account</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
-steps_for(:bank) do
-  Then("my savings account balance should be '$expected_amount'") do |expected_amount| 
-     @savings_account.balance.should == expected_amount.to_f
-  end
-end
+<span class="n">steps_for</span><span class="p">(</span><span class="ss">:bank</span><span class="p">)</span> <span class="k">do</span>
+  <span class="no">Then</span><span class="p">(</span><span class="s2">&quot;my savings account balance should be &#39;$expected_amount&#39;&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">expected_amount</span><span class="o">|</span> 
+     <span class="vi">@savings_account</span><span class="o">.</span><span class="n">balance</span><span class="o">.</span><span class="n">should</span> <span class="o">==</span> <span class="n">expected_amount</span><span class="o">.</span><span class="n">to_f</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre>
+</div>
+
 
 <p>The helper file by default is given the same name as the Story file but this time <strong>with the .rb</strong> extension.  Here is an example of such a file, called <strong>bank.rb</strong>.</p>
 
-<pre><code>#!/usr/bin/env ruby
-require 'rubygems'
-require 'spec'
-require 'spec/story/runner'
-require 'account'
+<div class="highlight"><pre><code class="ruby"><span class="c1">#!/usr/bin/env ruby</span>
+<span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;spec&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;spec/story/runner&#39;</span>
+<span class="nb">require</span> <span class="s1">&#39;account&#39;</span>
 
-# require all the steps files so that we can link the story to them
-Dir[File.join(File.dirname(__FILE__), "steps/*.rb")].each do |file|
-  require file
-end
+<span class="c1"># require all the steps files so that we can link the story to them</span>
+<span class="no">Dir</span><span class="o">[</span><span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">),</span> <span class="s2">&quot;steps/*.rb&quot;</span><span class="p">)</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="nb">require</span> <span class="n">file</span>
+<span class="k">end</span>
 
-# execute the steps in the steps file
-with_steps_for :bank do
-  run File.expand_path(__FILE__).gsub(".rb","")
-end
+<span class="c1"># execute the steps in the steps file</span>
+<span class="n">with_steps_for</span> <span class="ss">:bank</span> <span class="k">do</span>
+  <span class="n">run</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="bp">__FILE__</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&quot;.rb&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="k">end</span>
 </code></pre>
+</div>
+
 
 <p>Now to run this story all you have to do is from the Apple <strong>Terminal.app</strong> navigate to the stories directory and execute the following Ruby command:</p>
 

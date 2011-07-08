@@ -20,6 +20,8 @@
             <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
             
             <div id="post">
+<h1>How to determine whether a column exists on SQLServer</h1>
+
 <p>I run some SQL scripts against Microsoft's SQLServer in a number of environments, test, staging and production.</p>
 
 <p>One of my problems is that these scripts alter the database schema and I only want them to execute if the change hasn't already been made.</p>
@@ -28,16 +30,17 @@
 
 <p>Well the SQL query to check if a column exists and execute a query if it does is as follows:</p>
 
-<pre><code>IF EXISTS ( SELECT * FROM INFORMATION_SCHEMA.COLUMNS
-                 WHERE TABLE_NAME='my_table_name' AND
-                 COLUMN_NAME='my_column_name' )
-BEGIN
-  PRINT 'Execute some query here'
-END
+<div class="highlight"><pre><code class="sql"><span class="n">IF</span> <span class="k">EXISTS</span> <span class="p">(</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">COLUMNS</span>
+                 <span class="k">WHERE</span> <span class="k">TABLE_NAME</span><span class="o">=</span><span class="s1">&#39;my_table_name&#39;</span> <span class="k">AND</span>
+                 <span class="k">COLUMN_NAME</span><span class="o">=</span><span class="s1">&#39;my_column_name&#39;</span> <span class="p">)</span>
+<span class="k">BEGIN</span>
+  <span class="n">PRINT</span> <span class="s1">&#39;Execute some query here&#39;</span>
+<span class="k">END</span>
 </code></pre>
+</div>
 
-<p>Hope it is useful.
-Ben...</p>
+
+
 
 </div>
 

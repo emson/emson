@@ -4,6 +4,7 @@ title: IManage error - The semaphore is set and cannot be closed
 wordpress_id: 4
 wordpress_url: http://blog.emson.co.uk/?p=4
 ---
+#IManage error - The semaphore is set and cannot be closed
 Using the Interwoven IManage API, I was trying to create a connection to the IManage server and kept getting this error message:
 
 	The semaphore is set and cannot be closed.

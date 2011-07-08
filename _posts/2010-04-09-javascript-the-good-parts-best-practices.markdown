@@ -1,9 +1,10 @@
 --- 
 layout: post
-title: "JavaScript The Good Parts Best Practices "
+title: JavaScript The Good Parts Best Practices
 wordpress_id: 88
 wordpress_url: http://blog.emson.co.uk/?p=88
 ---
+#JavaScript The Good Parts Best Practices 
 ##Part I
 
 The best practice suggestions listed here are summaries from [Douglas Crockford's](http://www.crockford.com/) book: [JavaScript: The Good Parts](http://www.amazon.com/gp/product/0596517742?ie=UTF8&tag=emson-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=0596517742)
@@ -22,8 +23,8 @@ Avoid using `/* */` for commenting out your code instead use the `//` method.  T
 For an object such as `var myObj = {key:"value"};` An object value can retrieved in two ways:
 {% highlight javascript %}
                               
-    myObj["key"];   // "value"
-    myObj.key;      // "value"
+myObj["key"];   // "value"
+myObj.key;      // "value"
     
 {% endhighlight %}
 
@@ -34,11 +35,11 @@ However the second version using '.' notation is preferred as it reads better.
 
 Global variables will reduce the resiliency of your JavaScript programs so try to keep these to a minimum.  A best practice strategy for this is to use a single global variable for your program and simply assign objects to it. e.g.
 {% highlight javascript %}
-    var MYAPP = {};
-    
-    MYAPP.myObj = {
-      key:"value"
-    };
+var MYAPP = {};
+
+MYAPP.myObj = {
+  key:"value"
+};
 {% endhighlight %}
 
 ###4. Capitalize Constructor Functions
@@ -46,11 +47,11 @@ Global variables will reduce the resiliency of your JavaScript programs so try t
 Functions that are created as *constructor functions* should be capitalized. Think of a *constructor functions* as a factory creating cloned functions.  Strictly this is not classical inheritance but **prototypical inheritance**. This is essentially where a function is cloned and contains all the properties of it's parent.
 {% highlight javascript %}
 
-    var Shape = function (name) {
-      this.name = name;
-    };
-    
-    var square = new Shape("square");
+var Shape = function (name) {
+  this.name = name;
+};
+
+var square = new Shape("square");
 {% endhighlight %}
 
 This style of constructor functions is not recommended as if you forget to use `new` then the `this` object gets bound to the global variable.
@@ -72,22 +73,22 @@ Best practice is to declare the variables used in a function at the top of the f
 A Module is a function or object that presents an interface but hides its state and implementation. This therefore avoids the use of global variables.
 {% highlight javascript %}
 
-    var myModule = function() {
-      var call = '';
-      
-      return {
-        setCall: function(myCall) {
-          call = String(myCall);
-        },
-        doCall: function() {
-          return 'Hello ' + call;
-        }
-      };
-    }();  // the () will immediately invoke this function
-    
-    var myCaller = myModule();
-    myCaller.setCall = 'Ben';
-    alert( myCaller.doCall() );
+var myModule = function() {
+  var call = '';
+  
+  return {
+    setCall: function(myCall) {
+      call = String(myCall);
+    },
+    doCall: function() {
+      return 'Hello ' + call;
+    }
+  };
+}();  // the () will immediately invoke this function
+
+var myCaller = myModule();
+myCaller.setCall = 'Ben';
+alert( myCaller.doCall() );
     
 {% endhighlight %}    
     
@@ -96,7 +97,7 @@ A Module is a function or object that presents an interface but hides its state 
 If you have a method that changes state, be sure to return `this` as opposed to `undefined`. The reason is that you can then chain these methods together.  This is how JQuery works.
 {% highlight javascript %}
 
-    getElement('myDiv').changeColour('red').setFont('Times').setStyle('italic');
+getElement('myDiv').changeColour('red').setFont('Times').setStyle('italic');
     
 {% endhighlight %}
 
@@ -105,11 +106,11 @@ If you have a method that changes state, be sure to return `this` as opposed to 
 If an object takes many parameters it can be tricky ensuring that these parameters are in the correct order. Therefore create a single object instead that holds all the parameters as properties:
 {% highlight javascript %}
 
-    // Tricky
-    var myObj = someObject(a, b, c, d);
-    
-    // Better
-    var myObj = someObject({ first: a, second: b, third: c, fourth: d});
+// Tricky
+var myObj = someObject(a, b, c, d);
+
+// Better
+var myObj = someObject({ first: a, second: b, third: c, fourth: d});
     
 {% endhighlight %}
 
@@ -127,15 +128,15 @@ A `try catch` statement only allows a single catch block, to catch all exception
 Object creation methods:
 {% highlight javascript %}
 
-    var myObj = {};
+var myObj = {};
 
 {% endhighlight %}
 
 Set a default value if an object property doesn't exist:
 {% highlight javascript %}
 
-    var myObj = {one:"1"};
-    myObj.two || "2" // returns "2"
+var myObj = {one:"1"};
+myObj.two || "2" // returns "2"
     
 {% endhighlight %}
 
@@ -163,11 +164,11 @@ A function can take 0 or more specified parameters, however functions get two ex
 A **method** is simply a function assigned (bound) to an objects property. e.g.
 {% highlight javascript %}
 
-    var myObj = {
-      myMethod: function (name) {
-        alert("Hello " + name);
-      };
-    };
+var myObj = {
+  myMethod: function (name) {
+    alert("Hello " + name);
+  };
+};
     
 {% endhighlight %}    
 
@@ -197,17 +198,17 @@ When a function is created by assigning it to a global variable, and the content
 When a function, contains an internal function the `this` of the internal function is bound to the Global Object and not the `this` of the parent function. To fix this simply assign `this` to a `that` variable and use `that` within your internal function.
 {% highlight javascript %}
 
-    var myObj = {
-      value: 0;
-      
-      double: function() {
-        var that = this;
-        var helper = function() {
-          that.value = that.value + that.value;
-        };
-        helper();
-      };
+var myObj = {
+  value: 0;
+  
+  double: function() {
+    var that = this;
+    var helper = function() {
+      that.value = that.value + that.value;
     };
+    helper();
+  };
+};
     
 {% endhighlight %}
 

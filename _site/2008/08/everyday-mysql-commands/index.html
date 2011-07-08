@@ -20,6 +20,8 @@
             <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
             
             <div id="post">
+<h1>Everyday MySQL Commands</h1>
+
 <p>I'm trying to put together a number of blog articles and many of them use the MySQL database, so I figured that I would post up some of my most used everyday MySQL SQL commands.  Most likely I will append further commands as I write more articles so this is page is really a work in progress.</p>
 
 <p>I've also assumed that you want to have full rights when executing these commands so I've used <strong>sudo</strong>, however you may not need this depending on your set up.</p>
@@ -32,87 +34,105 @@
 
 <p>Start your MySQL database and get it running as a background process:</p>
 
-<pre><code>sudo mysqld_safe
+<div class="highlight"><pre><code class="bash">sudo mysqld_safe
 Ctrl + Z
-bg
+<span class="nb">bg</span>
 </code></pre>
+</div>
+
 
 <h3>MySQL create databases script</h3>
 
 <p>Make a SQL script that creates 3 databases and assigns all rights to my username.
 Copy the following SQL and paste it into a file called <strong>create_databases.sql</strong>:</p>
 
-<pre><code>create database mydb_development;
-create database mydb_test;
-create database mydb_production;
-grant all on mydb_development.* to 'my_username'@'localhost';
-grant all on mydb_test.* to 'my_username'@'localhost';
-grant all on mydb_production.* to 'my_username'@'localhost' identified by 'my_password';
+<div class="highlight"><pre><code class="sql"><span class="k">create</span> <span class="k">database</span> <span class="n">mydb_development</span><span class="p">;</span>
+<span class="k">create</span> <span class="k">database</span> <span class="n">mydb_test</span><span class="p">;</span>
+<span class="k">create</span> <span class="k">database</span> <span class="n">mydb_production</span><span class="p">;</span>
+<span class="k">grant</span> <span class="k">all</span> <span class="k">on</span> <span class="n">mydb_development</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="s1">&#39;my_username&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<span class="k">grant</span> <span class="k">all</span> <span class="k">on</span> <span class="n">mydb_test</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="s1">&#39;my_username&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+<span class="k">grant</span> <span class="k">all</span> <span class="k">on</span> <span class="n">mydb_production</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="s1">&#39;my_username&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span> <span class="n">identified</span> <span class="k">by</span> <span class="s1">&#39;my_password&#39;</span><span class="p">;</span>
 </code></pre>
+</div>
+
 
 <h3>MySQL drop databases script</h3>
 
 <p>Make a script to drop databases.
 Copy the following SQL and paste it into a file called <strong>drop_databases.sql</strong>:</p>
 
-<pre><code>drop database nemos_production;
-drop database mydb_development;
-drop database nemos_test;
+<div class="highlight"><pre><code class="sql"><span class="k">drop</span> <span class="k">database</span> <span class="n">nemos_production</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">database</span> <span class="n">mydb_development</span><span class="p">;</span>
+<span class="k">drop</span> <span class="k">database</span> <span class="n">nemos_test</span><span class="p">;</span>
 </code></pre>
+</div>
+
 
 <h3>Executing a script from MySQL</h3>
 
 <p>The above scripts can be executed from the command-line with the either of these commands:</p>
 
-<pre><code>sudo mysql &lt; create_database.sql
+<div class="highlight"><pre><code class="bash">sudo mysql &lt; create_database.sql
 or
 sudo mysql &lt; drop_database.sql
 </code></pre>
+</div>
+
 
 <h3>Showing MySQL databases</h3>
 
 <p>To check that the databases were created :</p>
 
-<pre><code>sudo mysqlshow
+<div class="highlight"><pre><code class="bash">sudo mysqlshow
 or
 sudo mysql
 show databases;
 </code></pre>
+</div>
+
 
 <h3>Displaying database tables</h3>
 
 <p>Displaying the tables of a database:</p>
 
-<pre><code>sudo mysqlshow mydb_development
+<div class="highlight"><pre><code class="bash">sudo mysqlshow mydb_development
 or
 sudo mysql
 show tables from mydb_development;
 </code></pre>
+</div>
+
 
 <h3>Displaying details about a database table</h3>
 
 <p>Displaying details about a particular database table:</p>
 
-<pre><code>sudo mysqlshow mydb_development mytable
+<div class="highlight"><pre><code class="bash">sudo mysqlshow mydb_development mytable
 </code></pre>
+</div>
+
 
 <h3>Droping a database table</h3>
 
 <p>Dropping a table from a database:</p>
 
-<pre><code>sudo mysql
+<div class="highlight"><pre><code class="bash">sudo mysql
 use mydb_development;
 drop table mytable;
 </code></pre>
+</div>
+
 
 <h3>Displaying information about a table</h3>
 
 <p>Displaying the fields and field metadata about a table:</p>
 
-<pre><code>show fields from my_table; 
+<div class="highlight"><pre><code class="bash">show fields from my_table; 
 or
 desc my_table;
 </code></pre>
+</div>
+
 
 <h2>Useful Links</h2>
 

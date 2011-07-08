@@ -4,6 +4,7 @@ title: Cannot select text with mouse in Microsoft Word, fix.
 wordpress_id: 18
 wordpress_url: http://blog.emson.co.uk/2008/08/cannot-select-text-with-mouse-in-microsoft-word-fix/
 ---
+#Cannot select text with mouse in Microsoft Word, fix.
 A friend had the following problem with their laptop the other day.
 When they open Microsoft Word they cannot select any text with the mouse, they couldn't even place the cursor into the text by clicking the mouse on the text.
 

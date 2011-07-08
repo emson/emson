@@ -4,6 +4,7 @@ title: Ruby Quine Example
 wordpress_id: 108
 wordpress_url: http://blog.emson.co.uk/?p=108
 ---
+#Ruby Quine Example
 I was recently challenged to write a **quine** in the language of my choice.
 If you are unsure what a **quine** is you can find out from [http://en.wikipedia.org/wiki/Quine_(computing)](http://en.wikipedia.org/wiki/Quine_(computing\)).  However basically in our case it is a piece of code that when executed creates a copy of itself. This copy can then be executed and ad infinitum.
 
@@ -17,7 +18,7 @@ There are some official rules about how a **quine** should be implemented:
 Anyway here is my solution in Ruby...
 {% highlight ruby %}
 
-    lambda{|x| puts x + x.inspect}.call "lambda{|x| puts x + x.inspect}.call"
+lambda{|x| puts x + x.inspect}.call "lambda{|x| puts x + x.inspect}.call"
 
 {% endhighlight %}
 

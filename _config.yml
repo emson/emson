@@ -1,6 +1,3 @@
-# http://vitobotta.com/how-to-migrate-from-wordpress-to-jekyll/
-# pygmentize -S colorful -f html > css/syntax.css
-
 auto: false
 server: false
 markdown: rdiscount
@@ -10,6 +7,6 @@ permalink: /:year/:month/:title
 paginate: 10
 category: topics
 category_title_prefix: 
-exclude: ["lib", "blog.rb", "Capfile", "config", "log", "Rakefile", "tmp"]
+exclude: ["lib", "blog.rb", "Capfile", "config", "log", "Rakefile", "tmp", "docs"]
 destination: _site
 

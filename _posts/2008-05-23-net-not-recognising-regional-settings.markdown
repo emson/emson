@@ -4,6 +4,7 @@ title: .Net not recognising regional settings
 wordpress_id: 3
 wordpress_url: http://blog.emson.co.uk/?p=3
 ---
+#.Net not recognising regional settings
 The other day I had the following problem.
 One of my test servers had been setup with US regional settings and should have been setup with UK settings.
 
@@ -31,33 +32,35 @@ The <b>machine.config</b> can be found in this directory:
 If you are using .Net 2.0 I'm sure you can make the same changes to the **globalization** XML node.
 Please change the **globalization** XML node to have the correct cultural settings in our case **en-GB**:
 <code><pre>
-	&lt;globalization
+	<globalization
 		fileEncoding="utf-8"
 		requestEncoding="utf-8"
 		responseEncoding="utf-8"
 		culture="en-GB"
 		uiCulture="en-GB"							
-	/&gt;
+	/>
 </pre></code>
 
 To test that a .Net application would send the correct settings I wrote a simple test app which would print the 'Long Date' to the console.  Here is the source code if you want to quickly test it yourself:
 
 **ShowLongDate.cs**
 
-	using System;
+{% highlight c# %}
+using System;
 	
-	namespace examples
-	{
-	    class ShowLongDate
-	    {
-	        static void Main(string[] args)
-	        {
-	            DateTime current = DateTime.Now;
-	            string longDate = current.ToLongDateString();
-	            System.Console.WriteLine(string.Format("Date as longDate: {0}", longDate));
-	        }
-	    }
-	}
+namespace examples
+{
+    class ShowLongDate
+    {
+        static void Main(string[] args)
+        {
+            DateTime current = DateTime.Now;
+            string longDate = current.ToLongDateString();
+            System.Console.WriteLine(string.Format("Date as longDate: {0}", longDate));
+        }
+    }
+}
+{% endhighlight %}
 
 ##Interesting things I learned##
 

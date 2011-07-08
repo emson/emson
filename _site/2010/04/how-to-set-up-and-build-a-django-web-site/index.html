@@ -20,6 +20,8 @@
             <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
             
             <div id="post">
+<h1>How To Set Up and Build a Django Web Site</h1>
+
 <p>This article outlines how to set up your new Django site from scratch. I tend to use <a href="http://www.dreamhost.com/r.cgi?105422">Dreamhost Web Site Hosting</a> so there will be a few notes specific to them.</p>
 
 <p>If you are unsure how to set up Python and Django using <a href="http://www.dreamhost.com/r.cgi?105422">Dreamhost</a> then checkout my previous article.</p>
@@ -30,33 +32,42 @@
 
 <p>Create a project directory</p>
 
-<pre><code>$ mkdir -p mysite-project/mysite.com
-$ cd mysite-project/mysite.com
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>mkdir -p mysite-project/mysite.com
+<span class="nv">$ </span><span class="nb">cd </span>mysite-project/mysite.com
 </code></pre>
+</div>
+
 
 <p>Create you new site:</p>
 
-<pre><code>$ django-admin.py startproject mysite
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>django-admin.py startproject mysite
 </code></pre>
+</div>
+
 
 <p>Now create the following directories:</p>
 
-<pre><code>$ mkdir -p mysite-project/settings
-$ mkdir -p mysite-project/mysite.com/tmp/
-$ mkdir -p mysite-project/mysite.com/public/appmedia
-$ mkdir -p mysite-project/mysite.com/mysite/scripts
-$ mkdir -p mysite-project/mysite.com/mysite/templates
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>mkdir -p mysite-project/settings
+<span class="nv">$ </span>mkdir -p mysite-project/mysite.com/tmp/
+<span class="nv">$ </span>mkdir -p mysite-project/mysite.com/public/appmedia
+<span class="nv">$ </span>mkdir -p mysite-project/mysite.com/mysite/scripts
+<span class="nv">$ </span>mkdir -p mysite-project/mysite.com/mysite/templates
 </code></pre>
+</div>
+
 
 <h2>Initialise git</h2>
 
-<pre><code>$ cd mysite-project/mysite.com
-$ git init
-$ touch .gitignore
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="nb">cd </span>mysite-project/mysite.com
+<span class="nv">$ </span>git init
+<span class="nv">$ </span>touch .gitignore
+</code></pre>
+</div>
 
-Add the following:
 
-.DS_Store
+<p>Add the following:</p>
+
+<pre><code>.DS_Store
 *.pyc
 packages/
 work/
@@ -66,25 +77,29 @@ work/
 
 <p>The following should be carried out from this directory:</p>
 
-<pre><code>$ cd mysite-project/mysite.com
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="nb">cd </span>mysite-project/mysite.com
 </code></pre>
+</div>
+
 
 <p>Add the <strong>passenger_wsgi.py</strong> file to mysite-project/mysite.com directory:</p>
 
-<pre><code>import sys, os
-if sys.hexversion &lt; 0x2060000: os.execl("/home/myuser/opt/python261/bin/python2.6", "python2.6", *sys.argv)
+<div class="highlight"><pre><code class="bash">import sys, os
+<span class="k">if </span>sys.hexversion &lt; 0x2060000: os.execl<span class="o">(</span><span class="s2">&quot;/home/myuser/opt/python261/bin/python2.6&quot;</span>, <span class="s2">&quot;python2.6&quot;</span>, *sys.argv<span class="o">)</span>
 
-sys.path.append(os.getcwd())
-# START
-# required if you are using VirtualEnv, to get Passenger to use local Python environment.
-# see: http://wiki.dreamhost.com/Passenger_WSGI
-INTERP = "/home/myuser/virtual/bin/python2.6"
-if sys.executable != INTERP: os.execl(INTERP, INTERP, *sys.argv)
-# END
-os.environ['DJANGO_SETTINGS_MODULE'] = "mysite.settings"
+sys.path.append<span class="o">(</span>os.getcwd<span class="o">())</span>
+<span class="c"># START</span>
+<span class="c"># required if you are using VirtualEnv, to get Passenger to use local Python environment.</span>
+<span class="c"># see: http://wiki.dreamhost.com/Passenger_WSGI</span>
+<span class="nv">INTERP</span> <span class="o">=</span> <span class="s2">&quot;/home/myuser/virtual/bin/python2.6&quot;</span>
+<span class="k">if </span>sys.executable !<span class="o">=</span> INTERP: os.execl<span class="o">(</span>INTERP, INTERP, *sys.argv<span class="o">)</span>
+<span class="c"># END</span>
+os.environ<span class="o">[</span><span class="s1">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;mysite.settings&quot;</span>
 import django.core.handlers.wsgi
-application = django.core.handlers.wsgi.WSGIHandler()
+<span class="nv">application</span> <span class="o">=</span> django.core.handlers.wsgi.WSGIHandler<span class="o">()</span>
 </code></pre>
+</div>
+
 
 <p>Create the public/appmedia directory in this directory to.
 Create tmp/restart.txt</p>
@@ -94,116 +109,136 @@ Create tmp/restart.txt</p>
 <p>Move to the mysite-project directory.
 Ensure that you have virtualenv installed on your local system:</p>
 
-<pre><code>$ cd mysite-project
-$ pip install virtualenv
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="nb">cd </span>mysite-project
+<span class="nv">$ </span>pip install virtualenv
 </code></pre>
+</div>
+
 
 <p>Create the <strong>virtual/</strong> directories using virtualenv:</p>
 
-<pre><code>$ virtualenv ./virtual
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>virtualenv ./virtual
 </code></pre>
+</div>
+
 
 <p>Create a symbolic link to the <strong>activate</strong> executable.</p>
 
-<pre><code>$ ln -s ./virtual/bin/activate ./activate
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>ln -s ./virtual/bin/activate ./activate
 </code></pre>
+</div>
+
 
 <p>NB: if you rename your mysite-project directory you may well need to delete the virtual directory and activate symbolic link and recreate them using the previous virtualenv steps.</p>
 
 <p>You can check which Python site packages being used with this command:</p>
 
-<pre><code>$ python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>python -c <span class="s2">&quot;from distutils.sysconfig import get_python_lib; print get_python_lib()&quot;</span>
 </code></pre>
+</div>
+
 
 <h2>Create Local Dev Database</h2>
 
 <p>Change directory to the scripts directory in mysite-project/mysite.com/mysite:</p>
 
-<pre><code>$ cd mysite-project/mysite.com/mysite/scripts
-$ touch scripts/create-db.sql
-$ touch scripts/drop-db.sql
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="nb">cd </span>mysite-project/mysite.com/mysite/scripts
+<span class="nv">$ </span>touch scripts/create-db.sql
+<span class="nv">$ </span>touch scripts/drop-db.sql
 </code></pre>
+</div>
+
 
 <p>create-db.sql</p>
 
-<pre><code>create database mysite_com_dev;
-grant all on mysite_com_dev.* to 'root'@'localhost';
+<div class="highlight"><pre><code class="sql"><span class="k">create</span> <span class="k">database</span> <span class="n">mysite_com_dev</span><span class="p">;</span>
+<span class="k">grant</span> <span class="k">all</span> <span class="k">on</span> <span class="n">mysite_com_dev</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="s1">&#39;root&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
 </code></pre>
+</div>
+
 
 <p>drop-db.sql</p>
 
-<pre><code>drop database mysite_com_dev;
+<div class="highlight"><pre><code class="sql"><span class="k">drop</span> <span class="k">database</span> <span class="n">mysite_com_dev</span><span class="p">;</span>
 </code></pre>
+</div>
+
 
 <p>Now create the database</p>
 
-<pre><code>$ mysql -u root &lt; scripts/create-db.sql
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>mysql -u root &lt; scripts/create-db.sql
 </code></pre>
+</div>
+
 
 <h2>Set up the Django Project Files</h2>
 
-<p>Make the following changes to the <strong>settings.py</strong> file.
-{% highlight python %}</p>
+<p>Make the following changes to the <strong>settings.py</strong> file.</p>
 
-<pre><code>import sys
-import os
-import os.path
-import socket
+<div class="highlight"><pre><code class="python"><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">socket</span>
 
-PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
-sys.path.insert(0, os.path.join(PROJECT_ROOT)) # needed because of shared hosting PYTHONPATH problems
+<span class="n">PROJECT_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">))</span> <span class="c"># needed because of shared hosting PYTHONPATH problems</span>
 
-# MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'public/appmedia/')
-MEDIA_ROOT = '/full/local/path/to/appmedia/'
-# MEDIA_URL = '/appmedia/'
-MEDIA_URL = 'http://media.mysite.com/appmedia/'
-ADMIN_MEDIA_PREFIX = 'http://media.mysite.com/media/'
+<span class="c"># MEDIA_ROOT = os.path.join(PROJECT_ROOT, &#39;public/appmedia/&#39;)</span>
+<span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="s">&#39;/full/local/path/to/appmedia/&#39;</span>
+<span class="c"># MEDIA_URL = &#39;/appmedia/&#39;</span>
+<span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s">&#39;http://media.mysite.com/appmedia/&#39;</span>
+<span class="n">ADMIN_MEDIA_PREFIX</span> <span class="o">=</span> <span class="s">&#39;http://media.mysite.com/media/&#39;</span>
 
-TEMPLATE_DIRS = ( os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'), )
+<span class="n">TEMPLATE_DIRS</span> <span class="o">=</span> <span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\\</span><span class="s">&#39;</span><span class="p">,</span><span class="s">&#39;/&#39;</span><span class="p">),</span> <span class="p">)</span>
 
-INSTALLED_APPS = (
-    'django.contrib.admin', # add this
-    'django.contrib.admindocs', # and this
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-)
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span> <span class="c"># add this</span>
+    <span class="s">&#39;django.contrib.admindocs&#39;</span><span class="p">,</span> <span class="c"># and this</span>
+    <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
+<span class="p">)</span>
 
-# Add this to the bottom to import your local settings
-try:
-    from settings_local import *
-except ImportError:
-    pass
+<span class="c"># Add this to the bottom to import your local settings</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">settings_local</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="k">pass</span>
+        
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
 <p>Now we need to create a settings_local.py file in the same directory as the main settings.py file:</p>
 
-<pre><code>$ touch settings_local.py
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>touch settings_local.py
 </code></pre>
+</div>
 
-<p>Then add your default settings (most probably your dev settings):
-{% highlight python %}</p>
 
-<pre><code>DATABASE_ENGINE = 'mysql'     
-DATABASE_NAME = 'mysite_com_dev'
-DATABASE_USER = 'root'         
-DATABASE_PASSWORD = ''         
-DATABASE_HOST = 'localhost'    
-DATABASE_PORT = ''
+<p>Then add your default settings (most probably your dev settings):</p>
+
+<div class="highlight"><pre><code class="python"><span class="n">DATABASE_ENGINE</span> <span class="o">=</span> <span class="s">&#39;mysql&#39;</span>     
+<span class="n">DATABASE_NAME</span> <span class="o">=</span> <span class="s">&#39;mysite_com_dev&#39;</span>
+<span class="n">DATABASE_USER</span> <span class="o">=</span> <span class="s">&#39;root&#39;</span>         
+<span class="n">DATABASE_PASSWORD</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>         
+<span class="n">DATABASE_HOST</span> <span class="o">=</span> <span class="s">&#39;localhost&#39;</span>    
+<span class="n">DATABASE_PORT</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+    
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
 <p>As we will be using multiple environments we need to have different configurations for each environment.  There are a number of ways to do this, however the DRYist and easiest is to have a main settings file that imports different settings according to the environment.</p>
 
 <p>Change directory to the mysite-project/settings directory, and create the appropriate settings files - we will have a dev, staging and production file as well as the main one:</p>
 
-<pre><code>$ cd mysite-project/settings
-$ touch settings_dev.py; touch settings_staging.py; touch settings_production.py
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="nb">cd </span>mysite-project/settings
+<span class="nv">$ </span>touch settings_dev.py; touch settings_staging.py; touch settings_production.py
 </code></pre>
+</div>
+
 
 <p>Now add the appropriate settings to these files database settings. Note that these settings will overwrite the settings in the main settings file.</p>
 
@@ -217,59 +252,67 @@ $ touch settings_dev.py; touch settings_staging.py; touch settings_production.py
 
 <p>Add <strong>South</strong> (Note the capital 'S') to your pip requirements.txt file, and pip install it:</p>
 
-<pre><code>  pip install -r requirements.txt
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>pip install -r requirements.txt
 </code></pre>
+</div>
+
 
 <p>Or just run:</p>
 
-<pre><code>  pip install South
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>pip install South
 </code></pre>
+</div>
 
-<p>Install the <strong>south</strong> (Note lowercase 's') into your project settings.py file. e.g.:
-{% highlight python %}</p>
 
-<pre><code>  INSTALLED_APPS = (
-      'django.contrib.admin',
-      'django.contrib.admindocs',
-      'django.contrib.auth',
-      'django.contrib.contenttypes',
-      'django.contrib.sessions',
-      'django.contrib.sites',
-      'south',
-  )
+<p>Install the <strong>south</strong> (Note lowercase 's') into your project settings.py file. e.g.:</p>
+
+<div class="highlight"><pre><code class="python"><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.admindocs&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
+    <span class="s">&#39;south&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+      
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
 <p>Now <strong>syncdb</strong> with your database so that your App knows about South.</p>
 
-<pre><code>  $ python manage.py syncdb
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>python manage.py syncdb
 </code></pre>
+</div>
+
 
 <p>You should get an output similar to this:</p>
 
-<pre><code>      Syncing...
-      Creating table south_migrationhistory
+<pre><code>Syncing...
+Creating table south_migrationhistory
 
-      Synced:
-       &gt; django.contrib.admin
-       &gt; django.contrib.auth
-       &gt; django.contrib.contenttypes
-       &gt; django.contrib.sessions
-       &gt; django.contrib.sites
-       &gt; django.contrib.markup
-       &gt; south
-       &gt; tagging
+Synced:
+ &gt; django.contrib.admin
+ &gt; django.contrib.auth
+ &gt; django.contrib.contenttypes
+ &gt; django.contrib.sessions
+ &gt; django.contrib.sites
+ &gt; django.contrib.markup
+ &gt; south
+ &gt; tagging
 
-      Not synced (use migrations):
-       - 
-      (use ./manage.py migrate to migrate these)
+Not synced (use migrations):
+ - 
+(use ./manage.py migrate to migrate these)
 </code></pre>
 
 <p>Finally you need to tell South what Apps you want it to manage (in terms of migrations). So for example say you have an App called 'firepages', then run:</p>
 
-<pre><code>  python manage.py startmigration firepages --initial
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>python manage.py startmigration firepages --initial
 </code></pre>
+</div>
+
 
 <p>This will create a migrations directory and will allow South to manage all the models in that App:</p>
 
@@ -285,8 +328,10 @@ $ touch settings_dev.py; touch settings_staging.py; touch settings_production.py
 
 <p>You will now need to execute the following command to migrate forward:</p>
 
-<pre><code>  python manage.py migrate
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>python manage.py migrate
 </code></pre>
+</div>
+
 
 <p>Now if you want to change your database do the following:</p>
 
@@ -299,63 +344,60 @@ $ touch settings_dev.py; touch settings_staging.py; touch settings_production.py
 
 <h2>Change urls.py</h2>
 
-<p>Use the following imports:
-{% highlight python %}</p>
+<p>Use the following imports:</p>
 
-<pre><code>from django.conf import settings
-from django.contrib import admin
+<div class="highlight"><pre><code class="python"><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
 
-admin.autodiscover()
+<span class="n">admin</span><span class="o">.</span><span class="n">autodiscover</span><span class="p">()</span>
+    
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
-<p>At the bottom add a new URL path so that the site can get access to the appmedia, NB don't forget to add a staging and production version to:
-{% highlight python %}</p>
+<p>At the bottom add a new URL path so that the site can get access to the appmedia, NB don't forget to add a staging and production version to:</p>
 
-<pre><code># simple trick to use local css files for development.
-# (Just make sure DEBUG=False in production!!!)
-if settings.DEBUG:
-    urlpatterns += patterns('', 
-        url(r'^appmedia/(?P&lt;path&gt;.*)$', 'django.views.static.serve', { 
-            'document_root': settings.MEDIA_ROOT }),
-        )
+<div class="highlight"><pre><code class="python"><span class="c"># simple trick to use local css files for development.</span>
+<span class="c"># (Just make sure DEBUG=False in production!!!)</span>
+<span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span>
+    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> 
+        <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^appmedia/(?P&lt;path&gt;.*)$&#39;</span><span class="p">,</span> <span class="s">&#39;django.views.static.serve&#39;</span><span class="p">,</span> <span class="p">{</span> 
+            <span class="s">&#39;document_root&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span> <span class="p">}),</span>
+        <span class="p">)</span>
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
-<p>Now add the following URLs:
-{% highlight python %}</p>
+<p>Now add the following URLs:</p>
 
-<pre><code>urlpatterns = patterns('',
-    #Admin URLS
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^admin/', include(admin.site.urls)),
-
-    #Home URL
-    (r'^$', include('mysite.foo.urls'),
-)
+<div class="highlight"><pre><code class="python"><span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+    <span class="c">#Admin URLS</span>
+    <span class="c"># (r&#39;^admin/doc/&#39;, include(&#39;django.contrib.admindocs.urls&#39;)),</span>
+    <span class="p">(</span><span class="s">r&#39;^admin/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">site</span><span class="o">.</span><span class="n">urls</span><span class="p">)),</span>
+    
+    <span class="c">#Home URL</span>
+    <span class="p">(</span><span class="s">r&#39;^$&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s">&#39;mysite.foo.urls&#39;</span><span class="p">),</span>
+<span class="p">)</span>
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
 <p>You may want to change the <strong>admin</strong> URL pattern to be something else. This will make the admin area more obscure thus helping to prevent hacking. e.g. <strong>mylogin</strong></p>
 
 <h2>Add a views.py file</h2>
 
-<p>In the mysite-production/mysite.com/mysite/ directory add a views.py file with the following:
-{% highlight python %}</p>
+<p>In the mysite-production/mysite.com/mysite/ directory add a views.py file with the following:</p>
 
-<pre><code>from django.http import HttpResponse
+<div class="highlight"><pre><code class="python"><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
 
-import settings
+<span class="kn">import</span> <span class="nn">settings</span>
 
-def hello(request, path='none'):
-    """quick hello test"""
-    return HttpResponse("Quick test, PROJECT_ROOT: %s&lt;br/&gt;URL path: %s" % (settings.PROJECT_ROOT, path))
+<span class="k">def</span> <span class="nf">hello</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;quick hello test&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">&quot;Quick test, PROJECT_ROOT: </span><span class="si">%s</span><span class="s">&lt;br/&gt;URL path: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">PROJECT_ROOT</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span>
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
 <h2>Sync the DB and Start the Server</h2>
 
@@ -363,16 +405,20 @@ def hello(request, path='none'):
 
 <p>Start the virtual environment:</p>
 
-<pre><code>$ . ../../activate
-(virtual)$ python manage.py syncdb
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>. ../../activate
+<span class="o">(</span>virtual<span class="o">)</span><span class="nv">$ </span>python manage.py syncdb
 ** create a user **
-(virtual)$ python manage.py runserver
+<span class="o">(</span>virtual<span class="o">)</span><span class="nv">$ </span>python manage.py runserver
 </code></pre>
+</div>
+
 
 <p>Now open a browser and point it at this URL:</p>
 
-<pre><code>$ open http://localhost:8000
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>open http://localhost:8000
 </code></pre>
+</div>
+
 
 <p>It should display your <strong>hello</strong> view results.</p>
 
@@ -380,18 +426,24 @@ def hello(request, path='none'):
 
 <p>Add a requirements.txt file to the following directory:</p>
 
-<pre><code>$ touch mysite-project/mysite/requirements.txt
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>touch mysite-project/mysite/requirements.txt
 </code></pre>
+</div>
+
 
 <p>Add in any requirements e.g. django-tagging</p>
 
-<pre><code>echo mysite-project/mysite/requirements.txt &lt;&lt; django-tagging
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span><span class="nb">echo </span>mysite-project/mysite/requirements.txt &lt;&lt; django-tagging
 </code></pre>
+</div>
+
 
 <p>Execute and add requirements:</p>
 
-<pre><code>pip install -r requirements.txt 
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>pip install -r requirements.txt 
 </code></pre>
+</div>
+
 
 <h2>Local Apps Directory</h2>
 
@@ -404,30 +456,28 @@ def hello(request, path='none'):
 
 <h2>RequestContext on All Views</h2>
 
-<p>All your views should implement a RequestContext variable, but first you will need to add the following CONTEXT_PROCESSORS to the settings.py file:
-{% highlight python %}</p>
+<p>All your views should implement a RequestContext variable, but first you will need to add the following CONTEXT_PROCESSORS to the settings.py file:</p>
 
-<pre><code>TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.auth',
-    'django.core.context_processors.debug', # passes the DEBUG variable to the template
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media', # passes the MEDIA_URL to the template
-    'django.core.context_processors.request', # passes the request object to the template
-)
+<div class="highlight"><pre><code class="python"><span class="n">TEMPLATE_CONTEXT_PROCESSORS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&#39;django.core.context_processors.auth&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.core.context_processors.debug&#39;</span><span class="p">,</span> <span class="c"># passes the DEBUG variable to the template</span>
+    <span class="s">&#39;django.core.context_processors.i18n&#39;</span><span class="p">,</span>
+    <span class="s">&#39;django.core.context_processors.media&#39;</span><span class="p">,</span> <span class="c"># passes the MEDIA_URL to the template</span>
+    <span class="s">&#39;django.core.context_processors.request&#39;</span><span class="p">,</span> <span class="c"># passes the request object to the template</span>
+<span class="p">)</span>
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
-<p>Now Make sure that you pass the RequestContext to the render.
-{% highlight python %}</p>
+<p>Now Make sure that you pass the RequestContext to the render.</p>
 
-<pre><code>def home_page(request):
-    """display home page"""
-    template = "page_home.html" 
-    return render_to_response(template, { 'foo':'bar' }, context_instance=RequestContext(request))
+<div class="highlight"><pre><code class="python"><span class="k">def</span> <span class="nf">home_page</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;display home page&quot;&quot;&quot;</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s">&quot;page_home.html&quot;</span> 
+    <span class="k">return</span> <span class="n">render_to_response</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="p">{</span> <span class="s">&#39;foo&#39;</span><span class="p">:</span><span class="s">&#39;bar&#39;</span> <span class="p">},</span> <span class="n">context_instance</span><span class="o">=</span><span class="n">RequestContext</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
 <p>This will allow you to use generic templates, and also get a handle on certain variables in the template.</p>
 
@@ -440,33 +490,32 @@ def hello(request, path='none'):
 <p>You will need to have the <strong>'django.core.context_processors.request',</strong> setting set in the template context processors as specified above.</p>
 
 <p>You will also need to create a module called <strong>templatetags</strong> with a <strong>init</strong>.py file in it.
-Now add a file called <strong>active_menus.py</strong>
-{% highlight python %}</p>
+Now add a file called <strong>active_menus.py</strong></p>
 
-<pre><code>    from django import template
+<div class="highlight"><pre><code class="python"><span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">template</span>
 
-    register = template.Library()
+<span class="n">register</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">Library</span><span class="p">()</span>
 
-    @register.simple_tag
-    def link_to(request, pattern, url, name):
-        import re
-        if re.search(pattern, request.path):
-            return '&lt;span class="active"&gt;%s&lt;/span&gt;' % name
-        return '&lt;a href="%s"&gt;%s&lt;/a&gt;' % (url, name)
+<span class="nd">@register.simple_tag</span>
+<span class="k">def</span> <span class="nf">link_to</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">re</span>
+    <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;&lt;span class=&quot;active&quot;&gt;</span><span class="si">%s</span><span class="s">&lt;/span&gt;&#39;</span> <span class="o">%</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="s">&#39;&lt;a href=&quot;</span><span class="si">%s</span><span class="s">&quot;&gt;</span><span class="si">%s</span><span class="s">&lt;/a&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
-<p>Now in your template <em>load</em> this template tag and call it like this:
-{% highlight django %}</p>
+<p>Now in your template <em>load</em> this template tag and call it like this:</p>
 
-<pre><code>    {% load active_menus %}
-    &lt;li&gt;{% link_to request "^/$" "/" "home" %}&lt;/li&gt;
-    &lt;li&gt;{% link_to request "^/software/$" "/software/" "software" %}&lt;/li&gt;
-    &lt;li&gt;{% link_to request "^/books/$" "/books/" "books" %}&lt;/li&gt;       
+<div class="highlight"><pre><code class="django"><span class="cp">{%</span> <span class="k">load</span> <span class="nv">active_menus</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">&lt;li&gt;</span><span class="cp">{%</span> <span class="k">link_to</span> <span class="nv">request</span> <span class="s2">&quot;^/$&quot;</span> <span class="s2">&quot;/&quot;</span> <span class="s2">&quot;home&quot;</span> <span class="cp">%}</span><span class="x">&lt;/li&gt;</span>
+<span class="x">&lt;li&gt;</span><span class="cp">{%</span> <span class="k">link_to</span> <span class="nv">request</span> <span class="s2">&quot;^/software/$&quot;</span> <span class="s2">&quot;/software/&quot;</span> <span class="s2">&quot;software&quot;</span> <span class="cp">%}</span><span class="x">&lt;/li&gt;</span>
+<span class="x">&lt;li&gt;</span><span class="cp">{%</span> <span class="k">link_to</span> <span class="nv">request</span> <span class="s2">&quot;^/books/$&quot;</span> <span class="s2">&quot;/books/&quot;</span> <span class="s2">&quot;books&quot;</span> <span class="cp">%}</span><span class="x">&lt;/li&gt;       </span>
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
 
 <h2>Template Includes</h2>
 
@@ -490,68 +539,70 @@ Now add a file called <strong>active_menus.py</strong>
 
 <p>Create a <strong>sitemaps.py</strong> file in your project. This file should contain something like:</p>
 
-<p>{% highlight python %}</p>
+<div class="highlight"><pre><code class="python"><span class="kn">from</span> <span class="nn">django.contrib.sitemaps</span> <span class="kn">import</span> <span class="n">Sitemap</span>
+<span class="kn">from</span> <span class="nn">myproject.models</span> <span class="kn">import</span> <span class="n">ProductPage</span><span class="p">,</span> <span class="n">ProductCategory</span>
 
-<p>from django.contrib.sitemaps import Sitemap
-from myproject.models import ProductPage, ProductCategory</p>
+<span class="k">class</span> <span class="nc">ProductPageSitemap</span><span class="p">(</span><span class="n">Sitemap</span><span class="p">):</span>
+    <span class="n">changefreq</span> <span class="o">=</span> <span class="s">&quot;never&quot;</span>
+    <span class="n">priority</span> <span class="o">=</span> <span class="mf">0.5</span>
 
-<p>class ProductPageSitemap(Sitemap):</p>
+    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ProductPage</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">published</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<pre><code>changefreq = "never"
-priority = 0.5
 
-def items(self):
-    return ProductPage.objects.all().filter(published=True)
+<span class="k">class</span> <span class="nc">ProductCategorySitemap</span><span class="p">(</span><span class="n">Sitemap</span><span class="p">):</span>
+    <span class="n">changefreq</span> <span class="o">=</span> <span class="s">&quot;never&quot;</span>
+    <span class="n">priority</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ProductCategory</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
 </code></pre>
+</div>
 
-<p>class ProductCategorySitemap(Sitemap):</p>
 
-<pre><code>changefreq = "never"
-priority = 0.5
+<p>Now add the following to your <strong>urls.py</strong> file:</p>
 
-def items(self):
-    return ProductCategory.objects.all()
+<div class="highlight"><pre><code class="python">        
+<span class="kn">from</span> <span class="nn">myproject.sitemaps</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c"># from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap</span>
+
+<span class="n">sitemaps</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;product_pages&#39;</span><span class="p">:</span> <span class="n">ProductPageSitemap</span><span class="p">,</span>
+    <span class="s">&#39;product_categories&#39;</span><span class="p">:</span> <span class="n">ProductCategorySitemap</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="n">patterns</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+  <span class="p">(</span><span class="s">r&#39;^sitemap\.xml$&#39;</span><span class="p">,</span> <span class="s">&#39;django.contrib.sitemaps.views.sitemap&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;sitemaps&#39;</span><span class="p">:</span> <span class="n">sitemaps</span><span class="p">})</span>
+<span class="p">)</span>
 </code></pre>
+</div>
 
-<p>{% endhighlight %}</p>
-
-<p>Now add the following to your <strong>urls.py</strong> file:
-{% highlight python %}</p>
-
-<pre><code>    from myproject.sitemaps import *
-    # from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
-
-    sitemaps = {
-        'product_pages': ProductPageSitemap,
-        'product_categories': ProductCategorySitemap,
-    }
-
-    urlpatterns = patterns('',
-      (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
-    )
-</code></pre>
-
-<p>{% endhighlight %}</p>
 
 <h2>Adding a new App</h2>
 
-<pre><code>$ python manage.py startapp myappname
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>python manage.py startapp myappname
 </code></pre>
+</div>
+
 
 <p>Add myappname to your settings.py file INSTALLED_APPS
 Now create some models in your myappname/models.py file.</p>
 
 <p>Then run a syncdb:</p>
 
-<pre><code>$ python manage.py syncdb 
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>python manage.py syncdb 
 OR to see the SQL
-$ python manage.py sql myappname
+<span class="nv">$ </span>python manage.py sql myappname
 </code></pre>
+</div>
+
 
 <p>Now if you want to add South migrations:</p>
 
-<pre><code>$ python manage.py startmigration myappname --initial
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>python manage.py startmigration myappname --initial
 </code></pre>
+</div>
+
 
 <h2>Installing PIL</h2>
 

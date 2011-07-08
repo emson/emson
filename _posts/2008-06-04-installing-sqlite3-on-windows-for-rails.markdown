@@ -4,6 +4,7 @@ title: Installing Sqlite3 on Windows for Rails
 wordpress_id: 10
 wordpress_url: http://blog.emson.co.uk/?p=10
 ---
+#Installing Sqlite3 on Windows for Rails
 
 The Windows version of [Ruby on Rails](http://www.rubyonrails.org) does not ship with the [Sqlite3 database](http://www.sqlite.org), even though the **database.yaml** configuration file is preconfigured to use Sqlite.
 
@@ -12,14 +13,14 @@ This article assumes that you already have [Ruby](http://www.ruby-lang.org) and 
 
 First you will need to download two files from the Sqlite web site [http://www.sqlite.org/download.html](http://www.sqlite.org/download.html):
 
-		sqlite-3_5_9.zip (214.32 KiB)
-		A command-line program for accessing and modifing SQLite databases. 
-		See the documentation for additional information.
-		
-		sqlitedll-3_5_9.zip (213.17 KiB)
-		This is a DLL of the SQLite library without the TCL bindings. 
-		The only external dependency is MSVCRT.DLL.
-		
+    sqlite-3_5_9.zip (214.32 KiB)
+    A command-line program for accessing and modifing SQLite databases. 
+    See the documentation for additional information.
+
+    sqlitedll-3_5_9.zip (213.17 KiB)
+    This is a DLL of the SQLite library without the TCL bindings. 
+    The only external dependency is MSVCRT.DLL.
+
 The first file is the Sqlite command line program used for modifing the Sqlite database.  You may or may not use this.
 
 The second file is the Windows DLL library file and Ruby uses this when Rails makes Sqlite database calls.  

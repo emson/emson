@@ -4,6 +4,8 @@ title: Understanding RSpec Stories - a Tutorial
 wordpress_id: 12
 wordpress_url: http://blog.emson.co.uk/2008/06/understanding-rspec-stories-a-tutorial/
 ---
+#Understanding RSpec Stories - a Tutorial
+
 When I initially started writing this RSpec guide I had planned to cover both traditional RSpec *Specs* and the new *Stories* feature, however the guide quickly became to big so I decided to focus purely on RSpec Ruby Stories, as opposed to RSpec Rails Stories.
 
 ##Why Unit Testing?
@@ -100,58 +102,60 @@ Finally if you are an Apple user and are using [TextMate](http://www.macromates.
 
 The simplest type of RSpec Story consists of a single file that contains both the Story and the executable Steps, all you need to do is require the library or class you wish to test.<br/>
 For example if we wish to use RSpec to test an **Account** object you would create your library file such as **account.rb**:
+{% highlight ruby %}
+class Account
+  attr_accessor :balance
 
-    class Account
-      attr_accessor :balance
-  
-      def initialize(amount)
-        @balance = amount
-      end
-  
-      def transfer_to(account, amount)
-        @balance = @balance - amount.to_f
-        account.balance = account.balance.to_f + amount.to_f
-      end
-    end
+  def initialize(amount)
+    @balance = amount
+  end
+
+  def transfer_to(account, amount)
+    @balance = @balance - amount.to_f
+    account.balance = account.balance.to_f + amount.to_f
+  end
+end
+{% endhighlight %}
 
 Now create your RSpec Story and save this file as **account_story.rb** with the following content.  Note that on Apple OSX systems you seem to have to require the **rubygems** library:
+{% highlight ruby %}
+require 'rubygems'
+require 'spec'
+require 'spec/story'
+require 'account'
 
-    require 'rubygems'
-    require 'spec'
-    require 'spec/story'
-    require 'account'
+Story "transfer to cash account",
+%(As a savings account holder
+  I want to transfer money from my savings account
+  So that I can get cash easily from an ATM) do
 
-    Story "transfer to cash account",
-    %(As a savings account holder
-      I want to transfer money from my savings account
-      So that I can get cash easily from an ATM) do
-
-      Scenario "savings account is in credit" do
-        Given "my savings account balance is", 100 do |balance|
-          @savings_account = Account.new(balance)
-        end
-        And "my cash account balance is", 10 do |balance|
-          @cash_account = Account.new(balance)
-        end
-        When "I transfer", 20 do |amount|
-          @savings_account.transfer_to(@cash_account, amount)
-        end
-        Then "my savings account balance should be", 80 do |expected_amount|
-          @savings_account.balance.should == expected_amount
-        end
-        And "my cash account balance should be", 30 do |expected_amount|
-          @cash_account.balance.should == expected_amount
-        end
-      end
-
-      Scenario "savings account is overdrawn" do
-        Given "my savings account balance is", -20
-        And "my cash account balance is", 10
-        When "I transfer", 20
-        Then "my savings account balance should be", -40
-        And "my cash account balance should be", 30
-      end
+  Scenario "savings account is in credit" do
+    Given "my savings account balance is", 100 do |balance|
+      @savings_account = Account.new(balance)
     end
+    And "my cash account balance is", 10 do |balance|
+      @cash_account = Account.new(balance)
+    end
+    When "I transfer", 20 do |amount|
+      @savings_account.transfer_to(@cash_account, amount)
+    end
+    Then "my savings account balance should be", 80 do |expected_amount|
+      @savings_account.balance.should == expected_amount
+    end
+    And "my cash account balance should be", 30 do |expected_amount|
+      @cash_account.balance.should == expected_amount
+    end
+  end
+
+  Scenario "savings account is overdrawn" do
+    Given "my savings account balance is", -20
+    And "my cash account balance is", 10
+    When "I transfer", 20
+    Then "my savings account balance should be", -40
+    And "my cash account balance should be", 30
+  end
+end
+{% endhighlight %}
 
 Note that although you did not explicitly define the code in the Steps of the second Scenario the RSpec framework uses the **Given, When, Then** methods defined in the first Scenario.
 In fact if you look at the Story and think of it as a plain old Ruby code file you gradually understand what is happening.  The file defines a number of methods **Story, Scenario, Given, When** and **Then**, note that when RSpec analyses this Story file it parses the two Scenarios and is able to match the **Given, When, Then** methods with the other Scenario.
@@ -203,54 +207,54 @@ Create a Story file with the following file name, **bank**
         Then my savings account balance should be '-40'
         
 Now create a steps file with the following name and place it in the steps directory, **bank_steps.rb**
+{% highlight ruby %}
+require 'rubygems'
+require 'spec/story'
+require 'spec/story/extensions/main'
+require File.join(File.dirname(__FILE__), "../account")
 
-    require 'rubygems'
-    require 'spec/story'
-    require 'spec/story/extensions/main'
-    require File.join(File.dirname(__FILE__), "../account")
+steps_for(:bank) do
+  Given("my savings account balance is '$savings'") do |savings|
+    @savings_account ||= Account.new(savings)
+  end
+end
 
-    steps_for(:bank) do
-      Given("my savings account balance is '$savings'") do |savings|
-        @savings_account ||= Account.new(savings)
-      end
-    end
+steps_for(:bank) do
+  Given("my cash account balance is '$cash'") do |cash|
+    @cash_account ||= Account.new(cash)
+  end
+end
 
-    steps_for(:bank) do
-      Given("my cash account balance is '$cash'") do |cash|
-        @cash_account ||= Account.new(cash)
-      end
-    end
+steps_for(:bank) do
+  When("I transfer '$amount'")  do |amount|
+     @savings_account.transfer_to(@cash_account, amount)
+  end
+end
 
-    steps_for(:bank) do
-      When("I transfer '$amount'")  do |amount|
-         @savings_account.transfer_to(@cash_account, amount)
-      end
-    end
-
-    steps_for(:bank) do
-      Then("my savings account balance should be '$expected_amount'") do |expected_amount| 
-         @savings_account.balance.should == expected_amount.to_f
-      end
-    end
-
+steps_for(:bank) do
+  Then("my savings account balance should be '$expected_amount'") do |expected_amount| 
+     @savings_account.balance.should == expected_amount.to_f
+  end
+end
+{% endhighlight %}
 The helper file by default is given the same name as the Story file but this time **with the .rb** extension.  Here is an example of such a file, called **bank.rb**.
+{% highlight ruby %}
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'spec'
+require 'spec/story/runner'
+require 'account'
 
-    #!/usr/bin/env ruby
-    require 'rubygems'
-    require 'spec'
-    require 'spec/story/runner'
-    require 'account'
+# require all the steps files so that we can link the story to them
+Dir[File.join(File.dirname(__FILE__), "steps/*.rb")].each do |file|
+  require file
+end
 
-    # require all the steps files so that we can link the story to them
-    Dir[File.join(File.dirname(__FILE__), "steps/*.rb")].each do |file|
-      require file
-    end
-
-    # execute the steps in the steps file
-    with_steps_for :bank do
-      run File.expand_path(__FILE__).gsub(".rb","")
-    end
-
+# execute the steps in the steps file
+with_steps_for :bank do
+  run File.expand_path(__FILE__).gsub(".rb","")
+end
+{% endhighlight %}
 Now to run this story all you have to do is from the Apple **Terminal.app** navigate to the stories directory and execute the following Ruby command:
 
     ruby bank.rb

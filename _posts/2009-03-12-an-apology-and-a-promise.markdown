@@ -4,6 +4,7 @@ title: An apology and a promise
 wordpress_id: 27
 wordpress_url: http://blog.emson.co.uk/?p=27
 ---
+#An apology and a promise
 This is just a quick note to apologise for not posting for the last couple of months.  A lot has been happening and I have actually written a number of posts but never quite finished them.  Also I promise to write more regularly come the end of March 2009 (hopefully).
 
 Well my New Year started with a '[Looney Dook](http://www.theloonydook.co.uk/)' in the [Firth of Fourth](http://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=elie,+scotland&sll=53.800651,-4.064941&sspn=14.253717,33.925781&ie=UTF8&ll=56.193812,-2.82177&spn=0.052339,0.132523&z=13&iwloc=addr) on New Years day.  Man it was cold and a struggle to get in, but I felt fantastic afterwards.  Its seems like quite a good analogy of how my year has been so far.

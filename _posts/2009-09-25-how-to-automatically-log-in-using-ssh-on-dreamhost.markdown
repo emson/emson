@@ -4,6 +4,8 @@ title: How to Automatically Log In Using SSH On Dreamhost
 wordpress_id: 74
 wordpress_url: http://blog.emson.co.uk/?p=74
 ---
+#How to Automatically Log In Using SSH On Dreamhost
+
 If you build web sites and [host (or want to host) them on Dreamhost](http://www.dreamhost.com/r.cgi?105422), you will be well aware that at some stage you will be using SSH to log in and out of your hosting server. If you have many sites then this gradually becomes tiresome - especially if you use tools like [Capistrano](http://www.capify.org/index.php/Capistrano) to deploy your applications, as you will constantly have to re-enter your passwords. 
 
 Fortunately you can certify your local computer, such that it will automatically enter the SSH password for you. Here are some quick tips on how to do it.

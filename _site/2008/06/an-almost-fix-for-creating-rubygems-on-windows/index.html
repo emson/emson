@@ -20,6 +20,8 @@
             <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
             
             <div id="post">
+<h1>An Almost Fix for Creating RubyGems on Windows</h1>
+
 <h2>Introduction</h2>
 
 <p>I wrote this article originally so that I could write command-line apps using Ruby, as I got further and further down the line I realised that what I really wanted to do was create a command-line app using RubyGems.  I use both Windows and an Apple Mac and I quickly found myself having problems trying to create RubyGems on Windows.</p>
@@ -114,31 +116,35 @@ The Hoe gem <strong>hoe.rb</strong> file can be found in the following directory
 
 <p>Locate the <strong>define_tasks</strong> method:</p>
 
-<pre><code>def define_tasks # :nodoc:
-  def with_config # :nodoc:
-    rc = File.expand_path("~/.hoerc")
-    exists = File.exist? rc
-    config = exists ? YAML.load_file(rc) : {}
-    yield(config, rc)
-  end
+<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">define_tasks</span> <span class="c1"># :nodoc:</span>
+  <span class="k">def</span> <span class="nf">with_config</span> <span class="c1"># :nodoc:</span>
+    <span class="n">rc</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="s2">&quot;~/.hoerc&quot;</span><span class="p">)</span>
+    <span class="n">exists</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span> <span class="n">rc</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">exists</span> <span class="p">?</span> <span class="no">YAML</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">rc</span><span class="p">)</span> <span class="p">:</span> <span class="p">{}</span>
+    <span class="k">yield</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
+  <span class="k">end</span>
 </code></pre>
+</div>
+
 
 <p>And add a new method above it such as this, and modify the line <strong>rc = File.expand_path("~/.hoerc")</strong> as below:</p>
 
-<pre><code>def get_home_dir
-  home_file_path = "~/"
-  home_file_path = "#{ENV['HOMEPATH']}\\" if WINDOZE
-  home_file_path
-end
+<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">get_home_dir</span>
+  <span class="n">home_file_path</span> <span class="o">=</span> <span class="s2">&quot;~/&quot;</span>
+  <span class="n">home_file_path</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;HOMEPATH&#39;</span><span class="o">]</span><span class="si">}</span><span class="se">\\</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="no">WINDOZE</span>
+  <span class="n">home_file_path</span>
+<span class="k">end</span>
 
-def define_tasks # :nodoc:
- def with_config # :nodoc:
-   rc = File.expand_path(get_home_dir + '.hoerc')
-   exists = File.exist? rc
-   config = exists ? YAML.load_file(rc) : {}
-   yield(config, rc)
- end
+<span class="k">def</span> <span class="nf">define_tasks</span> <span class="c1"># :nodoc:</span>
+ <span class="k">def</span> <span class="nf">with_config</span> <span class="c1"># :nodoc:</span>
+   <span class="n">rc</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">expand_path</span><span class="p">(</span><span class="n">get_home_dir</span> <span class="o">+</span> <span class="s1">&#39;.hoerc&#39;</span><span class="p">)</span>
+   <span class="n">exists</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span> <span class="n">rc</span>
+   <span class="n">config</span> <span class="o">=</span> <span class="n">exists</span> <span class="p">?</span> <span class="no">YAML</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">rc</span><span class="p">)</span> <span class="p">:</span> <span class="p">{}</span>
+   <span class="k">yield</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
+ <span class="k">end</span>
 </code></pre>
+</div>
+
 
 <p>Finally you will need to locate and change the <strong>task :config_hoe</strong> so that it reads:</p>
 
@@ -177,8 +183,10 @@ Important
 
 <p>If you want to add <a href="http://blog.emson.co.uk/2008/06/understanding-rspec-stories-a-tutorial/">RSpec Stories</a> to this project there is a useful command-line generator to do this.  First navigate into the root of you new project app directory, in this case <strong>my_app</strong>.  Now execute the generate script:</p>
 
-<pre><code>ruby script/generate install_rspec_stories
+<div class="highlight"><pre><code class="bash">ruby script/generate install_rspec_stories
 </code></pre>
+</div>
+
 
 <p>You should then get the following output:</p>
 

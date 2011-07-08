@@ -4,6 +4,7 @@ title: SproutCore and Web Applications
 wordpress_id: 15
 wordpress_url: http://blog.emson.co.uk/?p=15
 ---
+#SproutCore and Web Applications
 It's been a wee while since my last article, which has largely been due to my summer holiday.
 Anyway I've been reading up and experimenting with the <a href="http://www.sproutcore.com">SproutCore</a> JavaScript framework.  
 

@@ -20,6 +20,8 @@
             <h1><a href="http://blog.emson.co.uk">Ben Emson</a></h1> 
             
             <div id="post">
+<h1>Ruby Quine Example</h1>
+
 <p>I was recently challenged to write a <strong>quine</strong> in the language of my choice.
 If you are unsure what a <strong>quine</strong> is you can find out from <a href="http://en.wikipedia.org/wiki/Quine_(computing)">http://en.wikipedia.org/wiki/Quine_(computing)</a>.  However basically in our case it is a piece of code that when executed creates a copy of itself. This copy can then be executed and ad infinitum.</p>
 
@@ -33,7 +35,7 @@ If you are unsure what a <strong>quine</strong> is you can find out from <a href
 
 <p>Anyway here is my solution in Ruby...</p>
 
-<div class="highlight"><pre><code class="ruby">    <span class="nb">lambda</span><span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">.</span><span class="n">inspect</span><span class="p">}</span><span class="o">.</span><span class="n">call</span> <span class="s2">&quot;lambda{|x| puts x + x.inspect}.call&quot;</span>
+<div class="highlight"><pre><code class="ruby"><span class="nb">lambda</span><span class="p">{</span><span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">.</span><span class="n">inspect</span><span class="p">}</span><span class="o">.</span><span class="n">call</span> <span class="s2">&quot;lambda{|x| puts x + x.inspect}.call&quot;</span>
 </code></pre>
 </div>
 
@@ -65,7 +67,7 @@ If you are unsure what a <strong>quine</strong> is you can find out from <a href
     
       <li><span>09 May 2010</span> &raquo; <a href="/2010/05/code-kata-four-exercise-a-ruby-solution">Code Kata Four Exercise - A Ruby Solution</a></li>
     
-      <li><span>09 Apr 2010</span> &raquo; <a href="/2010/04/javascript-the-good-parts-best-practices">JavaScript The Good Parts Best Practices </a></li>
+      <li><span>09 Apr 2010</span> &raquo; <a href="/2010/04/javascript-the-good-parts-best-practices">JavaScript The Good Parts Best Practices</a></li>
     
   </ul>
 </div>

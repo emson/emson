@@ -4,6 +4,8 @@ title: Installing the Latest RSpec TextMate Bundle
 wordpress_id: 9
 wordpress_url: http://blog.emson.co.uk/?p=9
 ---
+#Installing the Latest RSpec TextMate Bundle
+
 If you are using [TextMate](http://www.macromates.com) on your Apple Mac you may wish to download the RSpec TextMate Bundle and install it.  The TextMate bundle can be found in the [RSpec Git repository](http://github.com/dchelimsky/rspec-tmbundle/tree/master).  In your **Terminal.app** enter the following commands.  Please note that you will need Git installed on your Apple Mac in order to do this, please see my article [Installing Git on Apple OSX](http://blog.emson.co.uk/2008/06/installing-a-git-client-on-osx/) on how to do this:
 
     cd /Applications/TextMate.app/Contents/SharedSupport/Bundles
