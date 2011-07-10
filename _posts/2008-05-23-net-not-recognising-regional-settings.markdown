@@ -27,19 +27,19 @@ The only solution to this is then to modify the <b>machine.config</b> file.
 
 The <b>machine.config</b> file is in each installation of the .Net framework.  I happen to have both .Net 1.1 and .Net 2.0, however I changed the <b>machine.config</b> file in only the .Net 1.1 installation directory (even though our application is .Net 2.0) and all worked fine.
 The <b>machine.config</b> can be found in this directory:
-	<pre>C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\CONFIG</pre>
+
+    C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\CONFIG
 
 If you are using .Net 2.0 I'm sure you can make the same changes to the **globalization** XML node.
 Please change the **globalization** XML node to have the correct cultural settings in our case **en-GB**:
-<code><pre>
-	<globalization
-		fileEncoding="utf-8"
-		requestEncoding="utf-8"
-		responseEncoding="utf-8"
-		culture="en-GB"
-		uiCulture="en-GB"							
-	/>
-</pre></code>
+
+    <globalization
+      fileEncoding="utf-8"
+      requestEncoding="utf-8"
+      responseEncoding="utf-8"
+      culture="en-GB"
+      uiCulture="en-GB"
+    />
 
 To test that a .Net application would send the correct settings I wrote a simple test app which would print the 'Long Date' to the console.  Here is the source code if you want to quickly test it yourself:
 

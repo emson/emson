@@ -4,7 +4,7 @@
  <title>Ben Emson</title>
  <link href="http://blog.emson.co.uk/atom.xml" rel="self"/>
  <link href="http://blog.emson.co.uk/"/>
- <updated>2011-07-08T17:50:59+01:00</updated>
+ <updated>2011-07-09T17:31:53+01:00</updated>
  <id>http://blog.emson.co.uk/</id>
  <author>
    <name>Ben Emson</name>
@@ -3065,23 +3065,20 @@ The only solution to this is then to modify the &lt;b&gt;machine.config&lt;/b&gt
 &lt;p&gt;The &lt;b&gt;machine.config&lt;/b&gt; file is in each installation of the .Net framework.  I happen to have both .Net 1.1 and .Net 2.0, however I changed the &lt;b&gt;machine.config&lt;/b&gt; file in only the .Net 1.1 installation directory (even though our application is .Net 2.0) and all worked fine.
 The &lt;b&gt;machine.config&lt;/b&gt; can be found in this directory:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;pre&amp;gt;C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\CONFIG&amp;lt;/pre&amp;gt;
+&lt;pre&gt;&lt;code&gt;C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\CONFIG
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;If you are using .Net 2.0 I'm sure you can make the same changes to the &lt;strong&gt;globalization&lt;/strong&gt; XML node.
-Please change the &lt;strong&gt;globalization&lt;/strong&gt; XML node to have the correct cultural settings in our case &lt;strong&gt;en-GB&lt;/strong&gt;:
-&lt;code&gt;&lt;pre&gt;&lt;/p&gt;
+Please change the &lt;strong&gt;globalization&lt;/strong&gt; XML node to have the correct cultural settings in our case &lt;strong&gt;en-GB&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;globalization
-    fileEncoding=&quot;utf-8&quot;
-    requestEncoding=&quot;utf-8&quot;
-    responseEncoding=&quot;utf-8&quot;
-    culture=&quot;en-GB&quot;
-    uiCulture=&quot;en-GB&quot;                           
+  fileEncoding=&quot;utf-8&quot;
+  requestEncoding=&quot;utf-8&quot;
+  responseEncoding=&quot;utf-8&quot;
+  culture=&quot;en-GB&quot;
+  uiCulture=&quot;en-GB&quot;
 /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;/pre&gt;&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;To test that a .Net application would send the correct settings I wrote a simple test app which would print the 'Long Date' to the console.  Here is the source code if you want to quickly test it yourself:&lt;/p&gt;
 

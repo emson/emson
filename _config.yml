@@ -7,6 +7,6 @@ permalink: /:year/:month/:title
 paginate: 10
 category: topics
 category_title_prefix: 
-exclude: ["lib", "blog.rb", "Capfile", "config", "log", "Rakefile", "tmp", "docs"]
+exclude: ["lib", "blog.rb", "Capfile", "config", "log", "Rakefile", "tmp", "docs", "mint"]
 destination: _site
 
