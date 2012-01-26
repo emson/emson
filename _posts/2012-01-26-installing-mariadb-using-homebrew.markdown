@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Installing MariaDB  using Brew
+title: Installing MariaDB using Homebrew
 published: true
 categories: database, mysql, mariadb
 ---
 
-# Installing MariaDB  using Brew
+# Installing MariaDB using Homebrew
 
 
 [MariaDB](http://mariadb.org/) is a binary compatible and improved version of [MySQL](http://www.mysql.com/). This means that MariaDB is
