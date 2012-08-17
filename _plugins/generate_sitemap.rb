@@ -1,7 +1,7 @@
 # Jekyll sitemap page generator.
 # http://recursive-design.com/projects/jekyll-plugins/
 #
-# Version: 0.1.4 (201101061053)
+# Version: 0.1.8 (201108151628)
 #
 # Copyright (c) 2010 Dave Perrett, http://recursive-design.com/
 # Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
@@ -43,9 +43,6 @@ module Jekyll
     safe true
     priority :low
     
-    # Domain that you are generating the sitemap for - update this to match your site.
-    BASE_URL = 'http://blog.emson.co.uk'
-    
     # Generates the sitemap.xml file.
     #
     #  +site+ is the global Site object.
@@ -82,30 +79,60 @@ module Jekyll
     def generate_content(site)
       result   = ''
       
-      puts "====== #{site.pages.inspect}"
-      
       # First, try to find any stand-alone pages.      
       site.pages.each{ |page|
         path     = page.subfolder + '/' + page.name
-        mod_date = File.mtime(site.source + path)
-
-  			# Remove the trailing 'index.html' if there is one, and just output the folder name.
-  			if path=~/index.html$/
-  			  path = path[0..-11]
-  		  end
         
-        unless path =~/error/
-          result += entry(path, mod_date)
+        # Skip files that don't exist yet (e.g. paginator pages)
+        if FileTest.exist?(path)
+        
+          mod_date = File.mtime(site.source + path)
+
+          # Use the user-specified permalink if one is given.
+          if page.permalink
+            path = page.permalink
+          else
+            # Be smart about the output filename.
+            path.gsub!(/.md$/, ".html")
+          end
+
+          # Ignore SASS, SCSS, and CSS files
+          if path=~/.(sass|scss|css)$/
+            next
+          end
+
+          # Remove the trailing 'index.html' if there is one, and just output the folder name.
+          if path=~/\/index.html$/
+              path = path[0..-11]
+          end
+
+          if page.data.has_key?('changefreq')
+            changefreq = page.data["changefreq"]
+          else
+            changefreq = ""
+          end
+        
+          unless path =~/error/
+            result += entry(path, mod_date, changefreq, site)
+          end
+        
         end
       }
       
       # Next, find all the posts.
       posts = site.site_payload['site']['posts']
       for post in posts do
-        result += entry(post.url, post.date)
+        if post.data.has_key?('changefreq')
+          changefreq = post.data["changefreq"]
+        else
+          changefreq = "never"
+        end
+        url = post.url
+        url = url[0..-11] if url=~/\/index.html$/
+        result += entry(url, post.date, changefreq, site)
       end
       
-    	result
+        result
     end
 
     # Returns the XML footer.
@@ -117,11 +144,19 @@ module Jekyll
     #
     #  +path+ is the URL path to the page.
     #  +date+ is the date the file was modified (in the case of regular pages), or published (for blog posts).
-    def entry(path, date)
+    #  +changefreq+ is the frequency with which the page is expected to change (this information is used by
+    #    e.g. the Googlebot). This may be specified in the page's YAML front matter. If it is not set, nothing
+    #    is output for this property.
+    def entry(path, date, changefreq, site)
+      # Remove the trailing slash from the baseurl if it is present, for consistency.
+      baseurl = site.config['baseurl']
+      baseurl = baseurl[0..-2] if baseurl=~/\/$/
+      
       "
   <url>
-      <loc>#{BASE_URL}#{path}</loc>
-      <lastmod>#{date.strftime("%Y-%m-%d")}</lastmod>
+      <loc>#{baseurl}#{path}</loc>
+      <lastmod>#{date.strftime("%Y-%m-%d")}</lastmod>#{if changefreq.length > 0
+          "\n      <changefreq>#{changefreq}</changefreq>" end}
   </url>"
     end
 
