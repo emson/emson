@@ -116,7 +116,7 @@ By learning a new language you change your mind, you will think in a different w
 
 ##Sharpen Your Editor Skills
 Become a guru in a particular editor.  You will be programming day in day out, make sure that you know every shortcut and trick in the book for that editor.
-Vim, Emacs, Textmate
+Vim, Emacs, Textmate, [Sublime Text](http://www.sublimetext.com/)
 
 ##Develop a Philosophy 
 You are not just programming for yourself, you are developing a legacy.  Your code could potentially out live you.  Take pride in it, anything you undertake should fit into your philosophy otherwise why waste your time.
